@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+
+}
+
+img {
+    width: 125px;
+}
+
+/* Layout: GRID */
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: repeat(8, auto);
+    gap: 20px;
+}
+
+.header {
+    grid-column: 1/4;
+    grid-row: 1;
+    padding: 10px;
+}
+
+.cumprimento{
+    grid-column: 1/4;
+    grid-row: 2;
+    padding: 15px;
+}
+
+.main {
+    grid-column: 1/3;
+    grid-row: 3;
+    padding: 40px;
+    width: 1400px;
+    height: 400px;
+    background-color: red;
+}
+
+.sidebar {
+    grid-column: 3/4;
+    grid-row: 3;
+    padding: 40px;
+}
+
+.sobre{
+    grid-column: 1/4;
+    grid-row: 4;
+    padding: 40px;
+}
+
+.eventos{
+    grid-column: 1/4;
+    grid-row: 5;
+    padding: 40px;
+}
+
+.atividades{
+    grid-column: 1/4;
+    grid-row: 6;
+    padding: 40px;
+}
+
+.ajuda{
+    grid-column: 1/4;
+    grid-row: 7;
+    padding: 40px;
+}
+
+.footer {
+    grid-column: 1/4;
+    grid-row: 8;
+    padding: 40px;
+}
+
+/* Barra de Navegação */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+}
+
+/*Footer e Infos*/
+.infos{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+}
+
+.info{
+    grid-column: 1;
+    grid-row: 1;
+    padding: 20px;
+}
+
+.map{
+    grid-column: 2/4;
+    grid-row: 1;
+    padding: 20px;
+    background-color: red;
+}
