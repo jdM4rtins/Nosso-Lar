@@ -24,12 +24,22 @@ body ul, li {
     text-align: center;
 }
 
+.logo img:hover{
+    width: 130px;
+    height: auto;
+}
+
 .menu a {
-    color: black;
+    color: #4a86e8;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+    transition: color 0.3s ease; /* Efeito suave ao passar o mouse */
 }
 
 .menu a:hover {
-    color: blue;
+    color: #1a4a8d;
+    font-size: 17px;
 }
 
 footer{
