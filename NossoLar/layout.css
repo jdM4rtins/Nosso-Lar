@@ -27,7 +27,7 @@ img {
     padding: 10px;
 }
 
-.cumprimento{
+.cumprimento {
     grid-column: 1/4;
     grid-row: 2;
     padding: 15px;
@@ -37,8 +37,6 @@ img {
     grid-column: 1/3;
     grid-row: 3;
     padding: 40px;
-    width: 1400px;
-    height: 400px;
     background-color: red;
 }
 
@@ -48,25 +46,32 @@ img {
     padding: 40px;
 }
 
-.sobre{
+.eventos {
     grid-column: 1/4;
     grid-row: 4;
     padding: 40px;
 }
 
-.eventos{
+.sobre {
     grid-column: 1/4;
     grid-row: 5;
     padding: 40px;
 }
 
-.atividades{
+.atividades {
     grid-column: 1/4;
     grid-row: 6;
     padding: 40px;
 }
 
-.ajuda{
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.ajuda {
     grid-column: 1/4;
     grid-row: 7;
     padding: 40px;
@@ -91,20 +96,29 @@ img {
     gap: 30px;
 }
 
+/* Como ajudar? */
+
+.apadrinhamento {
+    display: flex;
+    padding: 20px;
+    gap: 30px;
+}
+
 /*Footer e Infos*/
-.infos{
+
+.infos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
 }
 
-.info{
+.info {
     grid-column: 1;
     grid-row: 1;
     padding: 20px;
 }
 
-.map{
+.map {
     grid-column: 2/4;
     grid-row: 1;
     padding: 20px;
