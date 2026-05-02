@@ -48,28 +48,34 @@ li {
     margin-top: 40px;
 }
 
-.ajuda {
-    text-align: center;
+.ap1,
+.ap2 {
+    background-color: rgb(5, 50, 80);
+    color: #fff;
 }
 
-.apadrinhamento .ap1 {
-    background-color: rgb(230, 230, 47);
-    padding: 20px;
-    border-radius: 20px;
-    text-align: center;
+.ap1 {
+    border: 1px solid yellow;
 }
 
-.apadrinhamento .ap2 {
-    background-color: rgb(40, 255, 40);
-    padding: 20px;
-    border-radius: 20px;
-    text-align: center;
+.ap2 {
+    border: 1px solid green;
 }
 
 .apadrinhamento a {
-    padding: 20px;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 30px;
     border-radius: 20px;
     background-color: rgb(18, 255, 243);
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.apadrinhamento a:hover {
+    transform: scale(1.05);
 }
 
 footer {
