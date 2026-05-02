@@ -98,10 +98,33 @@ img {
 
 /* Como ajudar? */
 
+.ajuda {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.ajuda h2 {
+    margin-bottom: 20px;
+}
+
 .apadrinhamento {
     display: flex;
-    padding: 20px;
+    justify-content: center;
     gap: 30px;
+    flex-wrap: wrap;
+}
+
+.ap1,
+.ap2 {
+    flex: 1;
+    min-width: 250px;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /*Footer e Infos*/
