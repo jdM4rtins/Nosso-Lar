@@ -13,13 +13,15 @@
     <header class="header">
         <nav class="navbar">
             <a href="NossoLar.html" class="logo">
+                <!--<h3 id="nome_logo">Nosso Lar</h3>-->
                 <img src="NL_Img/NL.png" alt="Logo da Instituição Nosso Lar">
             </a>
             <ul class="menu">
-                <li><a href="#">Sobre Nós</a></li>
-                <li><a href="#">Apadrinhamento de Jovens</a></li>
-                <li><a href="#">Apadrinhamento de Serviços</a></li>
-                <li><a href="#">Voluntários</a></li>
+                <li><a href="#">Quem Somos</a></li>
+                <li><a href="#">Cursos</a></li>
+                <li><a href="#">Eventos</a></li>
+                <li><a href="#">Como Ajudar</a></li>
+                <li><a href="#">Contatos</a></li>
             </ul>
         </nav>
     </header>
@@ -46,10 +48,28 @@
     </aside>
 
     <div class="sobre">
-        <h2>Quem nós somos?</h2>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia nemo, soluta illum facilis aspernatur natus unde rerum alias veniam quidem neque debitis ducimus quis eligendi doloremque iste. Expedita, aut delectus.
-        </p>
+    <h2 class="titulo-sobre">QUEM NÓS SOMOS?</h2>
+
+    <div class="sobre-container">
+        
+        <div class="sobre-img">
+            <img src="NL_Img/referencia2.png" alt="Imagens de referencia do instituto">
+        </div>
+
+        <div class="pipas">
+            <img src="NL_Img/pipa1.png" class="pipa p1">
+            <img src="NL_Img/pipa2.png" class="pipa p2">
+        </div>
+
+        <div class="sobre-texto">
+            <p>
+                O <strong>Instituto Nosso Lar</strong>, localizado em Itapetininga, é uma organização dedicada à promoção do bem-estar social e ao apoio de pessoas em situação de vulnerabilidade.
+                Com compromisso, acolhimento e solidariedade, desenvolve ações que visam transformar vidas, fortalecer a comunidade e construir um futuro mais digno para todos.
+            </p>
+
+            <button class="btn-sobre">SOBRE</button>
+        </div>
+
     </div>
 
     <div class="eventos">
@@ -101,6 +121,19 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        const pipas = document.querySelectorAll('.pipa');
+
+        pipas.forEach(pipa => {
+        setInterval(() => {
+            let x = Math.random() * 20 - 10;
+            let y = Math.random() * 20 - 10;
+
+            pipa.style.transform = `translate(${x}px, ${y}px)`;
+        }, 2000);
+        });
+    </script>
 </body>
 
 </html>
