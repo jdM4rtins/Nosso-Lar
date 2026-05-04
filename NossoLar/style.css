@@ -100,13 +100,13 @@ li {
 /* estilo geral */
 .pipa {
   position: absolute;
-  width: 240px;
+  width: 300px;
   animation: flutuar 6s infinite ease-in-out;
 }
 
 /* posições iniciais */
-.p1 { top: 5%; left: 10%; }
-.p2 { top: 25%; right: 15%; }
+.p1 { top: 160%; left: 5%; }
+.p2 { top: 110%; right: 10%; }
 
 /* animação */
 @keyframes flutuar {
