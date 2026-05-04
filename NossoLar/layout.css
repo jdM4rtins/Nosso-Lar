@@ -96,6 +96,14 @@ img {
     gap: 30px;
 }
 
+/* Atividades */
+
+.tags {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
 /* Como ajudar? */
 
 .ajuda {
@@ -114,11 +122,10 @@ img {
     flex-wrap: wrap;
 }
 
-.ap1,
-.ap2 {
+.ap {
     flex: 1;
-    min-width: 250px;
-    max-width: 450px;
+    min-width: 200px;
+    max-width: 400px;
     padding: 30px;
     border-radius: 20px;
     display: flex;
