@@ -28,16 +28,6 @@ body {
     flex-direction: row;
 }
 
-/*
-#nome_logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    text-size-adjust: 10px;
-}
-*/
-
 .cumprimento{
     grid-column: 1/4;
     grid-row: 2;
@@ -49,10 +39,6 @@ body {
     grid-row: 3;
     padding: 40px;
     min-height: 400px;
-    /*background-image: url("NL_Img/referencia1.png");
-    background-size: cover;       /* cobre toda a tela 
-    background-position: center;  /* centraliza 
-    background-repeat: no-repeat; /* não repete */
     background-color: red;
 }
 
@@ -72,7 +58,6 @@ body {
     grid-column: 1/4;
     grid-row: 5;
     padding: 40px;
-    position: relative;
 }
 
 .atividades {
