@@ -66,13 +66,13 @@ body {
     grid-column: 1/4;
     grid-row: 4;
     padding: 40px;
-    position: relative;
 }
 
 .sobre {
     grid-column: 1/4;
     grid-row: 5;
     padding: 40px;
+    position: relative;
 }
 
 .atividades {
