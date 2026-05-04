@@ -9,25 +9,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <div class="container">
-        <header class="header">
-            <nav class="navbar">
-                <a href="NossoLar.html" class="logo">
-                    <img src="NL_Img/NL.png" alt="Logo da Instituição Nosso Lar">
-                </a>
-                <ul class="menu">
-                    <li><a href="#">Sobre Nós</a></li>
-                    <li><a href="#">Apadrinhamento de Jovens</a></li>
-                    <li><a href="#">Apadrinhamento de Serviços</a></li>
-                    <li><a href="#">Voluntários</a></li>
-                </ul>
-            </nav>
-        </header>
-        <div class="cumprimento">
-            <h1>BEM VINDO AO NOSSO LAR</h1>
-        </div>
-        <main class="main">
+<body class="container">
+    <header class="header">
+        <nav class="navbar">
+            <a href="NossoLar.html" class="logo">
+                <!--<h3 id="nome_logo">Nosso Lar</h3>-->
+                <img src="NL_Img/NL.png" alt="Logo da Instituição Nosso Lar">
+            </a>
+            <ul class="menu">
+                <li><a href="#">Quem Somos</a></li>
+                <li><a href="#">Cursos</a></li>
+                <li><a href="#">Eventos</a></li>
+                <li><a href="#">Como Ajudar</a></li>
+                <li><a href="#">Contatos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="cumprimento">
+        <h1>BEM VINDO AO NOSSO LAR</h1>
+    </div>
+
+    <main class="main">
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores quisquam quod ipsa nulla itaque rerum,
+            praesentium, quasi dolorem doloribus incidunt ullam. Repellendus, iusto at sint dolorem deleniti sed eaque
+            corporis.
+        </p>
+    </main>
+    <aside class="sidebar">
+        <div class="cartao">
             <p>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores quisquam quod ipsa nulla itaque rerum,
                 praesentium, quasi dolorem doloribus incidunt ullam. Repellendus, iusto at sint dolorem deleniti sed
@@ -45,15 +56,30 @@
                 </p>
             </div>
         </aside>
-        <section class="sobre">
-            <h2>Quem nós somos?</h2>
-            <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia nemo, soluta illum facilis aspernatur
-                natus
-                unde rerum alias veniam quidem neque debitis ducimus quis eligendi doloremque iste. Expedita, aut
-                delectus.
-            </p>
-        </section>
+        <div class="sobre">
+          <h2 class="titulo-sobre">QUEM NÓS SOMOS?</h2>
+
+          <div class="sobre-container">
+
+              <div class="sobre-img">
+                  <img src="NL_Img/referencia2.png" alt="Imagens de referencia do instituto">
+              </div>
+
+              <div class="pipas">
+                  <img src="NL_Img/pipa1.png" class="pipa p1">
+                  <img src="NL_Img/pipa2.png" class="pipa p2">
+              </div>
+
+              <div class="sobre-texto">
+                  <p>
+                      O <strong>Instituto Nosso Lar</strong>, localizado em Itapetininga, é uma organização dedicada à promoção do bem-estar social e ao apoio de pessoas em situação de vulnerabilidade.
+                      Com compromisso, acolhimento e solidariedade, desenvolve ações que visam transformar vidas, fortalecer a comunidade e construir um futuro mais digno para todos.
+                  </p>
+
+                  <button class="btn-sobre">SOBRE</button>
+            </div>
+          </div>
+          
         <section class="eventos">
             <h2>Eventos</h2>
             <p>
@@ -69,6 +95,38 @@
                 <div>Aula de Skate</div>
                 <div>Natação</div>
                 <div>Projeto Flanelinha</div>
+        </div>
+    </aside>
+
+    <div class="ajuda">
+        <h2>Como ajudar</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae nihil rem impedit accusamus nam esse, veritatis exercitationem a ut fuga porro voluptatibus optio? Quo adipisci fugiat neque dolor alias nihil.
+        </p>
+    </div>
+
+    <footer class="footer">
+        <div class="infos">
+            <div class="info">
+                <h2>Fale Conosco</h2>
+                <br>
+                <ul>
+                    <li><strong>Telefone:</strong> (15) xxxx-xxxx</li>
+                    <br>
+                    <li><strong>E-mail:</strong> xxxxx.xxx@gmail.com</li>
+                    <br>
+                    <li><strong>Instagram:</strong> xxxx.xxx</li>
+                    <br>
+                    <li><strong>Endereço:</strong> R. João Evangelista - N°646, centro</li>
+                </ul>
+                <br>
+                <h2>Horário de Funcionamento</h2>
+                <br>
+                <ul>
+                    <li><strong>Segunda à Sexta</strong></li>
+                    <br>
+                    <li><strong>09:00 - 17:00</strong></li>
+                </ul>
             </div>
         </section>
         <section class="ajuda">
@@ -136,6 +194,18 @@
             </div>
         </footer>
     </div>
+    <script>
+        const pipas = document.querySelectorAll('.pipa');
+
+        pipas.forEach(pipa => {
+        setInterval(() => {
+            let x = Math.random() * 20 - 10;
+            let y = Math.random() * 20 - 10;
+
+            pipa.style.transform = `translate(${x}px, ${y}px)`;
+        }, 2000);
+        });
+    </script>
 </body>
 
 </html>

@@ -1,15 +1,11 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     min-height: 100vh;
-
-}
-
-img {
-    width: 125px;
 }
 
 /* Layout: GRID */
@@ -24,10 +20,25 @@ img {
 .header {
     grid-column: 1/4;
     grid-row: 1;
-    padding: 10px;
+    padding: 10px 60px;
 }
 
-.cumprimento {
+.logo {
+    display: flex;
+    flex-direction: row;
+}
+
+/*
+#nome_logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    text-size-adjust: 10px;
+}
+*/
+
+.cumprimento{
     grid-column: 1/4;
     grid-row: 2;
     padding: 15px;
@@ -37,6 +48,11 @@ img {
     grid-column: 1/3;
     grid-row: 3;
     padding: 40px;
+    min-height: 400px;
+    /*background-image: url("NL_Img/referencia1.png");
+    background-size: cover;       /* cobre toda a tela 
+    background-position: center;  /* centraliza 
+    background-repeat: no-repeat; /* não repete */
     background-color: red;
 }
 
@@ -50,6 +66,7 @@ img {
     grid-column: 1/4;
     grid-row: 4;
     padding: 40px;
+    position: relative;
 }
 
 .sobre {
@@ -89,6 +106,11 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.logo img {
+    width: 125px;
+    height: auto;
 }
 
 .menu {
