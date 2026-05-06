@@ -7,13 +7,13 @@
     <title>Bem Vindo ao Nosso Lar</title>
     <link rel="stylesheet" href="layout.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="carrossel.css">
 </head>
 
 <body class="container">
     <header class="header">
         <nav class="navbar">
             <a href="NossoLar.html" class="logo">
-                <!--<h3 id="nome_logo">Nosso Lar</h3>-->
                 <img src="NL_Img/NL.png" alt="Logo da Instituição Nosso Lar">
             </a>
             <ul class="menu">
@@ -30,23 +30,24 @@
         <h1>BEM VINDO AO NOSSO LAR</h1>
     </div>
 
-    <main class="main">
-        <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores quisquam quod ipsa nulla itaque rerum,
-            praesentium, quasi dolorem doloribus incidunt ullam. Repellendus, iusto at sint dolorem deleniti sed eaque
-            corporis.
-        </p>
-    </main>
-    <aside class="sidebar">
-        <div class="cartao">
-            <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores quisquam quod ipsa nulla itaque rerum,
-                praesentium, quasi dolorem doloribus incidunt ullam. Repellendus, iusto at sint dolorem deleniti sed
-                eaque
-                corporis.
-            </p>
+    <section class="eventos">
+        <div class="carrossel-container">
+            <div class="carrossel-slide">
+                <div class="template">
+                    <img src="NL_Img/eventoNL.png" alt="Template Evento 1">
+                </div>
+                <div class="template">
+                    <img src="NL_Img/eventoNL(1).png" alt="Template Evento 2">
+                </div>
+                <div class="template">
+                    <img src="NL_Img/eventoNL(2).png" alt="Template Evento 3">
+                </div>
+            </div>
+            <button class="btn-prev" onclick="mudarSlide(-1)">&#10094;</button>
+            <button class="btn-next" onclick="mudarSlide(1)">&#10095;</button>
         </div>
-    </aside>
+    </section>
+
     <div class="sobre">
         <h2 class="titulo-sobre">QUEM NÓS SOMOS?</h2>
 
@@ -73,15 +74,7 @@
             </div>
         </div>
     </div>
-    <section class="eventos">
-        <h2>Eventos</h2>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint inventore reprehenderit modi labore?
-            Possimus
-            officiis itaque voluptate perferendis! Dignissimos dolorum culpa sequi non ratione? Aut ad dicta nihil
-            ducimus inventore.
-        </p>
-    </section>
+
     <section class="atividades">
         <h2>Atividades</h2>
         <div class="tags">
@@ -91,6 +84,7 @@
         </div>
 
     </section>
+
     <section class="ajuda">
         <h2>Como ajudar?</h2>
         <div class="apadrinhamento">
@@ -169,6 +163,26 @@
                 pipa.style.transform = `translate(${x}px, ${y}px)`;
             }, 2000);
         });
+    </script>
+    <script>
+        let indexAtual = 0;
+
+        function mudarSlide(direcao) {
+            const slides = document.querySelectorAll('.template');
+            const trilho = document.querySelector('.carrossel-slide');
+
+            indexAtual += direcao;
+
+            if (indexAtual >= slides.length) {
+                indexAtual = 0;
+            }
+            else if (indexAtual < 0) {
+                indexAtual = slides.length - 1;
+            }
+
+            const distancia = -indexAtual * 100;
+            trilho.style.transform = `translateX(${distancia}%)`;
+        }
     </script>
 </body>
 
