@@ -14,7 +14,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: repeat(8, auto);
-    gap: 20px;
+    gap: 0;
 }
 
 .header {
@@ -28,17 +28,7 @@ body {
     flex-direction: row;
 }
 
-/*
-#nome_logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    text-size-adjust: 10px;
-}
-*/
-
-.cumprimento{
+.cumprimento {
     grid-column: 1/4;
     grid-row: 2;
     padding: 15px;
@@ -49,10 +39,6 @@ body {
     grid-row: 3;
     padding: 40px;
     min-height: 400px;
-    /*background-image: url("NL_Img/referencia1.png");
-    background-size: cover;       /* cobre toda a tela 
-    background-position: center;  /* centraliza 
-    background-repeat: no-repeat; /* não repete */
     background-color: red;
 }
 
@@ -66,7 +52,6 @@ body {
     grid-column: 1/4;
     grid-row: 4;
     padding: 40px;
-    position: relative;
 }
 
 .sobre {
@@ -160,19 +145,21 @@ body {
 
 .infos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 15px;
 }
 
 .info {
-    grid-column: 1;
-    grid-row: 1;
     padding: 20px;
 }
 
 .map {
-    grid-column: 2/4;
-    grid-row: 1;
     padding: 20px;
-    background-color: red;
+}
+
+.map iframe {
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
 }
