@@ -10,180 +10,129 @@
     <link rel="stylesheet" href="carrossel.css">
 </head>
 
-<body class="container">
-    <header class="header">
-        <nav class="navbar">
-            <a href="NossoLar.html" class="logo">
-                <img src="NL_Img/NL.png" alt="Logo da Instituição Nosso Lar">
-            </a>
-            <ul class="menu">
-                <li><a href="#">Quem Somos</a></li>
-                <li><a href="#">Cursos</a></li>
-                <li><a href="#">Eventos</a></li>
-                <li><a href="#">Como Ajudar</a></li>
-                <li><a href="#">Contatos</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="cumprimento">
-        <h1>BEM VINDO AO NOSSO LAR</h1>
-    </div>
-
-    <section class="eventos">
-        <div class="carrossel-container">
-            <div class="carrossel-slide">
-                <div class="template">
-                    <img src="NL_Img/eventoNL.png" alt="Template Evento 1">
+<body>
+    <div class="container">
+        <header class="header">
+            <nav class="navbar">
+                <a href="NossoLar.html" class="logo">
+                    <img src="NL_Img/NossoLarLogo.png" alt="Logo da Instituição Nosso Lar">
+                </a>
+                <div class="menu-btn" id="btnHamburguer">
+                    ☰
                 </div>
-                <div class="template">
-                    <img src="NL_Img/eventoNL(1).png" alt="Template Evento 2">
-                </div>
-                <div class="template">
-                    <img src="NL_Img/eventoNL(2).png" alt="Template Evento 3">
-                </div>
-            </div>
-            <button class="btn-prev" onclick="mudarSlide(-1)">&#10094;</button>
-            <button class="btn-next" onclick="mudarSlide(1)">&#10095;</button>
-        </div>
-    </section>
-
-    <div class="sobre">
-        <h2 class="titulo-sobre">QUEM NÓS SOMOS?</h2>
-
-        <div class="sobre-container">
-
-            <div class="sobre-img">
-                <img src="NL_Img/referencia2.png" alt="Imagens de referencia do instituto">
-            </div>
-
-            <div class="pipas">
-                <img src="NL_Img/pipa1.png" class="pipa p1">
-                <img src="NL_Img/pipa2.png" class="pipa p2">
-            </div>
-
-            <div class="sobre-texto">
-                <p>
-                    O <strong>Instituto Nosso Lar</strong>, localizado em Itapetininga, é uma organização dedicada à
-                    promoção do bem-estar social e ao apoio de pessoas em situação de vulnerabilidade.
-                    Com compromisso, acolhimento e solidariedade, desenvolve ações que visam transformar vidas,
-                    fortalecer a comunidade e construir um futuro mais digno para todos.
-                </p>
-
-                <button class="btn-sobre">SOBRE</button>
-            </div>
-        </div>
-    </div>
-
-    <section class="atividades">
-        <h2>Atividades</h2>
-        <div class="tags">
-            <div>Aula de Skate</div>
-            <div>Natação</div>
-            <div>Projeto Flanelinha</div>
-        </div>
-
-    </section>
-
-    <section class="ajuda">
-        <h2>Como ajudar?</h2>
-        <div class="apadrinhamento">
-            <article class="ap">
-                <h3>Apadrinhamento de Serviços</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae nihil rem impedit accusamus nam
-                    esse,
-                    veritatis exercitationem a ut fuga porro voluptatibus optio? Quo adipisci fugiat neque dolor
-                    alias
-                    nihil.
-                </p>
-                <a href="#">Saiba Mais</a>
-            </article>
-            <article class="ap">
-                <h3>Apadrinhamento de Jovens</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae nihil rem impedit accusamus nam
-                    esse,
-                    veritatis exercitationem a ut fuga porro voluptatibus optio? Quo adipisci fugiat neque dolor
-                    alias
-                    nihil.
-                </p>
-                <a href="#">Saiba Mais</a>
-            </article>
-            <article class="ap">
-                <h3>Doações</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae nihil rem impedit accusamus nam
-                    esse,
-                    veritatis exercitationem a ut fuga porro voluptatibus optio? Quo adipisci fugiat neque dolor
-                    alias
-                    nihil.
-                </p>
-                <a href="#">Saiba Mais</a>
-            </article>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="infos">
-            <div class="info">
-                <h2>Fale Conosco</h2>
-                <ul>
-                    <li><strong>Telefone:</strong> (15) xxxx-xxxx</li>
-                    <li><strong>E-mail:</strong> xxxxx.xxx@gmail.com</li>
-                    <li><strong>Instagram:</strong> xxxx.xxx</li>
-                    <li><strong>Endereço:</strong> R. João Evangelista - N°646, centro</li>
+                <ul class="menu" id="menuLinks">
+                    <li><a href="#sobre">Quem Nós Somos</a></li>
+                    <li><a href="#atividade">Atividades</a></li>
+                    <li><a href="#ajuda">Como Ajudar</a></li>
+                    <li><a href="#contato">Contatos</a></li>
                 </ul>
-                <br>
-                <hr>
-                <h2>Horário de Funcionamento</h2>
-                <ul>
-                    <li><strong>Segunda à Sexta</strong></li>
-                    <li><strong>09:00 - 17:00</strong></li>
-                </ul>
+            </nav>
+        </header>
+        <section class="eventos">
+            <div class="carrossel-container">
+                <div class="carrossel-slide">
+                    <div class="template">
+                        <img src="NL_Img/eventoNL.png" alt="Template Evento 1">
+                    </div>
+                    <div class="template">
+                        <img src="NL_Img/eventoNL(1).png" alt="Template Evento 2">
+                    </div>
+                    <div class="template">
+                        <img src="NL_Img/eventoNL(2).png" alt="Template Evento 3">
+                    </div>
+                </div>
+                <button class="btn-prev" onclick="mudarSlide(-1)">&#10094;</button>
+                <button class="btn-next" onclick="mudarSlide(1)">&#10095;</button>
             </div>
-            <div class="map">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.5203336063882!2d-48.04268772547723!3d-23.585664878783138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c5cc61f99e1163%3A0x82001c60c2b027bc!2sR.%20Jo%C3%A3o%20Evangelista%2C%20646%20-%20Centro%2C%20Itapetininga%20-%20SP%2C%2018200-055!5e0!3m2!1sen!2sbr!4v1778068987514!5m2!1sen!2sbr"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+        </section>
+        <div id="sobre" class="sobre">
+            <h2 class="titulo-sobre">QUEM NÓS SOMOS?</h2>
+            <div class="sobre-container">
+                <div class="sobre-img">
+                    <img src="NL_Img/referencia2.png" alt="Imagens de referencia do instituto">
+                </div>
+                <div class="pipas">
+                    <img src="NL_Img/pipa1.png" class="pipa p1">
+                    <img src="NL_Img/pipa2.png" class="pipa p2">
+                </div>
+                <div class="sobre-texto">
+                    <p>
+                        O <strong>Instituto Nosso Lar</strong>, localizado em Itapetininga, é uma organização dedicada à
+                        promoção do bem-estar social e ao apoio de pessoas em situação de vulnerabilidade.
+                        Com compromisso, acolhimento e solidariedade, desenvolve ações que visam transformar vidas,
+                        fortalecer a comunidade e construir um futuro mais digno para todos.
+                    </p>
+                    <button class="btn-sobre">SOBRE</button>
+                </div>
             </div>
         </div>
-    </footer>
-
-    <script>
-        const pipas = document.querySelectorAll('.pipa');
-
-        pipas.forEach(pipa => {
-            setInterval(() => {
-                let x = Math.random() * 20 - 10;
-                let y = Math.random() * 20 - 10;
-
-                pipa.style.transform = `translate(${x}px, ${y}px)`;
-            }, 2000);
-        });
-    </script>
-    <script>
-        let indexAtual = 0;
-
-        function mudarSlide(direcao) {
-            const slides = document.querySelectorAll('.template');
-            const trilho = document.querySelector('.carrossel-slide');
-
-            indexAtual += direcao;
-
-            if (indexAtual >= slides.length) {
-                indexAtual = 0;
-            }
-            else if (indexAtual < 0) {
-                indexAtual = slides.length - 1;
-            }
-
-            const distancia = -indexAtual * 100;
-            trilho.style.transform = `translateX(${distancia}%)`;
-        }
-    </script>
+        <section id="atividade" class="atividades">
+            <h2>ATIVIDADES</h2>
+            <div class="cards">
+                <img src="NL_Img/artesanatoNL.png" alt="Artesanato">
+                <img src="NL_Img/estudoNL.png" alt="Estudo">
+                <img src="NL_Img/nataçãoNL.png" alt="Natação">
+                <img src="NL_Img/skateNL.png" alt="Skate">
+            </div>
+        </section>
+        <section id="ajuda" class="ajuda">
+            <h2>COMO AJUDAR?</h2>
+            <div class="apadrinhamento">
+                <article class="ap">
+                    <h3>Apadrinhamento de Serviços</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae nihil rem impedit accusamus nam
+                        esse,
+                        veritatis exercitationem a ut fuga porro voluptatibus optio? Quo adipisci fugiat neque dolor
+                        alias
+                        nihil.
+                    </p>
+                    <a href="#">Saiba Mais</a>
+                </article>
+                <article class="ap">
+                    <h3>Apadrinhamento de Jovens</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae nihil rem impedit accusamus nam
+                        esse,
+                        veritatis exercitationem a ut fuga porro voluptatibus optio? Quo adipisci fugiat neque dolor
+                        alias
+                        nihil.
+                    </p>
+                    <a href="#">Saiba Mais</a>
+                </article>
+            </div>
+        </section>
+        <footer id="contato" class="footer">
+            <div class="infos">
+                <div class="info">
+                    <h2>Fale Conosco</h2>
+                    <ul>
+                        <li><strong>Telefone:</strong> (15) xxxx-xxxx</li>
+                        <li><strong>E-mail:</strong> xxxxx.xxx@gmail.com</li>
+                        <li><strong>Instagram:</strong> xxxx.xxx</li>
+                        <li><strong>Endereço:</strong> R. João Evangelista - N°646, centro</li>
+                    </ul>
+                    <br>
+                    <hr>
+                    <h2>Horário de Funcionamento</h2>
+                    <ul>
+                        <li><strong>Segunda à Sexta</strong></li>
+                        <li><strong>09:00 - 17:00</strong></li>
+                    </ul>
+                </div>
+                <div class="map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.5203336063882!2d-48.04268772547723!3d-23.585664878783138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c5cc61f99e1163%3A0x82001c60c2b027bc!2sR.%20Jo%C3%A3o%20Evangelista%2C%20646%20-%20Centro%2C%20Itapetininga%20-%20SP%2C%2018200-055!5e0!3m2!1sen!2sbr!4v1778068987514!5m2!1sen!2sbr"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </footer>
+        <button onclick="subirTopo()" id="btnTopo" class="btn-topo" title="Ir para o topo">
+            &#8679; </button>
+    </div>
+    <script src="main.js" defer></script>
 </body>
 
 </html>
