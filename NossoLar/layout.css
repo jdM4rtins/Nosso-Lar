@@ -8,19 +8,23 @@ body {
     min-height: 100vh;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
+
 /* Layout: GRID */
 
 .container {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: repeat(7, auto);
-    gap: 0;
+    grid-template-rows: repeat(6, auto);
 }
 
 .header {
     grid-column: 1/4;
     grid-row: 1;
-    padding: 10px 60px;
+    padding: 0 60px;
 }
 
 .logo {
@@ -28,28 +32,21 @@ body {
     flex-direction: row;
 }
 
-.cumprimento {
-    grid-column: 1/4;
-    grid-row: 2;
-    padding: 15px;
-}
-
-
 .eventos {
     grid-column: 1/4;
-    grid-row: 3;
+    grid-row: 2;
     padding: 40px;
 }
 
 .sobre {
     grid-column: 1/4;
-    grid-row: 4;
+    grid-row: 3;
     padding: 40px;
 }
 
 .atividades {
     grid-column: 1/4;
-    grid-row: 5;
+    grid-row: 4;
     padding: 40px;
 }
 
@@ -62,26 +59,35 @@ body {
 
 .ajuda {
     grid-column: 1/4;
-    grid-row: 6;
+    grid-row: 5;
     padding: 40px;
+    text-align: center;
 }
 
 .footer {
     grid-column: 1/4;
-    grid-row: 7;
+    grid-row: 6;
     padding: 40px;
 }
 
 /* Barra de Navegação */
 
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0 20px;
+    position: relative;
 }
 
 .logo img {
-    width: 125px;
+    width: 150px;
     height: auto;
 }
 
@@ -90,31 +96,28 @@ body {
     gap: 30px;
 }
 
-/* Eventos */
+.menu-btn {
+    display: none;
+    font-size: 30px;
+    color: rgb(18, 255, 243);
+    cursor: pointer;
+}
 
 /* Atividades */
 
-.tags {
+.cards {
     display: flex;
     justify-content: space-around;
-    margin-top: 40px;
+    width: 100%;
+    max-width: 1200px;
 }
 
 /* Como ajudar? */
 
-.ajuda {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.ajuda h2 {
-    margin-bottom: 20px;
-}
-
 .apadrinhamento {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 100px;
     flex-wrap: wrap;
 }
 
@@ -122,6 +125,7 @@ body {
     flex: 1;
     min-width: 200px;
     max-width: 400px;
+    height: 400px;
     padding: 30px;
     border-radius: 20px;
     display: flex;
@@ -151,4 +155,118 @@ body {
     width: 100%;
     height: 400px;
     border-radius: 20px;
+}
+
+/* Antivazamento */
+
+.eventos,
+.sobre,
+.atividades,
+.ajuda {
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    gap: 40px;
+}
+
+/* RPD */
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .apadrinhamento {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .infos {
+        grid-template-columns: 1fr;
+    }
+
+    .eventos,
+    .sobre,
+    .atividades,
+    .ajuda {
+        min-height: auto;
+        padding: 60px 20px;
+    }
+
+    .navbar {
+        position: static;
+        gap: 15px;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+
+    .menu {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .menu-btn {
+        display: block !important;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgb(0, 0, 115);
+        text-align: center;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+        transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    }
+
+    .menu.ativo {
+        max-height: 400px;
+        padding: 20px 0;
+    }
+
+    .sobre-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sobre-img img {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .sobre-texto {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .cards {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .cards img {
+        width: 45%;
+        min-width: 140px;
+    }
+
+    .pipa {
+        width: 150px;
+        opacity: 0.5;
+    }
 }
