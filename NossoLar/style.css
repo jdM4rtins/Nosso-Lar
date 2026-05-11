@@ -116,6 +116,14 @@ h2 {
     transform: scale(1.05);
 }
 
+.texto-extra {
+    display: none; /* Mantém o texto escondido por padrão */
+}
+
+.texto-extra.mostrar {
+    display: inline; /* Faz o texto aparecer quando clicado */
+}
+
 .pipas {
     position: absolute;
     width: 100%;

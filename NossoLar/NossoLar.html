@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Bem Vindo ao Nosso Lar</title>
     <link rel="stylesheet" href="layout.css">
     <link rel="stylesheet" href="style.css">
@@ -61,8 +61,12 @@
                         promoção do bem-estar social e ao apoio de pessoas em situação de vulnerabilidade.
                         Com compromisso, acolhimento e solidariedade, desenvolve ações que visam transformar vidas,
                         fortalecer a comunidade e construir um futuro mais digno para todos.
+                        <span id="texto-extra" class="texto-extra">
+                            <br><br>
+                            Através de nossas parcerias e do trabalho incansável de voluntários, oferecemos diariamente suporte nutricional, psicológico e educacional. Nossas oficinas de arte, esporte e cultura garantem que crianças e jovens tenham um ambiente seguro para desenvolverem seus talentos e descobrirem novas oportunidades, criando uma verdadeira rede de amor e esperança.
+                        </span>
                     </p>
-                    <button class="btn-sobre">SOBRE</button>
+                    <button id="btnSobre" class="btn-sobre">LEIA MAIS</button>
                 </div>
             </div>
         </div>
@@ -133,6 +137,14 @@
             &#8679; </button>
     </div>
     <script src="main.js" defer></script>
+    <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+    </div>
+</div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
 </body>
 
 </html>

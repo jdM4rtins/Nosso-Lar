@@ -176,8 +176,15 @@ html {
 /* RPD */
 
 @media (max-width: 768px) {
+
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
     .container {
-        grid-template-columns: 1fr;
+        width: 100%;
+        overflow-x: hidden;
     }
 
     .apadrinhamento {
@@ -261,8 +268,8 @@ html {
     }
 
     .cards img {
-        width: 45%;
-        min-width: 140px;
+        width: 90%; /* Ajustado para ocupar melhor a tela mobile */
+        max-width: 300px;
     }
 
     .pipa {

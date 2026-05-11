@@ -53,3 +53,23 @@ links.forEach(link => {
         menuLinks.classList.remove('ativo');
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btnSobre = document.getElementById("btnSobre");
+    const textoExtra = document.getElementById("texto-extra");
+
+    // Verifica se os elementos existem na página para não causar erros
+    if (btnSobre && textoExtra) {
+        btnSobre.addEventListener("click", () => {
+            // Alterna a classe 'mostrar' no texto
+            textoExtra.classList.toggle("mostrar");
+
+            // Muda o texto do botão dependendo se o texto extra está visível ou não
+            if (textoExtra.classList.contains("mostrar")) {
+                btnSobre.textContent = "MOSTRAR MENOS";
+            } else {
+                btnSobre.textContent = "LEIA MAIS";
+            }
+        });
+    }
+});
