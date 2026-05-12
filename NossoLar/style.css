@@ -242,3 +242,104 @@ footer h2 {
 .info li {
     margin: 10px 0;
 }
+
+
+/*modo escuro do site*/
+
+/* --- Estilo do Botão Deslizante (Switch) --- */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    width: 44px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 16px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 16px;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #12ffcd; /* Cor quando ligado */
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+#mode-text {
+    font-size: 18px;
+}
+
+/* =========================================
+   REGRAS DO MODO ESCURO (DARK MODE)
+========================================= */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode .header {
+    background-color: #000033; /* Azul bem escuro */
+}
+
+.dark-mode h2 {
+    color: #12fff3; /* Ciano brilhante para títulos */
+}
+
+.dark-mode .eventos, 
+.dark-mode .sobre, 
+.dark-mode .atividades, 
+.dark-mode .ajuda {
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #333;
+}
+
+.dark-mode .ap {
+    background-color: #0d0d0d;
+    border-color: #12fff3;
+}
+
+.dark-mode .footer {
+    background-color: #000022;
+    color: #bbb;
+}
+
+.dark-mode .menu a {
+    color: #12fff3;
+}
+
+/* Ajuste para o texto dentro das seções no dark mode */
+.dark-mode p, .dark-mode li {
+    color: #cccccc;
+}
