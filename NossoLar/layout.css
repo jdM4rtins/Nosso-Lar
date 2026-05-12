@@ -276,4 +276,61 @@ html {
         width: 150px;
         opacity: 0.5;
     }
+
+    .footer {
+        padding: 40px 20px; /* Reduz o padding lateral do footer */
+    }
+
+    .infos {
+        grid-template-columns: 1fr;
+        margin: 0 !important; /* Força a remoção dos 35px de margem vindos do style.css */
+    }
+
+    .info {
+        padding: 20px 0; /* Remove o padding lateral do texto */
+    }
+
+    .map {
+        padding: 20px 0; /* Remove o padding lateral do mapa */
+    }
+
+    .map iframe {
+        width: 100%; /* Garante que o iframe respeite o limite da tela */
+        height: 300px; /* Reduz um pouco a altura para ficar melhor no celular */
+    }
+}
+
+@media (max-width: 1024px) {
+    
+    /* 1. Remove a altura forçada e reduz os paddings internos de todas as seções */
+    .eventos,
+    .sobre,
+    .atividades,
+    .ajuda {
+        min-height: auto !important; 
+        padding: 40px 20px !important; /* 40px em cima/embaixo. Reduza para 20px se quiser ainda mais junto */
+        gap: 20px !important; /* Diminui o espaço entre os elementos dentro da própria seção */
+        margin: 0 !important;
+    }
+
+    /* 2. Garante que as linhas do Grid principal não deixem buracos vazios */
+    .container {
+        grid-template-rows: repeat(6, max-content) !important;
+    }
+
+    /* 3. Ajuste do Carrossel de Eventos para não empurrar os itens para baixo */
+    .eventos {
+        padding-top: 20px !important; 
+        padding-bottom: 20px !important;
+    }
+
+    /* 4. Aproxima os cards de atividades e os quadros de ajuda */
+    .cards {
+        gap: 15px !important;
+    }
+
+    .ap {
+        height: auto !important; /* Permite que o card de apadrinhamento encolha se tiver pouco texto */
+        padding: 20px !important;
+    }
 }
