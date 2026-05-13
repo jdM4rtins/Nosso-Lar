@@ -117,11 +117,13 @@ h2 {
 }
 
 .texto-extra {
-    display: none; /* Mantém o texto escondido por padrão */
+    display: none;
+    /* Mantém o texto escondido por padrão */
 }
 
 .texto-extra.mostrar {
-    display: inline; /* Faz o texto aparecer quando clicado */
+    display: inline;
+    /* Faz o texto aparecer quando clicado */
 }
 
 .pipas {
@@ -247,6 +249,7 @@ footer h2 {
 /*modo escuro do site*/
 
 /* --- Estilo do Botão Deslizante (Switch) --- */
+
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
@@ -289,11 +292,12 @@ footer h2 {
     border-radius: 50%;
 }
 
-input:checked + .slider {
-    background-color: #12ffcd; /* Cor quando ligado */
+input:checked+.slider {
+    background-color: #12ffcd;
+    /* Cor quando ligado */
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(20px);
 }
 
@@ -304,22 +308,29 @@ input:checked + .slider:before {
 /* =========================================
    REGRAS DO MODO ESCURO (DARK MODE)
 ========================================= */
+
 body.dark-mode {
     background-color: #121212;
     color: #e0e0e0;
 }
 
 .dark-mode .header {
-    background-color: #000033; /* Azul bem escuro */
+    background-color: #000033;
+    /* Azul bem escuro */
 }
 
 .dark-mode h2 {
-    color: #12fff3; /* Ciano brilhante para títulos */
+    color: #12fff3;
+    /* Ciano brilhante para títulos */
 }
 
-.dark-mode .eventos, 
-.dark-mode .sobre, 
-.dark-mode .atividades, 
+.dark-mode .menu a:hover {
+    color: rgb(255, 251, 18);
+}
+
+.dark-mode .eventos,
+.dark-mode .sobre,
+.dark-mode .atividades,
 .dark-mode .ajuda {
     background-color: #1a1a1a;
     border-bottom: 1px solid #333;
@@ -331,7 +342,7 @@ body.dark-mode {
 }
 
 .dark-mode .footer {
-    background-color: #000022;
+    background-color: #000033;
     color: #bbb;
 }
 
@@ -340,6 +351,7 @@ body.dark-mode {
 }
 
 /* Ajuste para o texto dentro das seções no dark mode */
-.dark-mode p, .dark-mode li {
+.dark-mode p,
+.dark-mode li {
     color: #cccccc;
 }
