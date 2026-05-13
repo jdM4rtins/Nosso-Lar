@@ -177,7 +177,8 @@ html {
 
 @media (max-width: 768px) {
 
-    body, html {
+    body,
+    html {
         overflow-x: hidden;
         width: 100%;
     }
@@ -241,9 +242,17 @@ html {
         transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
     }
 
+    .dark-mode .menu {
+        background-color: #000033;
+    }
+
     .menu.ativo {
         max-height: 400px;
         padding: 20px 0;
+    }
+
+    .menu div {
+        justify-content: center;
     }
 
     .sobre-container {
@@ -268,7 +277,8 @@ html {
     }
 
     .cards img {
-        width: 90%; /* Ajustado para ocupar melhor a tela mobile */
+        width: 90%;
+        /* Ajustado para ocupar melhor a tela mobile */
         max-width: 300px;
     }
 
@@ -278,38 +288,46 @@ html {
     }
 
     .footer {
-        padding: 40px 20px; /* Reduz o padding lateral do footer */
+        padding: 40px 20px;
+        /* Reduz o padding lateral do footer */
     }
 
     .infos {
         grid-template-columns: 1fr;
-        margin: 0 !important; /* Força a remoção dos 35px de margem vindos do style.css */
+        margin: 0 !important;
+        /* Força a remoção dos 35px de margem vindos do style.css */
     }
 
     .info {
-        padding: 20px 0; /* Remove o padding lateral do texto */
+        padding: 20px 0;
+        /* Remove o padding lateral do texto */
     }
 
     .map {
-        padding: 20px 0; /* Remove o padding lateral do mapa */
+        padding: 20px 0;
+        /* Remove o padding lateral do mapa */
     }
 
     .map iframe {
-        width: 100%; /* Garante que o iframe respeite o limite da tela */
-        height: 300px; /* Reduz um pouco a altura para ficar melhor no celular */
+        width: 100%;
+        /* Garante que o iframe respeite o limite da tela */
+        height: 300px;
+        /* Reduz um pouco a altura para ficar melhor no celular */
     }
 }
 
 @media (max-width: 1024px) {
-    
+
     /* 1. Remove a altura forçada e reduz os paddings internos de todas as seções */
     .eventos,
     .sobre,
     .atividades,
     .ajuda {
-        min-height: auto !important; 
-        padding: 40px 20px !important; /* 40px em cima/embaixo. Reduza para 20px se quiser ainda mais junto */
-        gap: 20px !important; /* Diminui o espaço entre os elementos dentro da própria seção */
+        min-height: auto !important;
+        padding: 40px 20px !important;
+        /* 40px em cima/embaixo. Reduza para 20px se quiser ainda mais junto */
+        gap: 20px !important;
+        /* Diminui o espaço entre os elementos dentro da própria seção */
         margin: 0 !important;
     }
 
@@ -320,7 +338,7 @@ html {
 
     /* 3. Ajuste do Carrossel de Eventos para não empurrar os itens para baixo */
     .eventos {
-        padding-top: 20px !important; 
+        padding-top: 20px !important;
         padding-bottom: 20px !important;
     }
 
@@ -330,7 +348,8 @@ html {
     }
 
     .ap {
-        height: auto !important; /* Permite que o card de apadrinhamento encolha se tiver pouco texto */
+        height: auto !important;
+        /* Permite que o card de apadrinhamento encolha se tiver pouco texto */
         padding: 20px !important;
     }
 }
