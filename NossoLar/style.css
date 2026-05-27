@@ -2,6 +2,12 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.knewave-regular {
+    font-family: "Knewave", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
     background-color: #f5f5f5;
 }
@@ -171,19 +177,34 @@ h2 {
     text-align: center;
 }
 
+.polaroid {
+    background-color: #fff;
+    padding: 15px 15px 15px 15px;
+    border: 1px solid rgb(177, 177, 177);
+    border-radius: 5px;
+}
+
+.polaroid p {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #000;
+    text-transform: uppercase;
+    background: linear-gradient(to right, rgb(0, 90, 255), rgb(0, 255, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .cards img {
     width: 250px;
     height: auto;
-    padding: 15px;
-    border-radius: 40px;
 }
 
-.cards img:hover {
+.polaroid:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
 
-.cards img:hover {
+.polaroid:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
@@ -348,10 +369,4 @@ body.dark-mode {
 
 .dark-mode .menu a {
     color: #12fff3;
-}
-
-/* Ajuste para o texto dentro das seções no dark mode */
-.dark-mode p,
-.dark-mode li {
-    color: #cccccc;
 }
