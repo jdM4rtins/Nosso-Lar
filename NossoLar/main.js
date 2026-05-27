@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (textoExtra.classList.contains("mostrar")) {
                 btnSobre.textContent = "MOSTRAR MENOS";
             } else {
-                btnSobre.textContent = "LEIA MAIS";
+                btnSobre.textContent = "MOSTRAR MAIS";
             }
         });
     }
@@ -95,7 +95,7 @@ function switchTheme(e) {
     } else {
         document.body.classList.remove('dark-mode');
         localStorage.setItem('theme', 'light-mode');
-    }    
+    }
 }
 
 toggleSwitch.addEventListener('change', switchTheme, false);
