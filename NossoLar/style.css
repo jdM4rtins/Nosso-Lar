@@ -146,7 +146,7 @@ h2 {
 
 .pipa {
     position: absolute;
-    width: 300px;
+    width: 500px;
     animation: flutuar 6s infinite ease-in-out;
 }
 
@@ -372,4 +372,131 @@ body.dark-mode {
 
 .dark-mode .menu a {
     color: #12fff3;
+}
+
+/* BRINQUEDOS */
+
+.briquedos{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+.brinquedo{
+    position: absolute;
+    width: 200px;
+    animation: flutuar 6s infinite ease-in-out;
+}
+.urso{
+    width: 300px;
+    top: 65%;
+    left: 5%;
+}
+.cata{
+    top: 15%;
+    right: 5%;
+}
+.piao{
+    top: 12%;
+    right: 25%;
+}
+.boneca{
+    width: 300px;
+    top: 15%;
+    left: 5%;
+}
+.corda{
+    top: 10%;
+    left: 25%;
+}
+.carro{
+    top: 75%;
+    left: 10%;
+}
+.barco{
+    top: 10%;
+    right: 10%;
+}
+.bola{
+    top: 60%;
+    right: 5%;
+}
+.ioio{
+    top: 75%;
+    right: 25%;
+}
+.bloquinhos{
+    width: 300px;
+    top: 30%;
+    right: 5%;
+}
+.trem{
+    width: 400px;
+    top: 60%;
+    left: 2%;
+}
+.xilo{
+    top: 10%;
+    left: 25%;
+}
+
+@media (max-width: 768px) {
+    .brinquedo{
+        width: 100px;
+    }
+    .urso{
+        width: 150px;
+        top: 50%;
+        left: 55%;
+    }
+    .cata{
+        top: 10%;
+        left: 15%;
+    }
+    .piao{
+        top: 35%;
+        left: 5%;
+    }
+    .boneca{
+        width: 150px;
+        top: 25%;
+        left: 65%;
+    }
+    .corda{
+        top: 5%;
+        left: 10%;
+    }
+    .carro{
+        top: 95%;
+        left: 65%;
+    }
+    .barco{
+        top: 50%;
+        right: 10%;
+    }
+    .bola{
+        top: 75%;
+        left: 5%;
+    }
+    .ioio{
+        top: 50%;
+        left: 5%;
+    }
+    .bloquinhos{
+        width: 200px;
+        top: 45%;
+        right: 5%;
+    }
+    .trem{
+        width: 200px;
+        top: 75%;
+        left: 2%;
+    }
+    .xilo{
+        width: 150px;
+        top: 10%;
+        left: 5%;
+    }
 }
