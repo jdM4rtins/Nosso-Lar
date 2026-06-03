@@ -445,6 +445,7 @@ body.dark-mode {
 @media (max-width: 768px) {
     .brinquedo{
         width: 100px;
+        opacity: 0.5;
     }
     .urso{
         width: 150px;
