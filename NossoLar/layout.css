@@ -1,3 +1,21 @@
+/* ============================================================
+   LAYOUT.CSS
+   Estrutura/posicionamento do site: grid principal, navbar,
+   responsividade (media queries) e os ajustes que evitam
+   "vazamento" de altura entre as seções.
+
+   Este arquivo é carregado ANTES de style.css e carrossel.css.
+   Por isso, quando duas regras têm a MESMA especificidade,
+   as definições em style.css e carrossel.css "ganham" por
+   virem depois na ordem de carregamento - exceto onde este
+   arquivo usa "!important" (ver explicação mais abaixo, na
+   seção de media queries).
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   RESET BÁSICO
+   ------------------------------------------------------------ */
+
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +31,14 @@ html {
     scroll-padding-top: 70px;
 }
 
-/* Layout: GRID */
+/* ============================================================
+   GRID PRINCIPAL DA PÁGINA
+   Cada seção ocupa as 3 colunas (grid-column: 1/4), então na
+   prática o layout funciona como uma coluna única empilhada.
+   A grade de 3 colunas foi mantida para permitir, no futuro,
+   layouts que aproveitem colunas laterais (ex.: barras
+   laterais) sem precisar reestruturar o HTML.
+   ============================================================ */
 
 .container {
     display: grid;
@@ -70,8 +95,11 @@ html {
     padding: 40px;
 }
 
-/* Barra de Navegação */
+/* ============================================================
+   BARRA DE NAVEGAÇÃO (NAVBAR)
+   ============================================================ */
 
+/* Faz o header "colar" no topo da tela ao rolar a página */
 .header {
     position: sticky;
     top: 0;
@@ -96,14 +124,23 @@ html {
     gap: 30px;
 }
 
+/* Botão "hambúrguer" do menu mobile (visível só em telas pequenas).
+   No HTML este elemento é um <button>; os resets abaixo (background,
+   border, padding) removem a aparência padrão de botão do navegador,
+   mantendo a aparência original de "ícone clicável". */
 .menu-btn {
     display: none;
     font-size: 30px;
     color: rgb(18, 255, 243);
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
-/* Atividades */
+/* ============================================================
+   SEÇÃO: ATIVIDADES
+   ============================================================ */
 
 .cards {
     display: flex;
@@ -112,7 +149,9 @@ html {
     max-width: 1200px;
 }
 
-/* Como ajudar? */
+/* ============================================================
+   SEÇÃO: COMO AJUDAR (Apadrinhamento)
+   ============================================================ */
 
 .apadrinhamento {
     display: flex;
@@ -134,7 +173,9 @@ html {
     justify-content: space-between;
 }
 
-/*Footer e Infos*/
+/* ============================================================
+   FOOTER E INFORMAÇÕES DE CONTATO
+   ============================================================ */
 
 .infos {
     display: grid;
@@ -157,7 +198,15 @@ html {
     border-radius: 20px;
 }
 
-/* Antivazamento */
+/* ============================================================
+   "ANTIVAZAMENTO"
+   Regras compartilhadas pelas 4 seções principais de conteúdo
+   (.eventos, .sobre, .atividades, .ajuda): garantem que cada
+   seção ocupe pelo menos a altura da tela (menos a navbar) e
+   centralizem seu conteúdo, além de servir de "âncora" de
+   posicionamento (position: relative) para os elementos
+   decorativos (.brinquedos, .pipas) que usam position: absolute.
+   ============================================================ */
 
 .eventos,
 .sobre,
@@ -173,7 +222,9 @@ html {
     gap: 40px;
 }
 
-/* RPD */
+/* ============================================================
+   RESPONSIVIDADE (RPD)
+   ============================================================ */
 
 @media (max-width: 768px) {
 
@@ -225,6 +276,7 @@ html {
         display: block !important;
     }
 
+    /* Menu mobile: vira um painel "sanfona" que aparece abaixo da navbar */
     .menu {
         display: flex;
         flex-direction: column;
@@ -246,6 +298,7 @@ html {
         background-color: #000033;
     }
 
+    /* Classe adicionada via main.js ao clicar no botão hambúrguer */
     .menu.ativo {
         max-height: 400px;
         padding: 20px 0;
@@ -316,6 +369,22 @@ html {
     }
 }
 
+/*
+   Por que este bloco usa "!important":
+
+   As regras abaixo (.eventos, .sobre, .atividades, .ajuda) também
+   recebem "padding" e "min-height" vindos de style.css e de
+   carrossel.css - arquivos que são carregados DEPOIS deste e,
+   por isso, normalmente "ganhariam" a disputa de cascata mesmo
+   com a mesma especificidade.
+
+   Para garantir que o layout responsivo (telas até 1024px)
+   sempre prevaleça sobre os valores "de desktop" definidos
+   nesses outros arquivos, usamos "!important" aqui. Caso esses
+   valores sejam alterados em style.css/carrossel.css no futuro,
+   este bloco continuará controlando o comportamento em telas
+   menores.
+*/
 @media (max-width: 1024px) {
 
     /* 1. Remove a altura forçada e reduz os paddings internos de todas as seções */
