@@ -1,15 +1,78 @@
+/* ============================================================
+   STYLE.CSS
+   Estilos gerais do site: tipografia, cores, seções de conteúdo
+   (Sobre, Atividades, Como Ajudar/Apadrinhamento, Footer) e o
+   modo escuro (dark mode).
+
+   Este arquivo trabalha em conjunto com:
+   - layout.css    -> estrutura/posicionamento (grid, responsividade)
+   - carrossel.css -> estilos específicos do carrossel de eventos
+
+   Ordem de importação no HTML: layout.css, style.css, carrossel.css
+   (isso importa para entender qual regra "ganha" quando duas
+   regras têm a mesma especificidade)
+   ============================================================ */
+
+/* Aplica a mesma família de fonte em todos os elementos do site */
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Fonte decorativa usada nos títulos dos cards de Atividades */
 .knewave-regular {
     font-family: "Knewave", system-ui;
     font-weight: 400;
     font-style: normal;
 }
 
+/* ------------------------------------------------------------
+   VARIÁVEIS DE COR (modo claro / padrão)
+   Centralizam as cores mais usadas no site para facilitar
+   futuras alterações de identidade visual.
+
+   Obs.: o modo escuro (seção "MODO ESCURO" mais abaixo) ainda
+   usa valores fixos (#000033, #12fff3 etc.). Eles representam
+   as MESMAS cores em tons diferentes; futuramente também podem
+   ser convertidos para variáveis (ex.: redefinindo estas mesmas
+   variáveis dentro de "body.dark-mode").
+   ------------------------------------------------------------ */
+:root {
+    --cor-primaria: rgb(0, 0, 115);
+    /* Azul escuro: header e footer */
+    --cor-destaque: rgb(18, 255, 243);
+    /* Ciano: links, botões e detalhes */
+    --cor-hover: rgb(255, 251, 18);
+    /* Amarelo: hover dos links do menu */
+    --cor-fundo: #f5f5f5;
+    /* Fundo geral da página */
+}
+
+/* ------------------------------------------------------------
+   ACESSIBILIDADE
+   ------------------------------------------------------------ */
+
+/* Esconde visualmente um elemento, mas mantém disponível para
+   leitores de tela. Usado no <h1> oculto da página (toda página
+   precisa de um <h1> para SEO e acessibilidade, mesmo que o
+   título visual principal seja o logo). */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ------------------------------------------------------------
+   RESET BÁSICO DE ELEMENTOS
+   ------------------------------------------------------------ */
+
 body {
-    background-color: #f5f5f5;
+    background-color: var(--cor-fundo);
 }
 
 body a {
@@ -21,12 +84,17 @@ li {
     list-style: none;
 }
 
+/* Título padrão das seções (Quem Somos, Atividades, Como Ajudar, etc.) */
 h2 {
     font-size: 32px;
     color: #2c4c7c;
     margin-bottom: 30px;
     text-align: center;
 }
+
+/* ------------------------------------------------------------
+   BOTÃO "VOLTAR AO TOPO"
+   ------------------------------------------------------------ */
 
 .btn-topo {
     display: none;
@@ -50,14 +118,16 @@ h2 {
     background-color: #0056b3;
 }
 
-/* Navbar */
+/* ============================================================
+   NAVBAR / CABEÇALHO
+   ============================================================ */
 
 .header {
-    background-color: rgb(0, 0, 115);
+    background-color: var(--cor-primaria);
 }
 
 .menu a {
-    color: rgb(18, 255, 243);
+    color: var(--cor-destaque);
     font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
@@ -65,21 +135,37 @@ h2 {
 }
 
 .menu a:hover {
-    color: rgb(255, 251, 18);
+    color: var(--cor-hover);
 }
 
-/* Eventos */
+/* ============================================================
+   SEÇÃO: EVENTOS (carrossel)
+   ============================================================ */
 
+/*
+   Aqui é definido apenas o FUNDO da seção.
+   - O espaçamento (padding) em telas grandes vem de carrossel.css.
+   - O espaçamento em telas menores vem de layout.css, dentro do
+     media query "@media (max-width: 1024px)".
+   - A altura mínima (min-height) já é definida em layout.css,
+     na seção "ANTIVAZAMENTO", compartilhada com .sobre,
+     .atividades e .ajuda.
+
+   (Antes, este bloco também definia "padding" e "min-height",
+   mas esses valores eram sempre sobrescritos por outras regras
+   e nunca chegavam a ser exibidos - foram removidos para evitar
+   confusão.)
+*/
 .eventos {
     background-image: url("NL_Img/BackgroundNL.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 80px 20px;
-    min-height: calc(100vh - 100px);
 }
 
-/* Sobre */
+/* ============================================================
+   SEÇÃO: SOBRE (Quem Nós Somos)
+   ============================================================ */
 
 .sobre {
     text-align: center;
@@ -108,12 +194,13 @@ h2 {
     align-items: center;
 }
 
+/* Botão "Mostrar mais / Mostrar menos" (texto alternado via main.js) */
 .btn-sobre {
     margin-top: 20px;
     padding: 10px 25px;
     border-radius: 20px;
     background: transparent;
-    background-color: rgb(18, 255, 243);
+    background-color: var(--cor-destaque);
     font-weight: bold;
     transition: transform 0.2s;
     color: #000;
@@ -125,6 +212,7 @@ h2 {
     transform: scale(1.05);
 }
 
+/* Texto extra exibido ao clicar em "Mostrar mais" (controlado via main.js) */
 .texto-extra {
     display: none;
     /* Mantém o texto escondido por padrão */
@@ -135,6 +223,7 @@ h2 {
     /* Faz o texto aparecer quando clicado */
 }
 
+/* Pipas decorativas que flutuam sobre a seção "Sobre" */
 .pipas {
     position: absolute;
     width: 100%;
@@ -161,6 +250,7 @@ h2 {
     right: 5%;
 }
 
+/* Animação de flutuação usada pelas pipas e pelos brinquedos decorativos */
 @keyframes flutuar {
     0% {
         transform: translateY(0px) rotate(0deg);
@@ -175,12 +265,15 @@ h2 {
     }
 }
 
-/*Atividades*/
+/* ============================================================
+   SEÇÃO: ATIVIDADES
+   ============================================================ */
 
 .atividades {
     text-align: center;
 }
 
+/* Cards estilo "polaroid" com as fotos das atividades */
 .polaroid {
     background-color: #fff;
     padding: 15px 15px 15px 15px;
@@ -203,21 +296,23 @@ h2 {
     height: auto;
 }
 
+/* Efeito de destaque ao passar o mouse sobre o card
+   (antes esta regra estava duplicada em dois blocos separados,
+   foi unificada aqui) */
 .polaroid:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
 
-.polaroid:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* Apadrinhamento */
+/* ============================================================
+   SEÇÃO: COMO AJUDAR (Apadrinhamento)
+   ============================================================ */
 
 .ap {
     background-color: rgb(5, 50, 80);
-    border: 5px solid rgb(18, 255, 243);
+    border: 5px solid var(--cor-destaque);
     color: #fff;
 }
 
@@ -230,7 +325,7 @@ h2 {
     margin-top: 20px;
     padding: 10px 30px;
     border-radius: 20px;
-    background-color: rgb(18, 255, 243);
+    background-color: var(--cor-destaque);
     text-decoration: none;
     color: #000;
     font-weight: bold;
@@ -241,10 +336,12 @@ h2 {
     transform: scale(1.05);
 }
 
-/* Footer */
+/* ============================================================
+   FOOTER / CONTATO
+   ============================================================ */
 
 footer {
-    background-color: rgb(0, 0, 115);
+    background-color: var(--cor-primaria);
     color: #fff;
 }
 
@@ -255,7 +352,6 @@ footer h2 {
 
 .infos {
     margin: 0 35px;
-
 }
 
 .info h2 {
@@ -270,10 +366,13 @@ footer h2 {
     margin: 10px 0;
 }
 
+/* ============================================================
+   MODO ESCURO (DARK MODE)
+   A classe "dark-mode" é adicionada/removida no <body> via
+   main.js, com a preferência do usuário salva no localStorage.
+   ============================================================ */
 
-/*modo escuro do site*/
-
-/* --- Estilo do Botão Deslizante (Switch) --- */
+/* --- Botão deslizante (switch) usado para trocar de tema --- */
 
 .theme-switch-wrapper {
     display: flex;
@@ -330,9 +429,7 @@ input:checked+.slider:before {
     font-size: 18px;
 }
 
-/* =========================================
-   REGRAS DO MODO ESCURO (DARK MODE)
-========================================= */
+/* --- Regras aplicadas quando body.dark-mode está ativo --- */
 
 body.dark-mode {
     background-color: #121212;
@@ -347,6 +444,10 @@ body.dark-mode {
 .dark-mode h2 {
     color: #12fff3;
     /* Ciano brilhante para títulos */
+}
+
+.dark-mode .menu a {
+    color: #12fff3;
 }
 
 .dark-mode .menu a:hover {
@@ -371,13 +472,23 @@ body.dark-mode {
     color: #bbb;
 }
 
-.dark-mode .menu a {
-    color: #12fff3;
-}
+/* ============================================================
+   ELEMENTOS DECORATIVOS: BRINQUEDOS FLUTUANTES
+   ============================================================ */
 
-/* BRINQUEDOS */
+/*
+   Container que envolve os brinquedos decorativos de cada seção.
 
-.briquedos{
+   "pointer-events: none" garante que essas imagens (que ficam
+   posicionadas sobre o conteúdo) NÃO bloqueiem cliques em
+   botões, links etc. que estiverem por baixo delas.
+
+   CORREÇÃO: esta classe estava escrita como ".briquedos" (com a
+   letra "i" antes do "que"), enquanto no HTML os elementos usam
+   "brinquedos". Por isso esta regra nunca era aplicada. O nome
+   foi corrigido para ".brinquedos".
+*/
+.brinquedos {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -385,119 +496,146 @@ body.dark-mode {
     left: 0;
     pointer-events: none;
 }
-.brinquedo{
+
+.brinquedo {
     position: absolute;
     width: 200px;
     animation: flutuar 6s infinite ease-in-out;
     opacity: 0.5;
 }
-.urso{
+
+/* Posição/tamanho individual de cada brinquedo (telas grandes) */
+.urso {
     width: 300px;
     top: 65%;
     left: 5%;
 }
-.cata{
+
+.cata {
     top: 15%;
     right: 5%;
 }
-.piao{
+
+.piao {
     top: 12%;
     right: 25%;
 }
-.boneca{
+
+.boneca {
     width: 300px;
     top: 15%;
     left: 5%;
 }
-.corda{
-    top: 10%;
-    left: 25%;
-}
-.carro{
-    top: 75%;
-    left: 10%;
-}
-.barco{
-    top: 10%;
-    right: 10%;
-}
-.bola{
-    top: 60%;
-    right: 5%;
-}
-.ioio{
-    top: 75%;
-    right: 25%;
-}
-.bloquinhos{
-    width: 300px;
-    top: 30%;
-    right: 5%;
-}
-.trem{
-    width: 400px;
-    top: 60%;
-    left: 2%;
-}
-.xilo{
+
+.corda {
     top: 10%;
     left: 25%;
 }
 
+.carro {
+    top: 75%;
+    left: 10%;
+}
+
+.barco {
+    top: 10%;
+    right: 10%;
+}
+
+.bola {
+    top: 60%;
+    right: 5%;
+}
+
+.ioio {
+    top: 75%;
+    right: 25%;
+}
+
+.bloquinhos {
+    width: 300px;
+    top: 30%;
+    right: 5%;
+}
+
+.trem {
+    width: 400px;
+    top: 60%;
+    left: 2%;
+}
+
+.xilo {
+    top: 10%;
+    left: 25%;
+}
+
+/* Reposiciona/redimensiona os brinquedos em telas pequenas (celulares) */
 @media (max-width: 768px) {
-    .brinquedo{
+    .brinquedo {
         width: 100px;
         opacity: 0.5;
     }
-    .urso{
+
+    .urso {
         width: 150px;
         top: 50%;
         left: 55%;
     }
-    .cata{
+
+    .cata {
         top: 10%;
         left: 15%;
     }
-    .piao{
+
+    .piao {
         top: 35%;
         left: 5%;
     }
-    .boneca{
+
+    .boneca {
         width: 150px;
         top: 25%;
         left: 65%;
     }
-    .corda{
+
+    .corda {
         top: 5%;
         left: 10%;
     }
-    .carro{
+
+    .carro {
         top: 95%;
         left: 65%;
     }
-    .barco{
+
+    .barco {
         top: 50%;
         right: 10%;
     }
-    .bola{
+
+    .bola {
         top: 75%;
         left: 5%;
     }
-    .ioio{
+
+    .ioio {
         top: 50%;
         left: 5%;
     }
-    .bloquinhos{
+
+    .bloquinhos {
         width: 200px;
         top: 45%;
         right: 5%;
     }
-    .trem{
+
+    .trem {
         width: 200px;
         top: 75%;
         left: 2%;
     }
-    .xilo{
+
+    .xilo {
         width: 150px;
         top: 10%;
         left: 5%;

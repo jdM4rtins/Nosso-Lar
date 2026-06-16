@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="layout.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="carrossel.css">
+    <!--
+        Bloco de estilos específico desta página:
+        - Importa a fonte "Knewave" (usada nos títulos dos cards de Atividades)
+        - Sobrescreve o tamanho/uppercase dos <h2> apenas nesta página
+        Caso o site ganhe mais páginas no futuro, vale considerar mover
+        este bloco para dentro de um dos arquivos .css existentes.
+    -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
 
@@ -20,29 +27,48 @@
 
 <body>
     <div class="container">
+
+        <!-- Título principal da página (oculto visualmente, mas lido por
+             leitores de tela e usado por mecanismos de busca). O logo no
+             header já cumpre o papel de título visual. -->
+        <h1 class="sr-only">Instituto Nosso Lar - Itapetininga</h1>
+
+        <!-- ============================================================
+             CABEÇALHO / NAVBAR
+             ============================================================ -->
         <header class="header">
             <nav class="navbar">
                 <a href="NossoLar.html" class="logo">
                     <img src="NL_Img/NossoLarLogo.png" alt="Logo da Instituição Nosso Lar">
                 </a>
-                <div class="menu-btn" id="btnHamburguer">
+                <!-- Botão do menu mobile (some em telas grandes via CSS) -->
+                <button type="button" class="menu-btn" id="btnHamburguer" aria-label="Abrir menu de navegação">
                     ☰
-                </div>
+                </button>
                 <ul class="menu" id="menuLinks">
                     <li><a href="#sobre">Quem Nós Somos</a></li>
                     <li><a href="#atividade">Atividades</a></li>
                     <li><a href="#ajuda">Como Ajudar</a></li>
                     <li><a href="#contato">Contatos</a></li>
-                    <div class="theme-switch-wrapper">
-                        <label class="theme-switch" for="checkbox">
-                            <input type="checkbox" id="checkbox" />
-                            <div class="slider round"></div>
-                        </label>
-                        <span id="mode-text">🌙</span>
-                    </div>
+                    <!-- Switch de modo claro/escuro. Envolvido em <li> para
+                         manter o HTML válido (filhos diretos de <ul> devem
+                         ser <li>). -->
+                    <li>
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox" />
+                                <div class="slider round"></div>
+                            </label>
+                            <span id="mode-text">🌙</span>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </header>
+
+        <!-- ============================================================
+             SEÇÃO: EVENTOS (Carrossel de imagens)
+             ============================================================ -->
         <section class="eventos">
             <div class="carrossel-container">
                 <div class="carrossel-slide">
@@ -60,12 +86,17 @@
                 <button class="btn-next" onclick="mudarSlide(1)">&#10095;</button>
             </div>
         </section>
+
+        <!-- ============================================================
+             SEÇÃO: QUEM NÓS SOMOS (Sobre)
+             ============================================================ -->
         <div id="sobre" class="sobre">
             <h2 class="titulo-sobre">Quem Nós Somos?</h2>
             <div class="sobre-container">
                 <div class="sobre-img">
                     <img src="NL_Img/referencia2.png" alt="Imagens de referencia do instituto">
                 </div>
+                <!-- Pipas decorativas que flutuam sobre esta seção (ver .pipa em style.css) -->
                 <div class="pipas">
                     <img src="NL_Img/pipa1.png" class="pipa p1">
                     <img src="NL_Img/pipa2.png" class="pipa p2">
@@ -86,6 +117,7 @@
                     </p>
                     <button id="btnSobre" class="btn-sobre">MOSTRAR MAIS</button>
                 </div>
+                <!-- Brinquedos decorativos flutuantes (ver .brinquedos/.brinquedo em style.css) -->
                 <div class="brinquedos">
                     <img src="NL_Img/urso.png" class="brinquedo urso">
                     <img src="NL_Img/cata_vento.png" class="brinquedo cata">
@@ -93,7 +125,12 @@
                 </div>
             </div>
         </div>
+
+        <!-- ============================================================
+             SEÇÃO: ATIVIDADES
+             ============================================================ -->
         <section id="atividade" class="atividades">
+            <!-- Brinquedos decorativos flutuantes -->
             <div class="brinquedos">
                 <img src="NL_Img/boneca.png" class="brinquedo boneca">
                 <img src="NL_Img/corda.png" class="brinquedo corda">
@@ -130,7 +167,12 @@
                 </div>
             </div>
         </section>
+
+        <!-- ============================================================
+             SEÇÃO: COMO AJUDAR (Apadrinhamento)
+             ============================================================ -->
         <section id="ajuda" class="ajuda">
+            <!-- Brinquedos decorativos flutuantes -->
             <div class="brinquedos">
                 <img src="NL_Img/bloquinhos.png" class="brinquedo bloquinhos">
                 <img src="NL_Img/trem.png" class="brinquedo trem">
@@ -157,6 +199,10 @@
                 </article>
             </div>
         </section>
+
+        <!-- ============================================================
+             RODAPÉ / CONTATO
+             ============================================================ -->
         <footer id="contato" class="footer">
             <div class="infos">
                 <div class="info">
@@ -184,10 +230,17 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Botão flutuante "voltar ao topo" (aparece após rolar a página, ver main.js) -->
         <button onclick="subirTopo()" id="btnTopo" class="btn-topo" title="Ir para o topo">
             &#8679; </button>
     </div>
+
     <script src="main.js" defer></script>
+
+    <!-- ============================================================
+         WIDGET VLIBRAS (acessibilidade - tradução em Libras)
+         ============================================================ -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>

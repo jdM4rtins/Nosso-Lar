@@ -1,8 +1,25 @@
+/* ============================================================
+   CARROSSEL.CSS
+   Estilos do carrossel de imagens exibido na seção "Eventos"
+   (.eventos > .carrossel-container).
+   ============================================================ */
+
+/*
+   Define o espaçamento (padding) da seção ".eventos" em telas
+   GRANDES (desktop). Em telas menores (até 1024px), o padding é
+   sobrescrito por layout.css (dentro do media query
+   "@media (max-width: 1024px)", que usa !important para garantir
+   prioridade sobre esta regra).
+
+   O fundo (background-image) da seção ".eventos" é definido em
+   style.css.
+*/
 .eventos {
     text-align: center;
     padding: 20px 20px;
 }
 
+/* Caixa que recorta e dá moldura ao carrossel */
 .carrossel-container {
     position: relative;
     max-width: 800px;
@@ -13,11 +30,15 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Trilho que contém todos os slides lado a lado.
+   O JS (main.js) move este elemento horizontalmente via
+   "transform: translateX(...)" para trocar de slide. */
 .carrossel-slide {
     display: flex;
     transition: transform 0.5s ease-in-out;
 }
 
+/* Cada slide ocupa 100% da largura do container */
 .template {
     min-width: 100%;
 }
@@ -30,6 +51,7 @@
     border-radius: 15px;
 }
 
+/* Botões de navegação (seta para esquerda/direita) */
 .btn-prev,
 .btn-next {
     position: absolute;
