@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem Vindo ao Nosso Lar</title>
-    <link rel="stylesheet" href="layout.css">
+    <link rel="icon" href="NL_Img/NossoLarLogo2.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="carrossel.css">
     <!--
@@ -38,8 +38,8 @@
              ============================================================ -->
         <header class="header">
             <nav class="navbar">
-                <a href="NossoLar.html" class="logo">
-                    <img src="NL_Img/NossoLarLogo.png" alt="Logo da Instituição Nosso Lar">
+                <a href="index.html" class="logo">
+                    <img src="NL_Img/NossoLarLogo.png" alt="Instituto Nosso Lar">
                 </a>
                 <!-- Botão do menu mobile (some em telas grandes via CSS) -->
                 <button type="button" class="menu-btn" id="btnHamburguer" aria-label="Abrir menu de navegação">
@@ -68,6 +68,9 @@
 
         <!-- ============================================================
              SEÇÃO: EVENTOS (Carrossel de imagens)
+             Navegação por dots (ver carrossel.css e main.js). Os dots
+             são criados automaticamente via JS, um para cada ".template"
+             abaixo - não é preciso mexer aqui ao adicionar/remover slides.
              ============================================================ -->
         <section class="eventos">
             <div class="carrossel-container">
@@ -82,8 +85,7 @@
                         <img src="NL_Img/eventoNL(2).png" alt="Template Evento 3">
                     </div>
                 </div>
-                <button class="btn-prev" onclick="mudarSlide(-1)">&#10094;</button>
-                <button class="btn-next" onclick="mudarSlide(1)">&#10095;</button>
+                <div class="carrossel-dots"></div>
             </div>
         </section>
 
@@ -96,15 +98,13 @@
                 <div class="sobre-img">
                     <img src="NL_Img/referencia2.png" alt="Imagens de referencia do instituto">
                 </div>
-                <!-- Pipas decorativas que flutuam sobre esta seção (ver .pipa em style.css) -->
-                <div class="pipas">
-                    <img src="NL_Img/pipa1.png" class="pipa p1">
-                    <img src="NL_Img/pipa2.png" class="pipa p2">
-                </div>
+
                 <div class="sobre-texto">
                     <p>
-                        O <strong>Instituto Nosso Lar</strong>, localizado em Itapetininga, é uma OSC - Organização da Sociedade Civil
-                        dedicada à promoção do bem-estar social e ao apoio de crianças e jovens em situação de vulnerabilidade.
+                        A <strong>Instituição Nosso Lar</strong>, localizado em Itapetininga, é uma OSC - Organização da
+                        Sociedade Civil
+                        dedicada à promoção do bem-estar social e ao apoio de crianças e jovens em situação de
+                        vulnerabilidade.
                         Com compromisso, acolhimento e solidariedade, desenvolve ações que visam transformar vidas,
                         fortalecer a comunidade e construir um futuro mais digno para todos.
                         <span id="texto-extra" class="texto-extra">
@@ -117,12 +117,6 @@
                     </p>
                     <button id="btnSobre" class="btn-sobre">MOSTRAR MAIS</button>
                 </div>
-                <!-- Brinquedos decorativos flutuantes (ver .brinquedos/.brinquedo em style.css) -->
-                <div class="brinquedos">
-                    <img src="NL_Img/urso.png" class="brinquedo urso">
-                    <img src="NL_Img/cata_vento.png" class="brinquedo cata">
-                    <img src="NL_Img/pião.png" class="brinquedo piao">
-                </div>
             </div>
         </div>
 
@@ -130,15 +124,6 @@
              SEÇÃO: ATIVIDADES
              ============================================================ -->
         <section id="atividade" class="atividades">
-            <!-- Brinquedos decorativos flutuantes -->
-            <div class="brinquedos">
-                <img src="NL_Img/boneca.png" class="brinquedo boneca">
-                <img src="NL_Img/corda.png" class="brinquedo corda">
-                <img src="NL_Img/carro.png" class="brinquedo carro">
-                <img src="NL_Img/barco_papel.png" class="brinquedo barco">
-                <img src="NL_Img/bola.png" class="brinquedo bola">
-                <img src="NL_Img/ioio.png" class="brinquedo ioio">
-            </div>
             <h2>Atividades</h2>
             <div class="cards">
                 <div class="polaroid">
@@ -172,12 +157,6 @@
              SEÇÃO: COMO AJUDAR (Apadrinhamento)
              ============================================================ -->
         <section id="ajuda" class="ajuda">
-            <!-- Brinquedos decorativos flutuantes -->
-            <div class="brinquedos">
-                <img src="NL_Img/bloquinhos.png" class="brinquedo bloquinhos">
-                <img src="NL_Img/trem.png" class="brinquedo trem">
-                <img src="NL_Img/xilo.png" class="brinquedo xilo">
-            </div>
             <h2>Como Ajudar?</h2>
             <div class="apadrinhamento">
                 <article class="ap">
@@ -207,10 +186,28 @@
             <div class="infos">
                 <div class="info">
                     <h2>Fale Conosco</h2>
-                    <ul>
-                        <li><strong>Telefone:</strong> (15) 99781-5294</li>
-                        <li><strong>Instagram:</strong> @instituicao_nossolar</li>
-                        <li><strong>Endereço:</strong> R. João Evangelista - N°646, Centro</li>
+                    <ul class="ctt_icon">
+                        <li><a href="tel:+5515997815294"><img src="NL_Img/Tel_logo.png" alt="Telefone"
+                                    class="logo_icon">
+                            </a>
+                        </li>
+                        <li>
+                            <h3>(15)99781-5294</h3>
+                        </li>
+                        <li><a href="https://api.whatsapp.com/send/?phone=5515997815294&text&type=phone_number&app_absent=0"
+                                target="_blank" rel="noopener noreferrer">
+                                <img src="NL_Img/Wpp_logo.png" alt="Whatsapp" class="logo_icon">
+                            </a>
+                        </li>
+                        <li><a href="https://www.instagram.com/instituicao_nossolar/" target="_blank"
+                                rel="noopener noreferrer"><img src="NL_Img/Insta_logo.png" alt="Instagram"
+                                    class="logo_icon">
+                            </a>
+                        </li>
+                        <li><a href="https://www.facebook.com/nossolaritapetininga" target="_blank"
+                                rel="noopener noreferrer"><img src="NL_Img/face_logo.png" alt="Facebook"
+                                    class="logo_icon"></a>
+                        </li>
                     </ul>
                     <br>
                     <hr>
