@@ -2,22 +2,13 @@
    CARROSSEL.CSS
    Estilos do carrossel de imagens exibido na seção "Eventos"
    (.eventos > .carrossel-container).
+
+   Este arquivo continua separado de style.css por tratar de um
+   componente isolado. Ele NÃO define mais nada em ".eventos"
+   (padding, text-align etc.) - isso agora vive só em style.css,
+   evitando o conflito entre arquivos que antes exigia
+   "!important" para ser resolvido.
    ============================================================ */
-
-/*
-   Define o espaçamento (padding) da seção ".eventos" em telas
-   GRANDES (desktop). Em telas menores (até 1024px), o padding é
-   sobrescrito por layout.css (dentro do media query
-   "@media (max-width: 1024px)", que usa !important para garantir
-   prioridade sobre esta regra).
-
-   O fundo (background-image) da seção ".eventos" é definido em
-   style.css.
-*/
-.eventos {
-    text-align: center;
-    padding: 20px 20px;
-}
 
 /* Caixa que recorta e dá moldura ao carrossel */
 .carrossel-container {
@@ -35,6 +26,7 @@
    "transform: translateX(...)" para trocar de slide. */
 .carrossel-slide {
     display: flex;
+    height: 100%;
     transition: transform 0.5s ease-in-out;
 }
 
@@ -51,31 +43,37 @@
     border-radius: 15px;
 }
 
-/* Botões de navegação (seta para esquerda/direita) */
-.btn-prev,
-.btn-next {
+/* ------------------------------------------------------------
+   NAVEGAÇÃO POR DOTS (substituiu os botões de seta)
+   ------------------------------------------------------------ */
+
+.carrossel-dots {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
     border: none;
-    padding: 15px 20px;
+    padding: 0;
     cursor: pointer;
-    font-size: 20px;
-    border-radius: 50px;
-    transition: 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-.btn-prev {
-    left: 10px;
+.dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
-.btn-next {
-    right: 10px;
-}
-
-.btn-prev:hover,
-.btn-next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+/* Classe adicionada via JS (main.js) no dot do slide atual */
+.dot.ativo {
+    background-color: #fff;
+    transform: scale(1.3);
 }
