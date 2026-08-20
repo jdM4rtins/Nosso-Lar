@@ -1,62 +1,81 @@
 /* ============================================================
    MAIN.JS
    Scripts de interatividade do site:
-   1. Pipas flutuantes (animação aleatória)
-   2. Carrossel de eventos
-   3. Botão "voltar ao topo"
-   4. Menu hambúrguer (mobile)
-   5. Botão "Mostrar mais" (seção Sobre)
-   6. Modo escuro (dark mode)
+   1. Carrossel de eventos (agora navegado por dots)
+   2. Botão "voltar ao topo"
+   3. Menu hambúrguer (mobile)
+   4. Botão "Mostrar mais" (seção Sobre)
+   5. Modo escuro (dark mode)
    ============================================================ */
 
 /* ------------------------------------------------------------
-   1. PIPAS FLUTUANTES
-   A cada 2 segundos, move levemente cada pipa em uma direção
-   aleatória, criando um efeito sutil de "balanço ao vento".
-   ------------------------------------------------------------ */
-const pipas = document.querySelectorAll('.pipa');
-pipas.forEach(pipa => {
-    setInterval(() => {
-        let x = Math.random() * 20 - 10;
-        let y = Math.random() * 20 - 10;
-        pipa.style.transform = `translate(${x}px, ${y}px)`;
-    }, 2000);
-});
-
-/* ------------------------------------------------------------
-   2. CARROSSEL DE EVENTOS
-   Troca os slides ao clicar nas setas (mudarSlide) e também
-   avança automaticamente a cada 5 segundos.
+   1. CARROSSEL DE EVENTOS
+   Os dots são criados dinamicamente (um para cada ".template"),
+   então basta adicionar ou remover slides no HTML que a
+   navegação se ajusta sozinha. Avança automaticamente a cada
+   5 segundos, e qualquer interação manual (clique num dot)
+   reinicia esse temporizador.
    ------------------------------------------------------------ */
 let indexAtual = 0;
+let intervaloCarrossel;
 
-function mudarSlide(direcao) {
-    const slides = document.querySelectorAll('.template');
-    const trilho = document.querySelector('.carrossel-slide');
-    indexAtual += direcao;
-    if (indexAtual >= slides.length) {
-        indexAtual = 0;
-    }
-    else if (indexAtual < 0) {
-        indexAtual = slides.length - 1;
-    }
+const slides = document.querySelectorAll('.template');
+const trilho = document.querySelector('.carrossel-slide');
+const dotsContainer = document.querySelector('.carrossel-dots');
+
+// Cria um dot para cada slide existente
+slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.classList.add('dot');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Ir para o slide ${i + 1}`);
+    dot.addEventListener('click', () => irParaSlide(i));
+    dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll('.dot');
+
+// Move o trilho até o slide atual e marca o dot correspondente como ativo
+function atualizarCarrossel() {
     const distancia = -indexAtual * 100;
     trilho.style.transform = `translateX(${distancia}%)`;
 
-    // Sempre que o slide muda (seja por clique nas setas ou
-    // automaticamente), reinicia o temporizador do avanço
-    // automático. Isso evita que, logo após o usuário clicar
-    // manualmente, o carrossel "pule" de novo poucos instantes
-    // depois.
+    dots.forEach((dot, i) => {
+        const ativo = i === indexAtual;
+        dot.classList.toggle('ativo', ativo);
+        dot.setAttribute('aria-current', ativo ? 'true' : 'false');
+    });
+}
+
+// Reinicia o avanço automático (chamado após qualquer interação manual)
+function reiniciarAutoplay() {
     clearInterval(intervaloCarrossel);
     intervaloCarrossel = setInterval(() => mudarSlide(1), 5000);
 }
 
-// Avanço automático do carrossel (a cada 5 segundos)
-let intervaloCarrossel = setInterval(() => mudarSlide(1), 5000);
+// Navega diretamente para um slide específico (usado pelos dots)
+function irParaSlide(indice) {
+    indexAtual = indice;
+    atualizarCarrossel();
+    reiniciarAutoplay();
+}
+
+// Avança/retrocede um slide (usado pelo avanço automático)
+function mudarSlide(direcao) {
+    indexAtual += direcao;
+    if (indexAtual >= slides.length) {
+        indexAtual = 0;
+    } else if (indexAtual < 0) {
+        indexAtual = slides.length - 1;
+    }
+    atualizarCarrossel();
+}
+
+atualizarCarrossel(); // marca o primeiro dot como ativo assim que a página carrega
+intervaloCarrossel = setInterval(() => mudarSlide(1), 5000);
 
 /* ------------------------------------------------------------
-   3. BOTÃO "VOLTAR AO TOPO"
+   2. BOTÃO "VOLTAR AO TOPO"
    Mostra o botão quando o usuário rola a página para baixo e
    leva suavemente até o topo ao clicar.
    ------------------------------------------------------------ */
@@ -81,7 +100,7 @@ function subirTopo() {
 }
 
 /* ------------------------------------------------------------
-   4. MENU HAMBÚRGUER (MOBILE)
+   3. MENU HAMBÚRGUER (MOBILE)
    Abre/fecha o menu em telas pequenas e fecha o menu
    automaticamente após o usuário clicar em um link
    (útil para navegação por âncoras "#secao").
@@ -104,7 +123,7 @@ links.forEach(link => {
 });
 
 /* ------------------------------------------------------------
-   5. BOTÃO "MOSTRAR MAIS" (seção Sobre)
+   4. BOTÃO "MOSTRAR MAIS" (seção Sobre)
    Alterna a exibição do texto extra e o texto do próprio botão.
    ------------------------------------------------------------ */
 document.addEventListener("DOMContentLoaded", () => {
@@ -128,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ------------------------------------------------------------
-   6. MODO ESCURO (DARK MODE)
+   5. MODO ESCURO (DARK MODE)
    Aplica/remove a classe "dark-mode" no <body> com base no
    switch do menu, e salva a preferência do usuário no
    localStorage para que ela seja lembrada em futuras visitas.
@@ -137,12 +156,9 @@ const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"
 const currentTheme = localStorage.getItem('theme');
 
 // Verifica se já existe uma preferência salva
-if (currentTheme) {
+if (currentTheme === 'dark-mode') {
     document.body.classList.add(currentTheme);
-
-    if (currentTheme === 'dark-mode') {
-        toggleSwitch.checked = true;
-    }
+    toggleSwitch.checked = true;
 }
 
 // Função para trocar o tema
