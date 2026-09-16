@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Nova atividade</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/admin.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Instituto Nosso Lar</h1>
+
+    <a th:href="@{/admin/atividades}">
+        Voltar
+    </a>
+
+</header>
+
+<main>
+
+    <h2>Nova atividade</h2>
+
+    <p class="form-error" th:if="${erro}" th:text="${erro}"></p>
+
+    <form
+        th:action="@{/admin/atividades}"
+        th:object="${atividade}"
+        method="post"
+        enctype="multipart/form-data">
+
+        <label for="nome">
+            Nome da atividade
+        </label>
+
+        <input
+            type="text"
+            id="nome"
+            th:field="*{nome}"
+            placeholder="Ex: Artesanatos"
+            required>
+
+
+        <label for="arquivo">
+            Imagem da atividade
+        </label>
+
+        <input
+            type="file"
+            id="arquivo"
+            name="arquivo"
+            accept="image/*"
+            required>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                th:field="*{ativo}">
+
+            Atividade ativa
+
+        </label>
+
+
+        <button type="submit">
+            Salvar
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+
+</html>

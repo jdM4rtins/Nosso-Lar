@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Novo conteúdo</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/admin.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Instituto Nosso Lar</h1>
+
+    <a th:href="@{/admin/conteudos}">
+        Voltar
+    </a>
+
+</header>
+
+<main>
+
+    <h2>Novo conteúdo</h2>
+
+    <form
+        th:action="@{/admin/conteudos}"
+        th:object="${conteudo}"
+        method="post">
+
+        <label for="chave">
+            Chave
+        </label>
+
+        <input
+            type="text"
+            id="chave"
+            th:field="*{chave}"
+            placeholder="Ex: inicio"
+            required
+        >
+
+        <label for="titulo">
+            Título
+        </label>
+
+        <input
+            type="text"
+            id="titulo"
+            th:field="*{titulo}"
+            required
+        >
+
+        <label for="texto">
+            Texto
+        </label>
+
+        <textarea
+            id="texto"
+            th:field="*{texto}"
+            rows="8">
+        </textarea>
+
+        <label for="textoExtra">
+            Texto adicional
+        </label>
+
+        <textarea
+            id="textoExtra"
+            th:field="*{textoExtra}"
+            rows="8">
+        </textarea>
+
+        <label for="imagem">
+            Imagem
+        </label>
+
+        <input
+            type="text"
+            id="imagem"
+            th:field="*{imagem}"
+            placeholder="caminho ou URL da imagem"
+        >
+
+        <label for="link">
+            Link
+        </label>
+
+        <input
+            type="text"
+            id="link"
+            th:field="*{link}"
+            placeholder="https://..."
+        >
+
+        <label>
+
+            <input
+                type="checkbox"
+                th:field="*{ativo}"
+            >
+
+            Conteúdo ativo
+
+        </label>
+
+        <button type="submit">
+            Salvar conteúdo
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Eventos</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/admin.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Instituto Nosso Lar</h1>
+
+    <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
+
+</header>
+
+<main>
+
+    <h2>Eventos</h2>
+
+    <a th:href="@{/admin/eventos/novo}">
+        + Novo evento
+    </a>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Imagem</th>
+                <th>Descrição</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr th:each="evento : ${eventos}">
+
+                <td th:text="${evento.id}">
+                    1
+                </td>
+
+                <td th:text="${evento.imagem}">
+                    eventoNL.png
+                </td>
+
+                <td th:text="${evento.alt}">
+                    Evento do Instituto Nosso Lar
+                </td>
+
+                <td>
+
+                    <span th:if="${evento.ativo}" class="status ativo">
+                        Ativo
+                    </span>
+
+                    <span th:unless="${evento.ativo}" class="status inativo">
+                        Inativo
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <a th:href="@{/admin/eventos/editar/{id}(id=${evento.id})}">
+                        Editar
+                    </a>
+
+                    |
+
+                    <a th:href="@{/admin/eventos/excluir/{id}(id=${evento.id})}"
+                       onclick="return confirm('Deseja realmente excluir este evento?')">
+                        Excluir
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</main>
+
+</body>
+
+</html>

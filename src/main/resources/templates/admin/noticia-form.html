@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Notícia</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/admin.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Instituto Nosso Lar</h1>
+
+    <a th:href="@{/admin/noticias}">
+        Voltar
+    </a>
+
+</header>
+
+
+<main>
+
+    <h2>Nova notícia</h2>
+
+
+    <form
+        th:action="@{/admin/noticias}"
+        th:object="${noticia}"
+        method="post">
+
+
+        <label for="titulo">
+            Título
+        </label>
+
+        <input
+            type="text"
+            id="titulo"
+            th:field="*{titulo}"
+            placeholder="Título da notícia"
+            required>
+
+
+        <label for="resumo">
+            Resumo
+        </label>
+
+        <textarea
+            id="resumo"
+            th:field="*{resumo}"
+            placeholder="Pequeno resumo que aparecerá no card">
+        </textarea>
+
+
+        <label for="conteudo">
+            Conteúdo
+        </label>
+
+        <textarea
+            id="conteudo"
+            th:field="*{conteudo}"
+            placeholder="Conteúdo completo da notícia">
+        </textarea>
+
+
+        <label for="imagem">
+            Imagem
+        </label>
+
+        <input
+            type="text"
+            id="imagem"
+            th:field="*{imagem}"
+            placeholder="caminho/da/imagem.jpg">
+
+
+        <label for="dataPublicacao">
+            Data da publicação
+        </label>
+
+        <input
+            type="date"
+            id="dataPublicacao"
+            th:field="*{dataPublicacao}">
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                th:field="*{ativo}">
+
+            Notícia ativa
+
+        </label>
+
+
+        <button type="submit">
+            Salvar
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+
+</html>

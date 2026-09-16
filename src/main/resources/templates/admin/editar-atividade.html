@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Editar atividade</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/admin.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Instituto Nosso Lar</h1>
+
+    <a th:href="@{/admin/atividades}">
+        Voltar
+    </a>
+
+</header>
+
+<main>
+
+    <h2>Editar atividade</h2>
+
+    <form
+        th:action="@{/admin/atividades/editar/{id}(id=${atividade.id})}"
+        method="post"
+        enctype="multipart/form-data">
+
+        <label>
+            Imagem atual
+        </label>
+
+        <div class="imagem-atual">
+
+            <img
+                th:src="@{'/' + ${atividade.imagem}}"
+                th:alt="${atividade.nome}"
+                width="250">
+
+        </div>
+
+
+        <label for="arquivo">
+            Trocar imagem
+        </label>
+
+        <input
+            type="file"
+            id="arquivo"
+            name="arquivo"
+            accept="image/*">
+
+
+        <label for="nome">
+            Nome da atividade
+        </label>
+
+        <input
+            type="text"
+            id="nome"
+            name="nome"
+            th:value="${atividade.nome}"
+            required>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                name="ativo"
+                th:checked="${atividade.ativo}">
+
+            Atividade ativa
+
+        </label>
+
+
+        <button type="submit">
+            Salvar alterações
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Notícias</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/admin.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Instituto Nosso Lar</h1>
+
+    <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
+
+</header>
+
+
+<main>
+
+    <h2>Notícias e acontecimentos</h2>
+
+    <a th:href="@{/admin/noticias/novo}">
+        + Nova notícia
+    </a>
+
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Título</th>
+
+            <th>Data</th>
+
+            <th>Status</th>
+
+            <th>Ações</th>
+
+        </tr>
+
+        </thead>
+
+
+        <tbody>
+
+        <tr th:each="noticia : ${noticias}">
+
+            <td th:text="${noticia.id}">
+                1
+            </td>
+
+
+            <td th:text="${noticia.titulo}">
+                Evento do Instituto
+            </td>
+
+
+            <td th:text="${noticia.dataPublicacao}">
+                08/09/2026
+            </td>
+
+
+            <td>
+
+                <span
+                    th:if="${noticia.ativo}"
+                    class="status ativo">
+
+                    Ativo
+
+                </span>
+
+
+                <span
+                    th:unless="${noticia.ativo}"
+                    class="status inativo">
+
+                    Inativo
+
+                </span>
+
+            </td>
+
+
+            <td>
+
+                <a
+                    th:href="@{/admin/noticias/editar/{id}(id=${noticia.id})}">
+
+                    Editar
+
+                </a>
+
+                <a
+                    th:href="@{/admin/noticias/excluir/{id}(id=${noticia.id})}"
+                    onclick="return confirm('Deseja realmente excluir esta notícia?');">
+
+                    Excluir
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</main>
+
+</body>
+
+</html>

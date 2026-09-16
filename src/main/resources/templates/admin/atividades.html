@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Atividades</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/admin.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Instituto Nosso Lar</h1>
+
+    <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
+
+</header>
+
+<main>
+
+    <h2>Atividades</h2>
+
+    <a th:href="@{/admin/atividades/novo}">
+        + Nova atividade
+    </a>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Status</th>
+                <th>Ações</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr th:each="atividade : ${atividades}">
+
+                <td th:text="${atividade.id}">
+                    1
+                </td>
+
+                <td>
+
+                    <img
+                        th:src="@{'/' + ${atividade.imagem}}"
+                        th:alt="${atividade.nome}"
+                        width="100">
+
+                </td>
+
+                <td th:text="${atividade.nome}">
+                    Artesanatos
+                </td>
+
+                <td>
+
+                    <span th:if="${atividade.ativo}" class="status ativo">
+                        Ativo
+                    </span>
+
+                    <span th:unless="${atividade.ativo}" class="status inativo">
+                        Inativo
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <a
+                        th:href="@{/admin/atividades/editar/{id}(id=${atividade.id})}">
+                        Editar
+                    </a>
+
+                    |
+
+                    <a
+                        th:href="@{/admin/atividades/excluir/{id}(id=${atividade.id})}"
+                        onclick="return confirm('Deseja realmente excluir esta atividade?')">
+                        Excluir
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</main>
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Novo evento</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/admin.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Instituto Nosso Lar</h1>
+
+    <a th:href="@{/admin/eventos}">
+        Voltar
+    </a>
+
+</header>
+
+<main>
+
+    <h2>Novo evento</h2>
+
+    <form th:action="@{/admin/eventos}"
+        th:object="${evento}"
+        method="post"
+        enctype="multipart/form-data">
+
+        <label for="arquivo">
+            Imagem do evento
+        </label>
+
+        <input
+            type="file"
+            id="arquivo"
+            name="arquivo"
+            accept="image/*"
+            required>
+
+        <label for="alt">
+            Descrição da imagem
+        </label>
+
+        <input
+            type="text"
+            id="alt"
+            th:field="*{alt}"
+            placeholder="Evento do Instituto Nosso Lar">
+
+        <label>
+
+            <input
+                type="checkbox"
+                th:field="*{ativo}">
+
+            Evento ativo
+
+        </label>
+
+        <button type="submit">
+            Salvar
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+
+</html>

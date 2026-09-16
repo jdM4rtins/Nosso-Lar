@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Instituto Nosso Lar — acolhimento, cuidado e oportunidades para crianças e adolescentes.">
+    <title th:text="${inicio.titulo} + ' | Instituto Nosso Lar'">Instituto Nosso Lar</title>
+    <link rel="icon" th:href="@{/NL_Img/NossoLarLogo.png}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <header class="site-header">
+        <a class="brand" href="#inicio" aria-label="Instituto Nosso Lar — início"><img th:src="@{/NL_Img/NossoLarLogo.png}" alt="Instituto Nosso Lar"></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+        <nav id="menu-principal" class="main-nav" aria-label="Navegação principal">
+            <a href="#sobre">Quem somos</a><a href="#atividades">Atividades</a><a href="#ajuda">Como ajudar</a><a href="#noticias">Notícias</a><a class="nav-cta" href="#contato">Fale conosco</a>
+        </nav>
+    </header>
+    <main id="conteudo">
+        <section id="inicio" class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">INSTITUTO NOSSO LAR · ITAPETININGA</p>
+                <h1 th:text="${inicio.titulo}">Acolher, cuidar e criar novas possibilidades.</h1>
+                <p th:text="${inicio.texto}">Uma rede de cuidado para que crianças e adolescentes construam caminhos com segurança, afeto e esperança.</p>
+                <div class="hero-actions"><a class="button" href="#sobre">Conheça o Nosso Lar <span aria-hidden="true">→</span></a><a class="button button-light" href="#ajuda">Como ajudar</a></div>
+            </div>
+            <div class="hero-art" aria-hidden="true"><img th:src="@{/NL_Img/NL.png}" alt=""></div>
+        </section>
+        <section id="sobre" class="section about">
+            <div class="section-heading"><p class="eyebrow">QUEM SOMOS</p><h2 th:text="${sobre.titulo}">Um lar de cuidado e oportunidades.</h2></div>
+            <div class="about-grid">
+                <img class="about-image" th:src="@{${sobre.imagem}}" alt="Crianças e adolescentes participando das atividades do Instituto Nosso Lar">
+                <div class="prose"><p th:text="${sobre.texto}">O Instituto Nosso Lar é uma organização da sociedade civil dedicada ao bem-estar e ao desenvolvimento de crianças e adolescentes.</p><p th:text="${sobre.textoExtra}">Com acolhimento, parceria e escuta, fortalecemos vínculos e construímos um futuro mais digno.</p><a class="text-link" href="#contato">Converse com nossa equipe <span aria-hidden="true">→</span></a></div>
+            </div>
+        </section>
+        <section id="atividades" class="section activities">
+            <div class="section-heading centered"><p class="eyebrow">VIVÊNCIAS QUE TRANSFORMAM</p><h2>Atividades para descobrir talentos</h2><p>Aprender, brincar, criar e conviver também fazem parte do cuidado.</p></div>
+            <div class="activity-carousel" aria-roledescription="carrossel" aria-label="Atividades do Instituto">
+                <div class="activity-viewport">
+                    <div class="activity-track">
+                        <article class="activity-card" th:each="atividade : ${atividades}" th:if="${atividade.ativo}"><img th:src="@{${atividade.imagem}}" th:alt="${atividade.nome}"><h3 th:text="${atividade.nome}">Atividade</h3></article>
+                    </div>
+                </div>
+                <div class="activity-dots" aria-label="Navegação das atividades"></div>
+            </div>
+        </section>
+        <section id="ajuda" class="section help">
+            <div class="section-heading centered"><p class="eyebrow">COMO AJUDAR</p><h2>Apadrinhamento</h2><p>Há muitas formas de fazer parte da nossa rede de cuidado e abrir novas oportunidades.</p></div>
+            <div class="help-grid">
+                <article class="help-card"><span class="help-icon" aria-hidden="true">♡</span><h3>Afetivo</h3><p>É legalizado pelo fórum e permite contato direto com os adolescentes. Pode proporcionar passeios, momentos em família e até viagens, com o acompanhamento necessário.</p></article>
+                <article class="help-card"><span class="help-icon" aria-hidden="true">✦</span><h3>Financeiro</h3><p>Escolha uma criança ou adolescente para apoiar um curso, atendimento médico, dentista ou outra necessidade importante para seu desenvolvimento.</p></article>
+                <article class="help-card"><span class="help-icon" aria-hidden="true">⌂</span><h3>Serviços</h3><p>Compartilhe seu conhecimento oferecendo atendimento em consultório, aparelho dentário, exame, curso ou outro serviço que faça a diferença.</p></article>
+            </div>
+            <p class="help-contact">Para mais informações, entre em contato pelos canais no rodapé.</p>
+        </section>
+        <section id="noticias" class="section news"><div class="section-heading centered"><p class="eyebrow">ACONTECE NO NOSSO LAR</p><h2>Notícias e acontecimentos</h2></div><div class="news-grid"><article class="news-card" th:each="noticia : ${noticias}"><img th:if="${noticia.imagem != null and !noticia.imagem.isEmpty()}" th:src="@{'/' + ${noticia.imagem}}" th:alt="${noticia.titulo}"><div><small th:text="${noticia.dataPublicacao}">10/09/2026</small><h3 th:text="${noticia.titulo}">Notícia do Instituto</h3><p th:text="${noticia.resumo}">Acompanhe as novidades e iniciativas do Instituto Nosso Lar.</p><details><summary>Leia mais</summary><p th:text="${noticia.conteudo}">Conteúdo completo.</p></details></div></article></div></section>
+    </main>
+    <footer id="contato" class="site-footer">
+        <div class="footer-content">
+            <section class="footer-contact" aria-label="Informações de contato">
+                <img class="footer-logo" th:src="@{/NL_Img/NossoLarLogo.png}" alt="Instituto Nosso Lar">
+                <p>Acolher, cuidar e construir possibilidades. Pessoas cuidando de pessoas.</p>
+                <h2>Fale conosco</h2>
+                <a class="footer-phone" th:href="'tel:' + ${telefone.texto}" th:text="${telefone.texto}">(15) 99781-5294</a>
+                <nav class="social-links" aria-label="Redes sociais e contato">
+                    <a th:href="${whatsapp.link}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><img th:src="@{/NL_Img/Wpp_logo.png}" alt=""></a>
+                    <a th:href="${instagram.link}" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img th:src="@{/NL_Img/Insta_logo.png}" alt=""></a>
+                    <a th:href="${facebook.link}" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img th:src="@{/NL_Img/face_logo.png}" alt=""></a>
+                </nav>
+                <div class="footer-hours"><h2 th:text="${horario.titulo}">Horário de funcionamento</h2><p th:utext="${horario.texto}">Domingo a domingo<br>Atendimento 24h</p></div>
+            </section>
+            <section class="footer-map" aria-label="Localização da instituição">
+                <div><p class="eyebrow">VISITE O NOSSO LAR</p><h2>Onde estamos</h2></div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.5203336063882!2d-48.04268772547723!3d-23.585664878783138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c5cc61f99e1163%3A0x82001c60c2b027bc!2sR.%20Jo%C3%A3o%20Evangelista%2C%20646%20-%20Centro%2C%20Itapetininga%20-%20SP%2C%2018200-055!5e0!3m2!1spt-BR!2sbr!4v1778068987514!5m2!1spt-BR!2sbr" title="Mapa do Instituto Nosso Lar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <p class="footer-address" th:text="${endereco.texto}">Rua João Evangelista, 646 — Centro, Itapetininga/SP</p>
+            </section>
+        </div>
+        <div class="footer-bottom">© <span id="year">2026</span> Instituto Nosso Lar — Itapetininga</div>
+    </footer>
+    <button class="back-to-top" type="button" aria-label="Voltar para o topo"><span aria-hidden="true">↑</span><span>Voltar ao topo</span></button>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

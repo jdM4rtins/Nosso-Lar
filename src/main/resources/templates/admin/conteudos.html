@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Conteúdos</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/admin.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Instituto Nosso Lar</h1>
+
+    <a th:href="@{/admin/dashboard}">
+        Voltar ao painel
+    </a>
+
+</header>
+
+<main>
+
+    <h2>Conteúdos do site</h2>
+
+    <a th:href="@{/admin/conteudos/novo}">
+        + Novo conteúdo
+    </a>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Chave</th>
+                <th>Título</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr th:each="conteudo : ${conteudos}">
+
+                <td th:text="${conteudo.id}">
+                    1
+                </td>
+
+                <td th:text="${conteudo.chave}">
+                    inicio
+                </td>
+
+                <td th:text="${conteudo.titulo}">
+                    Instituto Nosso Lar
+                </td>
+
+                <td>
+
+                    <span th:if="${conteudo.ativo}"
+                        class="status ativo">
+                        Ativo
+                    </span>
+
+                    <span th:unless="${conteudo.ativo}"
+                        class="status inativo">
+                        Inativo
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <a th:href="@{/admin/conteudos/editar/{id}(id=${conteudo.id})}">
+                        Editar
+                    </a>
+                    
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</main>
+
+</body>
+
+</html>

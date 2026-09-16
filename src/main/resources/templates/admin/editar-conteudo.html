@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Editar conteúdo</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/admin.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Instituto Nosso Lar</h1>
+
+    <a th:href="@{/admin/conteudos}">
+        Voltar
+    </a>
+
+</header>
+
+<main>
+
+    <h2>Editar conteúdo</h2>
+
+    <form
+        th:action="@{/admin/conteudos/editar/{id}(id=${conteudo.id})}"
+        method="post">
+
+        <label for="chave">
+            Chave
+        </label>
+
+        <input
+            type="text"
+            id="chave"
+            name="chave"
+            th:value="${conteudo.chave}"
+            required
+        >
+
+        <label for="titulo">
+            Título
+        </label>
+
+        <input
+            type="text"
+            id="titulo"
+            name="titulo"
+            th:value="${conteudo.titulo}"
+            required
+        >
+
+        <label for="texto">
+            Texto
+        </label>
+
+        <textarea
+            id="texto"
+            name="texto"
+            rows="8"
+            th:text="${conteudo.texto}">
+        </textarea>
+
+        <label for="textoExtra">
+            Texto adicional
+        </label>
+
+        <textarea
+            id="textoExtra"
+            name="textoExtra"
+            rows="8"
+            th:text="${conteudo.textoExtra}">
+        </textarea>
+
+        <label for="imagem">
+            Imagem
+        </label>
+
+        <input
+            type="text"
+            id="imagem"
+            name="imagem"
+            th:value="${conteudo.imagem}"
+            placeholder="Caminho ou URL da imagem"
+        >
+
+        <label for="link">
+            Link
+        </label>
+
+        <input
+            type="text"
+            id="link"
+            name="link"
+            th:value="${conteudo.link}"
+            placeholder="https://..."
+        >
+
+        <label>
+
+            <input
+                type="checkbox"
+                name="ativo"
+                th:checked="${conteudo.ativo}"
+            >
+
+            Conteúdo ativo
+
+        </label>
+
+        <button type="submit">
+            Salvar alterações
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+
+</html>

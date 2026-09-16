@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Administradores</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin/admin.css}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Instituto Nosso Lar</h1>
+
+    <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
+
+</header>
+
+<main>
+
+    <h2>Administradores</h2>
+
+    <a th:href="@{/admin/administradores/novo}">
+        + Novo administrador
+    </a>
+
+    <p>
+        Contas que possuem acesso à área administrativa.
+    </p>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Status</th>
+                <th>Data de cadastro</th>
+                <th>Ações</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr th:each="administrador : ${administradores}">
+
+                <td th:text="${administrador.id}">
+                    1
+                </td>
+
+                <td th:text="${administrador.nome}">
+                    Administrador
+                </td>
+
+                <td th:text="${administrador.email}">
+                    admin@nossolar.com
+                </td>
+
+                <td>
+
+                    <span
+                        th:if="${administrador.ativo}">
+                        Ativo
+                    </span>
+
+                    <span
+                        th:unless="${administrador.ativo}">
+                        Inativo
+                    </span>
+
+                </td>
+
+                <td
+                    th:text="${administrador.dataCadastro}">
+                    26/08/2026
+                </td>
+
+                <td>
+                    <a th:href="@{/admin/administradores/editar/{id}(id=${administrador.id})}">
+                        Editar
+                    </a>
+
+                    <form
+                        th:action="@{/admin/administradores/status/{id}(id=${administrador.id})}"
+                        method="post"
+                        style="display: inline;">
+
+                        <button type="submit"
+                                th:text="${administrador.ativo} ? 'Desativar' : 'Ativar'">
+                            Desativar
+                        </button>
+
+                    </form>
+
+                    <form
+                        th:action="@{/admin/administradores/excluir/{id}(id=${administrador.id})}"
+                        method="post"
+                        style="display: inline;">
+
+                        <button type="submit">
+                            Excluir
+                        </button>
+
+                    </form>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</main>
+
+</body>
+
+</html>
