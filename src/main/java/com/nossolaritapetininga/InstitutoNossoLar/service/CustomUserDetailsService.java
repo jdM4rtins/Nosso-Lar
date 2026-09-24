@@ -1,6 +1,6 @@
 package com.nossolaritapetininga.InstitutoNossoLar.service;
 
-import com.nossolaritapetininga.InstitutoNossoLar.model.Administrador;
+import com.nossolaritapetininga.InstitutoNossoLar.model.Usuario;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.AdministradorRepository;
 
 import org.springframework.security.core.userdetails.User;
@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
 
-        Administrador administrador = repository.findByEmail(email)
+        Usuario administrador = repository.findByEmail(email)
                 .orElseThrow(() ->
                         new UsernameNotFoundException(
                                 "Administrador não encontrado"

@@ -1,0 +1,78 @@
+erDiagram
+    USUARIO ||--o{ USUARIO_PERFIL : possui
+    PERFIL ||--o{ USUARIO_PERFIL : atribuido
+    PERFIL ||--o{ PERFIL_PERMISSAO : possui
+    PERMISSAO ||--o{ PERFIL_PERMISSAO : compoe
+    USUARIO ||--o{ TOKEN_RECUPERACAO : solicita
+    USUARIO ||--o{ LOG_AUDITORIA : realiza
+    USUARIO ||--o{ EXECUCAO_BACKUP : inicia
+
+    USUARIO {
+        bigint id_usuario PK
+        varchar nome
+        varchar email UK
+        varchar senha_hash
+        boolean ativo
+        boolean alterar_senha
+        timestamp ultimo_login
+        timestamp data_criacao
+        timestamp data_atualizacao
+    }
+
+    PERFIL {
+        bigint id_perfil PK
+        varchar nome UK
+        varchar descricao
+        boolean ativo
+    }
+
+    PERMISSAO {
+        bigint id_permissao PK
+        varchar nome UK
+        varchar descricao
+    }
+
+    USUARIO_PERFIL {
+        bigint id_usuario PK,FK
+        bigint id_perfil PK,FK
+    }
+
+    PERFIL_PERMISSAO {
+        bigint id_perfil PK,FK
+        bigint id_permissao PK,FK
+    }
+
+    TOKEN_RECUPERACAO {
+        bigint id_token PK
+        bigint id_usuario FK
+        varchar token_hash UK
+        timestamp data_expiracao
+        timestamp data_utilizacao
+        timestamp data_criacao
+    }
+
+    LOG_AUDITORIA {
+        bigint id_log PK
+        bigint id_usuario FK
+        varchar entidade
+        bigint id_registro
+        varchar acao
+        json dados_anteriores
+        json dados_novos
+        varchar ip
+        varchar user_agent
+        timestamp data_hora
+    }
+
+    EXECUCAO_BACKUP {
+        bigint id_execucao PK
+        bigint id_usuario FK
+        varchar tipo
+        varchar status
+        varchar local_arquivo
+        varchar checksum
+        bigint tamanho
+        timestamp data_inicio
+        timestamp data_fim
+        text mensagem_erro
+    }

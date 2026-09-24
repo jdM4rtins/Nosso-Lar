@@ -1,10 +1,11 @@
 package com.nossolaritapetininga.InstitutoNossoLar.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "eventos")
-public class Evento {
+public class Evento extends EntidadeAuditavel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +14,29 @@ public class Evento {
     private String imagem;
 
     private String alt;
+
+    private String titulo;
+
+    @Column(columnDefinition = "TEXT")
+    private String descricao;
+
+    @Column(name = "data_inicio")
+    private LocalDateTime dataInicio;
+
+    @Column(name = "data_fim")
+    private LocalDateTime dataFim;
+
+    private String local;
+
+    private String link;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_instituicao")
+    private Instituicao instituicao;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_midia")
+    private Midia midia;
 
     private boolean ativo;
 
@@ -56,4 +80,21 @@ public class Evento {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+    public LocalDateTime getDataInicio() { return dataInicio; }
+    public void setDataInicio(LocalDateTime dataInicio) { this.dataInicio = dataInicio; }
+    public LocalDateTime getDataFim() { return dataFim; }
+    public void setDataFim(LocalDateTime dataFim) { this.dataFim = dataFim; }
+    public String getLocal() { return local; }
+    public void setLocal(String local) { this.local = local; }
+    public String getLink() { return link; }
+    public void setLink(String link) { this.link = link; }
+    public Instituicao getInstituicao() { return instituicao; }
+    public void setInstituicao(Instituicao instituicao) { this.instituicao = instituicao; }
+    public Midia getMidia() { return midia; }
+    public void setMidia(Midia midia) { this.midia = midia; }
 }

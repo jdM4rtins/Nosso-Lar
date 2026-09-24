@@ -2,12 +2,12 @@ package com.nossolaritapetininga.InstitutoNossoLar.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.nossolaritapetininga.InstitutoNossoLar.model.Administrador;
+import com.nossolaritapetininga.InstitutoNossoLar.model.Usuario;
 
 import java.util.Optional;
 
 public interface AdministradorRepository
-        extends JpaRepository<Administrador, Long> {
+        extends JpaRepository<Usuario, Long> {
 
-    Optional<Administrador> findByEmail(String email);
+    Optional<Usuario> findByEmail(String email);
 }

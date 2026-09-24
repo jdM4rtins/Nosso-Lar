@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1041" viewBox="0 0 1400 1041">
+<rect width="100%" height="100%" fill="#f5f7fa"/>
+<rect x="0" y="0" width="1400" height="66" fill="#71308d"/>
+<text x="32" y="42" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#ffffff">Administração e segurança</text>
+<text x="1368" y="40" text-anchor="end" font-family="Arial, sans-serif" font-size="14" fill="#ffffff">Modelo lógico proposto para discussão</text>
+<rect x="32" y="92" width="430.6666666666667" height="245" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 40 92 H 454.6666666666667 Q 462.6666666666667 92 462.6666666666667 100 V 130 H 32 V 100 Q 32 92 40 92" fill="#71308d"/>
+<text x="46" y="117" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">USUARIO</text>
+<text x="46" y="152" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="152" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_usuario</text>
+<text x="450.6666666666667" y="152" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">PK</text>
+<text x="46" y="173" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="173" font-family="Arial, sans-serif" font-size="13" fill="#111827">nome</text>
+<text x="46" y="194" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="194" font-family="Arial, sans-serif" font-size="13" fill="#111827">email</text>
+<text x="450.6666666666667" y="194" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">UK</text>
+<text x="46" y="215" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="215" font-family="Arial, sans-serif" font-size="13" fill="#111827">senha_hash</text>
+<text x="46" y="236" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="132" y="236" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<text x="46" y="257" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="132" y="257" font-family="Arial, sans-serif" font-size="13" fill="#111827">alterar_senha</text>
+<text x="46" y="278" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="132" y="278" font-family="Arial, sans-serif" font-size="13" fill="#111827">ultimo_login</text>
+<text x="46" y="299" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="132" y="299" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_criacao</text>
+<text x="46" y="320" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="132" y="320" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_atualizacao</text>
+<rect x="484.6666666666667" y="92" width="430.6666666666667" height="245" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 492.6666666666667 92 H 907.3333333333334 Q 915.3333333333334 92 915.3333333333334 100 V 130 H 484.6666666666667 V 100 Q 484.6666666666667 92 492.6666666666667 92" fill="#71308d"/>
+<text x="498.6666666666667" y="117" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">PERFIL</text>
+<text x="498.6666666666667" y="152" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="584.6666666666667" y="152" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_perfil</text>
+<text x="903.3333333333334" y="152" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">PK</text>
+<text x="498.6666666666667" y="173" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="584.6666666666667" y="173" font-family="Arial, sans-serif" font-size="13" fill="#111827">nome</text>
+<text x="903.3333333333334" y="173" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">UK</text>
+<text x="498.6666666666667" y="194" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="584.6666666666667" y="194" font-family="Arial, sans-serif" font-size="13" fill="#111827">descricao</text>
+<text x="498.6666666666667" y="215" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="584.6666666666667" y="215" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<rect x="937.3333333333334" y="92" width="430.6666666666667" height="245" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 945.3333333333334 92 H 1360 Q 1368 92 1368 100 V 130 H 937.3333333333334 V 100 Q 937.3333333333334 92 945.3333333333334 92" fill="#71308d"/>
+<text x="951.3333333333334" y="117" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">PERMISSAO</text>
+<text x="951.3333333333334" y="152" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1037.3333333333335" y="152" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_permissao</text>
+<text x="1356" y="152" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">PK</text>
+<text x="951.3333333333334" y="173" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="1037.3333333333335" y="173" font-family="Arial, sans-serif" font-size="13" fill="#111827">nome</text>
+<text x="1356" y="173" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">UK</text>
+<text x="951.3333333333334" y="194" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="1037.3333333333335" y="194" font-family="Arial, sans-serif" font-size="13" fill="#111827">descricao</text>
+<rect x="32" y="359" width="430.6666666666667" height="182" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 40 359 H 454.6666666666667 Q 462.6666666666667 359 462.6666666666667 367 V 397 H 32 V 367 Q 32 359 40 359" fill="#71308d"/>
+<text x="46" y="384" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">USUARIO_PERFIL</text>
+<text x="46" y="419" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="419" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_usuario</text>
+<text x="450.6666666666667" y="419" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">PK,FK</text>
+<text x="46" y="440" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="440" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_perfil</text>
+<text x="450.6666666666667" y="440" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">PK,FK</text>
+<rect x="484.6666666666667" y="359" width="430.6666666666667" height="182" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 492.6666666666667 359 H 907.3333333333334 Q 915.3333333333334 359 915.3333333333334 367 V 397 H 484.6666666666667 V 367 Q 484.6666666666667 359 492.6666666666667 359" fill="#71308d"/>
+<text x="498.6666666666667" y="384" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">PERFIL_PERMISSAO</text>
+<text x="498.6666666666667" y="419" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="584.6666666666667" y="419" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_perfil</text>
+<text x="903.3333333333334" y="419" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">PK,FK</text>
+<text x="498.6666666666667" y="440" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="584.6666666666667" y="440" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_permissao</text>
+<text x="903.3333333333334" y="440" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">PK,FK</text>
+<rect x="937.3333333333334" y="359" width="430.6666666666667" height="182" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 945.3333333333334 359 H 1360 Q 1368 359 1368 367 V 397 H 937.3333333333334 V 367 Q 937.3333333333334 359 945.3333333333334 359" fill="#71308d"/>
+<text x="951.3333333333334" y="384" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">TOKEN_RECUPERACAO</text>
+<text x="951.3333333333334" y="419" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1037.3333333333335" y="419" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_token</text>
+<text x="1356" y="419" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">PK</text>
+<text x="951.3333333333334" y="440" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1037.3333333333335" y="440" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_usuario</text>
+<text x="1356" y="440" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">FK</text>
+<text x="951.3333333333334" y="461" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="1037.3333333333335" y="461" font-family="Arial, sans-serif" font-size="13" fill="#111827">token_hash</text>
+<text x="1356" y="461" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">UK</text>
+<text x="951.3333333333334" y="482" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="1037.3333333333335" y="482" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_expiracao</text>
+<text x="951.3333333333334" y="503" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="1037.3333333333335" y="503" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_utilizacao</text>
+<text x="951.3333333333334" y="524" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="1037.3333333333335" y="524" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_criacao</text>
+<rect x="32" y="563" width="430.6666666666667" height="266" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 40 563 H 454.6666666666667 Q 462.6666666666667 563 462.6666666666667 571 V 601 H 32 V 571 Q 32 563 40 563" fill="#71308d"/>
+<text x="46" y="588" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">LOG_AUDITORIA</text>
+<text x="46" y="623" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="623" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_log</text>
+<text x="450.6666666666667" y="623" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">PK</text>
+<text x="46" y="644" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="644" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_usuario</text>
+<text x="450.6666666666667" y="644" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">FK</text>
+<text x="46" y="665" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="665" font-family="Arial, sans-serif" font-size="13" fill="#111827">entidade</text>
+<text x="46" y="686" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="686" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_registro</text>
+<text x="46" y="707" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="707" font-family="Arial, sans-serif" font-size="13" fill="#111827">acao</text>
+<text x="46" y="728" font-family="monospace" font-size="12" fill="#334155">json</text>
+<text x="132" y="728" font-family="Arial, sans-serif" font-size="13" fill="#111827">dados_anteriores</text>
+<text x="46" y="749" font-family="monospace" font-size="12" fill="#334155">json</text>
+<text x="132" y="749" font-family="Arial, sans-serif" font-size="13" fill="#111827">dados_novos</text>
+<text x="46" y="770" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="770" font-family="Arial, sans-serif" font-size="13" fill="#111827">ip</text>
+<text x="46" y="791" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="791" font-family="Arial, sans-serif" font-size="13" fill="#111827">user_agent</text>
+<text x="46" y="812" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="132" y="812" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_hora</text>
+<rect x="484.6666666666667" y="563" width="430.6666666666667" height="266" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 492.6666666666667 563 H 907.3333333333334 Q 915.3333333333334 563 915.3333333333334 571 V 601 H 484.6666666666667 V 571 Q 484.6666666666667 563 492.6666666666667 563" fill="#71308d"/>
+<text x="498.6666666666667" y="588" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">EXECUCAO_BACKUP</text>
+<text x="498.6666666666667" y="623" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="584.6666666666667" y="623" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_execucao</text>
+<text x="903.3333333333334" y="623" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">PK</text>
+<text x="498.6666666666667" y="644" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="584.6666666666667" y="644" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_usuario</text>
+<text x="903.3333333333334" y="644" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#71308d">FK</text>
+<text x="498.6666666666667" y="665" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="584.6666666666667" y="665" font-family="Arial, sans-serif" font-size="13" fill="#111827">tipo</text>
+<text x="498.6666666666667" y="686" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="584.6666666666667" y="686" font-family="Arial, sans-serif" font-size="13" fill="#111827">status</text>
+<text x="498.6666666666667" y="707" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="584.6666666666667" y="707" font-family="Arial, sans-serif" font-size="13" fill="#111827">local_arquivo</text>
+<text x="498.6666666666667" y="728" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="584.6666666666667" y="728" font-family="Arial, sans-serif" font-size="13" fill="#111827">checksum</text>
+<text x="498.6666666666667" y="749" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="584.6666666666667" y="749" font-family="Arial, sans-serif" font-size="13" fill="#111827">tamanho</text>
+<text x="498.6666666666667" y="770" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="584.6666666666667" y="770" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_inicio</text>
+<text x="498.6666666666667" y="791" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="584.6666666666667" y="791" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_fim</text>
+<text x="498.6666666666667" y="812" font-family="monospace" font-size="12" fill="#334155">text</text>
+<text x="584.6666666666667" y="812" font-family="Arial, sans-serif" font-size="13" fill="#111827">mensagem_erro</text>
+<rect x="32" y="867" width="1336" height="142" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="46" y="890" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#71308d">RELACIONAMENTOS</text>
+<text x="46" y="917" font-family="Arial, sans-serif" font-size="12" fill="#334155">USUARIO || — o{ USUARIO_PERFIL · possui</text>
+<text x="46" y="940" font-family="Arial, sans-serif" font-size="12" fill="#334155">PERFIL || — o{ USUARIO_PERFIL · atribuido</text>
+<text x="46" y="963" font-family="Arial, sans-serif" font-size="12" fill="#334155">PERFIL || — o{ PERFIL_PERMISSAO · possui</text>
+<text x="46" y="986" font-family="Arial, sans-serif" font-size="12" fill="#334155">PERMISSAO || — o{ PERFIL_PERMISSAO · compoe</text>
+<text x="725" y="917" font-family="Arial, sans-serif" font-size="12" fill="#334155">USUARIO || — o{ TOKEN_RECUPERACAO · solicita</text>
+<text x="725" y="940" font-family="Arial, sans-serif" font-size="12" fill="#334155">USUARIO || — o{ LOG_AUDITORIA · realiza</text>
+<text x="725" y="963" font-family="Arial, sans-serif" font-size="12" fill="#334155">USUARIO || — o{ EXECUCAO_BACKUP · inicia</text>
+</svg>

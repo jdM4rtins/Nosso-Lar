@@ -1,6 +1,6 @@
 package com.nossolaritapetininga.InstitutoNossoLar;
 
-import com.nossolaritapetininga.InstitutoNossoLar.model.Administrador;
+import com.nossolaritapetininga.InstitutoNossoLar.model.Usuario;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Atividade;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Conteudo;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Evento;
@@ -37,8 +37,8 @@ public class DataInitializer {
                     "admin@nossolar.com"
             ).isEmpty()) {
 
-                Administrador administrador =
-                        new Administrador();
+                Usuario administrador =
+                        new Usuario();
 
                 administrador.setNome("Administrador");
                 administrador.setEmail(

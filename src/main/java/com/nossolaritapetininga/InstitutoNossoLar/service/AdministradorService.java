@@ -1,6 +1,6 @@
 package com.nossolaritapetininga.InstitutoNossoLar.service;
 
-import com.nossolaritapetininga.InstitutoNossoLar.model.Administrador;
+import com.nossolaritapetininga.InstitutoNossoLar.model.Usuario;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.AdministradorRepository;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,15 +22,15 @@ public class AdministradorService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public List<Administrador> listarTodos() {
+    public List<Usuario> listarTodos() {
         return repository.findAll();
     }
 
-    public Administrador buscarPorId(Long id) {
+    public Usuario buscarPorId(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public Administrador salvar(Administrador administrador) {
+    public Usuario salvar(Usuario administrador) {
 
         administrador.setSenha(
                 passwordEncoder.encode(administrador.getSenha())
@@ -39,13 +39,13 @@ public class AdministradorService {
         return repository.save(administrador);
     }
 
-    public Administrador editar(
+    public Usuario editar(
             Long id,
             String nome,
             String email,
             String senha) {
 
-        Administrador administrador =
+        Usuario administrador =
                 repository.findById(id).orElse(null);
 
         if (administrador == null) {
@@ -75,7 +75,7 @@ public class AdministradorService {
 
     public void alterarStatus(Long id) {
 
-        Administrador administrador =
+        Usuario administrador =
                 repository.findById(id).orElse(null);
 
         if (administrador != null) {

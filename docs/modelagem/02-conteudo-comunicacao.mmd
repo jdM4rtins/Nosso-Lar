@@ -1,0 +1,207 @@
+erDiagram
+    INSTITUICAO ||--o{ PAGINA : possui
+    PAGINA ||--o{ SECAO : organiza
+    SECAO ||--o{ SECAO_MIDIA : possui
+    MIDIA ||--o{ SECAO_MIDIA : compoe
+    INSTITUICAO ||--o{ ATIVIDADE : oferece
+    ATIVIDADE }o--o| MIDIA : usa_capa
+    INSTITUICAO ||--o{ NOTICIA : publica
+    NOTICIA }o--o| MIDIA : usa_capa
+    INSTITUICAO ||--o{ EVENTO : promove
+    EVENTO }o--o| MIDIA : usa_imagem
+    INSTITUICAO ||--o{ FORMA_AJUDA : oferece
+    FORMA_AJUDA ||--o{ LINK : possui
+    INSTITUICAO ||--o{ DOACAO : configura
+    DOACAO }o--o| MIDIA : usa_qr_code
+    INSTITUICAO ||--o{ CAMPANHA : promove
+    CAMPANHA }o--o| MIDIA : usa_capa
+    INSTITUICAO ||--o{ EQUIPE : apresenta
+    EQUIPE }o--o| MIDIA : usa_foto
+    INSTITUICAO ||--o{ CONTRATANTE : relaciona
+    CONTRATANTE }o--o| MIDIA : usa_logo
+    INSTITUICAO ||--o{ NEWSLETTER : publica
+    INSTITUICAO ||--o{ INSCRITO_NEWSLETTER : possui
+    NEWSLETTER ||--o{ ENVIO_NEWSLETTER : gera
+    INSCRITO_NEWSLETTER ||--o{ ENVIO_NEWSLETTER : recebe
+
+    PAGINA {
+        bigint id_pagina PK
+        bigint id_instituicao FK
+        varchar titulo
+        varchar slug UK
+        text descricao
+        varchar status
+        int ordem
+        boolean publicado
+        timestamp data_criacao
+        timestamp data_atualizacao
+    }
+
+    SECAO {
+        bigint id_secao PK
+        bigint id_pagina FK
+        varchar titulo
+        varchar subtitulo
+        varchar tipo
+        text conteudo
+        int ordem
+        boolean ativo
+        timestamp data_criacao
+        timestamp data_atualizacao
+    }
+
+    SECAO_MIDIA {
+        bigint id_secao PK,FK
+        bigint id_midia PK,FK
+        varchar tipo
+        int ordem
+    }
+
+    ATIVIDADE {
+        bigint id_atividade PK
+        bigint id_instituicao FK
+        bigint id_midia FK
+        varchar nome
+        text descricao
+        varchar imagem_legada
+        int ordem
+        boolean ativo
+        timestamp data_criacao
+        timestamp data_atualizacao
+    }
+
+    NOTICIA {
+        bigint id_noticia PK
+        bigint id_instituicao FK
+        bigint id_midia FK
+        varchar titulo
+        text resumo
+        text conteudo
+        varchar imagem_legada
+        date data_publicacao
+        boolean ativo
+        timestamp data_criacao
+        timestamp data_atualizacao
+    }
+
+    EVENTO {
+        bigint id_evento PK
+        bigint id_instituicao FK
+        bigint id_midia FK
+        varchar titulo
+        text descricao
+        varchar imagem_legada
+        varchar texto_alternativo
+        timestamp data_inicio
+        timestamp data_fim
+        varchar local
+        varchar link
+        boolean ativo
+        timestamp data_criacao
+        timestamp data_atualizacao
+    }
+
+    FORMA_AJUDA {
+        bigint id_forma_ajuda PK
+        bigint id_instituicao FK
+        varchar titulo
+        text descricao
+        varchar tipo
+        varchar icone
+        int ordem
+        boolean ativo
+        timestamp data_criacao
+        timestamp data_atualizacao
+    }
+
+    LINK {
+        bigint id_link PK
+        bigint id_forma_ajuda FK
+        varchar url
+        varchar texto
+        varchar tipo
+        varchar target
+        boolean ativo
+        int ordem
+    }
+
+    DOACAO {
+        bigint id_doacao PK
+        bigint id_instituicao FK
+        bigint qr_code_midia_id FK
+        varchar chave_pix
+        varchar tipo_chave_pix
+        varchar nome_beneficiario
+        varchar cidade
+        boolean ativo
+        timestamp data_atualizacao
+    }
+
+    CAMPANHA {
+        bigint id_campanha PK
+        bigint id_instituicao FK
+        bigint id_midia FK
+        varchar titulo
+        text descricao
+        date data_inicio
+        date data_fim
+        varchar link
+        boolean ativo
+    }
+
+    EQUIPE {
+        bigint id_equipe PK
+        bigint id_instituicao FK
+        bigint id_midia FK
+        varchar nome
+        varchar cargo
+        text descricao
+        int ordem
+        boolean ativo
+    }
+
+    CONTRATANTE {
+        bigint id_contratante PK
+        bigint id_instituicao FK
+        bigint id_midia FK
+        varchar nome
+        varchar url
+        int ordem
+        boolean ativo
+    }
+
+    NEWSLETTER {
+        bigint id_newsletter PK
+        bigint id_instituicao FK
+        varchar assunto
+        text conteudo
+        timestamp data_envio
+        varchar status
+    }
+
+    INSCRITO_NEWSLETTER {
+        bigint id_inscrito PK
+        bigint id_instituicao FK
+        varchar nome
+        varchar email UK
+        boolean ativo
+        timestamp data_inscricao
+        timestamp data_cancelamento
+    }
+
+    ENVIO_NEWSLETTER {
+        bigint id_envio PK
+        bigint id_newsletter FK
+        bigint id_inscrito FK
+        varchar status
+        timestamp data_envio
+        varchar erro
+    }
+
+    INSTITUICAO {
+        bigint id_instituicao PK
+    }
+
+    MIDIA {
+        bigint id_midia PK
+    }

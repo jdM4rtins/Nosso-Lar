@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "noticias")
-public class Noticia {
+public class Noticia extends EntidadeAuditavel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,14 @@ public class Noticia {
     private String conteudo;
 
     private String imagem;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_instituicao")
+    private Instituicao instituicao;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_midia")
+    private Midia midia;
 
     private LocalDate dataPublicacao;
 
@@ -89,4 +97,9 @@ public class Noticia {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public Instituicao getInstituicao() { return instituicao; }
+    public void setInstituicao(Instituicao instituicao) { this.instituicao = instituicao; }
+    public Midia getMidia() { return midia; }
+    public void setMidia(Midia midia) { this.midia = midia; }
 }

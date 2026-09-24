@@ -1,6 +1,6 @@
 package com.nossolaritapetininga.InstitutoNossoLar.controller;
 
-import com.nossolaritapetininga.InstitutoNossoLar.model.Administrador;
+import com.nossolaritapetininga.InstitutoNossoLar.model.Usuario;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.AdministradorRepository;
 import com.nossolaritapetininga.InstitutoNossoLar.service.AdministradorService;
 
@@ -39,7 +39,7 @@ public class AdministradorController {
 
         model.addAttribute(
                 "administrador",
-                new Administrador()
+                new Usuario()
         );
 
         return "admin/novo-administrador";
@@ -47,7 +47,7 @@ public class AdministradorController {
 
     @PostMapping
     public String salvarAdministrador(
-            @ModelAttribute Administrador administrador,
+            @ModelAttribute Usuario administrador,
             Model model) {
 
         if (administradorRepository
@@ -72,7 +72,7 @@ public class AdministradorController {
             @PathVariable Long id,
             Model model) {
 
-        Administrador administrador =
+        Usuario administrador =
                 administradorService.buscarPorId(id);
 
         if (administrador == null) {
