@@ -1,11 +1,9 @@
 package com.nossolaritapetininga.InstitutoNossoLar;
 
-import com.nossolaritapetininga.InstitutoNossoLar.model.Administrador;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Atividade;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Conteudo;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Evento;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Noticia;
-import com.nossolaritapetininga.InstitutoNossoLar.repository.AdministradorRepository;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.AtividadeRepository;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.ConteudoRepository;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.EventoRepository;
@@ -15,48 +13,19 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import java.time.LocalDate;
 
 @Configuration
 public class DataInitializer {
 
     @Bean
-    CommandLineRunner criarAdministrador(
-            AdministradorRepository repository,
+    CommandLineRunner criarDadosIniciais(
             ConteudoRepository conteudos,
             AtividadeRepository atividades,
             EventoRepository eventos,
-            NoticiaRepository noticias,
-            PasswordEncoder passwordEncoder) {
+            NoticiaRepository noticias) {
 
         return args -> {
-
-            if (repository.findByEmail(
-                    "admin@nossolar.com"
-            ).isEmpty()) {
-
-                Administrador administrador =
-                        new Administrador();
-
-                administrador.setNome("Administrador");
-                administrador.setEmail(
-                        "admin@nossolar.com"
-                );
-
-                administrador.setSenha(
-                        passwordEncoder.encode("123456")
-                );
-
-                administrador.setAtivo(true);
-
-                repository.save(administrador);
-
-                System.out.println(
-                    "Administrador criado com sucesso!"
-                );
-            }
 
             criarConteudosIniciais(conteudos);
 

@@ -5,6 +5,7 @@ import com.nossolaritapetininga.InstitutoNossoLar.service.EventoService;
 import com.nossolaritapetininga.InstitutoNossoLar.service.ImagemService;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +13,7 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping("/admin/eventos")
+@PreAuthorize("hasAuthority('VIEW_CONTENT')")
 public class EventoController {
 
     private final EventoService eventoService;
@@ -34,6 +36,7 @@ public class EventoController {
     }
 
     @GetMapping("/novo")
+    @PreAuthorize("hasAuthority('CREATE_CONTENT')")
     public String novo(Model model) {
 
         model.addAttribute(
@@ -45,6 +48,7 @@ public class EventoController {
     }
 
     @PostMapping({"", "/"})
+    @PreAuthorize("hasAuthority('CREATE_CONTENT')")
     public String salvar(
             @ModelAttribute Evento evento,
             @RequestParam("arquivo") MultipartFile arquivo)
@@ -63,6 +67,7 @@ public class EventoController {
     }
 
     @GetMapping("/editar/{id}")
+    @PreAuthorize("hasAuthority('UPDATE_CONTENT')")
     public String editar(
             @PathVariable Long id,
             Model model) {
@@ -79,6 +84,7 @@ public class EventoController {
     }
 
     @PostMapping("/editar/{id}")
+    @PreAuthorize("hasAuthority('UPDATE_CONTENT')")
     public String atualizar(
             @PathVariable Long id,
             @RequestParam(required = false) MultipartFile arquivo,
@@ -112,7 +118,8 @@ public class EventoController {
         return "redirect:/admin/eventos";
     }
 
-    @GetMapping("/excluir/{id}")
+    @PostMapping("/excluir/{id}")
+    @PreAuthorize("hasAuthority('DELETE_CONTENT')")
     public String excluir(
             @PathVariable Long id) {
 

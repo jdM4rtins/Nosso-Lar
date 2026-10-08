@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfis e permissões</title>
+    <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+</head>
+<body>
+<header>
+    <h1>Instituto Nosso Lar</h1>
+    <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
+</header>
+<main>
+    <h2>Perfis e permissões</h2>
+    <p th:if="${sucesso}" th:text="${sucesso}" class="status ativo"></p>
+    <p th:if="${erro}" th:text="${erro}" class="status inativo"></p>
+    <table>
+        <thead><tr><th>Perfil</th><th>Descrição</th><th>Permissões</th><th>Ações</th></tr></thead>
+        <tbody>
+        <tr th:each="perfil : ${perfis}">
+            <td th:text="${perfil.nome}">EDITOR</td>
+            <td th:text="${perfil.descricao}">Descrição</td>
+            <td>
+                <span th:each="permissao, estado : ${perfil.permissoes}">
+                    <span th:text="${permissao.nome}">PERMISSION</span><span th:if="${!estado.last}">, </span>
+                </span>
+            </td>
+            <td>
+                <a th:if="${perfil.nome != 'SUPER_ADMIN'}"
+                   th:href="@{/admin/perfis/editar/{id}(id=${perfil.id})}">Editar permissões</a>
+                <span th:if="${perfil.nome == 'SUPER_ADMIN'}">Protegido</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

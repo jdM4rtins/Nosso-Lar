@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 
@@ -31,7 +32,7 @@
 
     <h2>Notícias e acontecimentos</h2>
 
-    <a th:href="@{/admin/noticias/novo}">
+    <a sec:authorize="hasAuthority('CREATE_CONTENT')" th:href="@{/admin/noticias/novo}">
         + Nova notícia
     </a>
 
@@ -107,13 +108,12 @@
 
                 </a>
 
-                <a
-                    th:href="@{/admin/noticias/excluir/{id}(id=${noticia.id})}"
-                    onclick="return confirm('Deseja realmente excluir esta notícia?');">
-
-                    Excluir
-
-                </a>
+                <form sec:authorize="hasAuthority('DELETE_CONTENT')"
+                      th:action="@{/admin/noticias/excluir/{id}(id=${noticia.id})}"
+                      method="post" style="display:inline"
+                      onsubmit="return confirm('Deseja realmente excluir esta notícia?')">
+                    <button type="submit">Excluir</button>
+                </form>
 
             </td>
 

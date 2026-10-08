@@ -1,0 +1,387 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1717" viewBox="0 0 1400 1717">
+<rect width="100%" height="100%" fill="#f5f7fa"/>
+<rect x="0" y="0" width="1400" height="66" fill="#287a4d"/>
+<text x="32" y="42" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#ffffff">Conteúdo e comunicação</text>
+<text x="1368" y="40" text-anchor="end" font-family="Arial, sans-serif" font-size="14" fill="#ffffff">Modelo lógico proposto para discussão</text>
+<rect x="32" y="92" width="317.5" height="266" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 40 92 H 341.5 Q 349.5 92 349.5 100 V 130 H 32 V 100 Q 32 92 40 92" fill="#287a4d"/>
+<text x="46" y="117" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">PAGINA</text>
+<text x="46" y="152" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="152" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_pagina</text>
+<text x="337.5" y="152" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="46" y="173" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="173" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="337.5" y="173" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="46" y="194" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="194" font-family="Arial, sans-serif" font-size="13" fill="#111827">titulo</text>
+<text x="46" y="215" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="215" font-family="Arial, sans-serif" font-size="13" fill="#111827">slug</text>
+<text x="337.5" y="215" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">UK</text>
+<text x="46" y="236" font-family="monospace" font-size="12" fill="#334155">text</text>
+<text x="132" y="236" font-family="Arial, sans-serif" font-size="13" fill="#111827">descricao</text>
+<text x="46" y="257" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="257" font-family="Arial, sans-serif" font-size="13" fill="#111827">status</text>
+<text x="46" y="278" font-family="monospace" font-size="12" fill="#334155">int</text>
+<text x="132" y="278" font-family="Arial, sans-serif" font-size="13" fill="#111827">ordem</text>
+<text x="46" y="299" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="132" y="299" font-family="Arial, sans-serif" font-size="13" fill="#111827">publicado</text>
+<text x="46" y="320" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="132" y="320" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_criacao</text>
+<text x="46" y="341" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="132" y="341" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_atualizacao</text>
+<rect x="371.5" y="92" width="317.5" height="266" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 379.5 92 H 681 Q 689 92 689 100 V 130 H 371.5 V 100 Q 371.5 92 379.5 92" fill="#287a4d"/>
+<text x="385.5" y="117" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">SECAO</text>
+<text x="385.5" y="152" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="471.5" y="152" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_secao</text>
+<text x="677" y="152" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="385.5" y="173" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="471.5" y="173" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_pagina</text>
+<text x="677" y="173" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="385.5" y="194" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="194" font-family="Arial, sans-serif" font-size="13" fill="#111827">titulo</text>
+<text x="385.5" y="215" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="215" font-family="Arial, sans-serif" font-size="13" fill="#111827">subtitulo</text>
+<text x="385.5" y="236" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="236" font-family="Arial, sans-serif" font-size="13" fill="#111827">tipo</text>
+<text x="385.5" y="257" font-family="monospace" font-size="12" fill="#334155">text</text>
+<text x="471.5" y="257" font-family="Arial, sans-serif" font-size="13" fill="#111827">conteudo</text>
+<text x="385.5" y="278" font-family="monospace" font-size="12" fill="#334155">int</text>
+<text x="471.5" y="278" font-family="Arial, sans-serif" font-size="13" fill="#111827">ordem</text>
+<text x="385.5" y="299" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="471.5" y="299" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<text x="385.5" y="320" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="471.5" y="320" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_criacao</text>
+<text x="385.5" y="341" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="471.5" y="341" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_atualizacao</text>
+<rect x="711" y="92" width="317.5" height="266" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 719 92 H 1020.5 Q 1028.5 92 1028.5 100 V 130 H 711 V 100 Q 711 92 719 92" fill="#287a4d"/>
+<text x="725" y="117" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">SECAO_MIDIA</text>
+<text x="725" y="152" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="811" y="152" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_secao</text>
+<text x="1016.5" y="152" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK,FK</text>
+<text x="725" y="173" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="811" y="173" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_midia</text>
+<text x="1016.5" y="173" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK,FK</text>
+<text x="725" y="194" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="811" y="194" font-family="Arial, sans-serif" font-size="13" fill="#111827">tipo</text>
+<text x="725" y="215" font-family="monospace" font-size="12" fill="#334155">int</text>
+<text x="811" y="215" font-family="Arial, sans-serif" font-size="13" fill="#111827">ordem</text>
+<rect x="1050.5" y="92" width="317.5" height="266" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 1058.5 92 H 1360 Q 1368 92 1368 100 V 130 H 1050.5 V 100 Q 1050.5 92 1058.5 92" fill="#287a4d"/>
+<text x="1064.5" y="117" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">ATIVIDADE</text>
+<text x="1064.5" y="152" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1150.5" y="152" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_atividade</text>
+<text x="1356" y="152" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="1064.5" y="173" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1150.5" y="173" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="1356" y="173" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="1064.5" y="194" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1150.5" y="194" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_midia</text>
+<text x="1356" y="194" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="1064.5" y="215" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="1150.5" y="215" font-family="Arial, sans-serif" font-size="13" fill="#111827">nome</text>
+<text x="1064.5" y="236" font-family="monospace" font-size="12" fill="#334155">text</text>
+<text x="1150.5" y="236" font-family="Arial, sans-serif" font-size="13" fill="#111827">descricao</text>
+<text x="1064.5" y="257" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="1150.5" y="257" font-family="Arial, sans-serif" font-size="13" fill="#111827">imagem_legada</text>
+<text x="1064.5" y="278" font-family="monospace" font-size="12" fill="#334155">int</text>
+<text x="1150.5" y="278" font-family="Arial, sans-serif" font-size="13" fill="#111827">ordem</text>
+<text x="1064.5" y="299" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="1150.5" y="299" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<text x="1064.5" y="320" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="1150.5" y="320" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_criacao</text>
+<text x="1064.5" y="341" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="1150.5" y="341" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_atualizacao</text>
+<rect x="32" y="380" width="317.5" height="350" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 40 380 H 341.5 Q 349.5 380 349.5 388 V 418 H 32 V 388 Q 32 380 40 380" fill="#287a4d"/>
+<text x="46" y="405" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">NOTICIA</text>
+<text x="46" y="440" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="440" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_noticia</text>
+<text x="337.5" y="440" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="46" y="461" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="461" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="337.5" y="461" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="46" y="482" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="482" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_midia</text>
+<text x="337.5" y="482" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="46" y="503" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="503" font-family="Arial, sans-serif" font-size="13" fill="#111827">titulo</text>
+<text x="46" y="524" font-family="monospace" font-size="12" fill="#334155">text</text>
+<text x="132" y="524" font-family="Arial, sans-serif" font-size="13" fill="#111827">resumo</text>
+<text x="46" y="545" font-family="monospace" font-size="12" fill="#334155">text</text>
+<text x="132" y="545" font-family="Arial, sans-serif" font-size="13" fill="#111827">conteudo</text>
+<text x="46" y="566" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="566" font-family="Arial, sans-serif" font-size="13" fill="#111827">imagem_legada</text>
+<text x="46" y="587" font-family="monospace" font-size="12" fill="#334155">date</text>
+<text x="132" y="587" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_publicacao</text>
+<text x="46" y="608" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="132" y="608" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<text x="46" y="629" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="132" y="629" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_criacao</text>
+<text x="46" y="650" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="132" y="650" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_atualizacao</text>
+<rect x="371.5" y="380" width="317.5" height="350" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 379.5 380 H 681 Q 689 380 689 388 V 418 H 371.5 V 388 Q 371.5 380 379.5 380" fill="#287a4d"/>
+<text x="385.5" y="405" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">EVENTO</text>
+<text x="385.5" y="440" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="471.5" y="440" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_evento</text>
+<text x="677" y="440" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="385.5" y="461" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="471.5" y="461" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="677" y="461" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="385.5" y="482" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="471.5" y="482" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_midia</text>
+<text x="677" y="482" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="385.5" y="503" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="503" font-family="Arial, sans-serif" font-size="13" fill="#111827">titulo</text>
+<text x="385.5" y="524" font-family="monospace" font-size="12" fill="#334155">text</text>
+<text x="471.5" y="524" font-family="Arial, sans-serif" font-size="13" fill="#111827">descricao</text>
+<text x="385.5" y="545" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="545" font-family="Arial, sans-serif" font-size="13" fill="#111827">imagem_legada</text>
+<text x="385.5" y="566" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="566" font-family="Arial, sans-serif" font-size="13" fill="#111827">texto_alternativo</text>
+<text x="385.5" y="587" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="471.5" y="587" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_inicio</text>
+<text x="385.5" y="608" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="471.5" y="608" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_fim</text>
+<text x="385.5" y="629" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="629" font-family="Arial, sans-serif" font-size="13" fill="#111827">local</text>
+<text x="385.5" y="650" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="650" font-family="Arial, sans-serif" font-size="13" fill="#111827">link</text>
+<text x="385.5" y="671" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="471.5" y="671" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<text x="385.5" y="692" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="471.5" y="692" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_criacao</text>
+<text x="385.5" y="713" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="471.5" y="713" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_atualizacao</text>
+<rect x="711" y="380" width="317.5" height="350" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 719 380 H 1020.5 Q 1028.5 380 1028.5 388 V 418 H 711 V 388 Q 711 380 719 380" fill="#287a4d"/>
+<text x="725" y="405" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">FORMA_AJUDA</text>
+<text x="725" y="440" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="811" y="440" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_forma_ajuda</text>
+<text x="1016.5" y="440" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="725" y="461" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="811" y="461" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="1016.5" y="461" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="725" y="482" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="811" y="482" font-family="Arial, sans-serif" font-size="13" fill="#111827">titulo</text>
+<text x="725" y="503" font-family="monospace" font-size="12" fill="#334155">text</text>
+<text x="811" y="503" font-family="Arial, sans-serif" font-size="13" fill="#111827">descricao</text>
+<text x="725" y="524" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="811" y="524" font-family="Arial, sans-serif" font-size="13" fill="#111827">tipo</text>
+<text x="725" y="545" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="811" y="545" font-family="Arial, sans-serif" font-size="13" fill="#111827">icone</text>
+<text x="725" y="566" font-family="monospace" font-size="12" fill="#334155">int</text>
+<text x="811" y="566" font-family="Arial, sans-serif" font-size="13" fill="#111827">ordem</text>
+<text x="725" y="587" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="811" y="587" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<text x="725" y="608" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="811" y="608" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_criacao</text>
+<text x="725" y="629" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="811" y="629" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_atualizacao</text>
+<rect x="1050.5" y="380" width="317.5" height="350" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 1058.5 380 H 1360 Q 1368 380 1368 388 V 418 H 1050.5 V 388 Q 1050.5 380 1058.5 380" fill="#287a4d"/>
+<text x="1064.5" y="405" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">LINK</text>
+<text x="1064.5" y="440" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1150.5" y="440" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_link</text>
+<text x="1356" y="440" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="1064.5" y="461" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1150.5" y="461" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_forma_ajuda</text>
+<text x="1356" y="461" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="1064.5" y="482" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="1150.5" y="482" font-family="Arial, sans-serif" font-size="13" fill="#111827">url</text>
+<text x="1064.5" y="503" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="1150.5" y="503" font-family="Arial, sans-serif" font-size="13" fill="#111827">texto</text>
+<text x="1064.5" y="524" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="1150.5" y="524" font-family="Arial, sans-serif" font-size="13" fill="#111827">tipo</text>
+<text x="1064.5" y="545" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="1150.5" y="545" font-family="Arial, sans-serif" font-size="13" fill="#111827">target</text>
+<text x="1064.5" y="566" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="1150.5" y="566" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<text x="1064.5" y="587" font-family="monospace" font-size="12" fill="#334155">int</text>
+<text x="1150.5" y="587" font-family="Arial, sans-serif" font-size="13" fill="#111827">ordem</text>
+<rect x="32" y="752" width="317.5" height="245" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 40 752 H 341.5 Q 349.5 752 349.5 760 V 790 H 32 V 760 Q 32 752 40 752" fill="#287a4d"/>
+<text x="46" y="777" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">DOACAO</text>
+<text x="46" y="812" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="812" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_doacao</text>
+<text x="337.5" y="812" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="46" y="833" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="833" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="337.5" y="833" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="46" y="854" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="854" font-family="Arial, sans-serif" font-size="13" fill="#111827">qr_code_midia_id</text>
+<text x="337.5" y="854" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="46" y="875" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="875" font-family="Arial, sans-serif" font-size="13" fill="#111827">chave_pix</text>
+<text x="46" y="896" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="896" font-family="Arial, sans-serif" font-size="13" fill="#111827">tipo_chave_pix</text>
+<text x="46" y="917" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="917" font-family="Arial, sans-serif" font-size="13" fill="#111827">nome_beneficiario</text>
+<text x="46" y="938" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="938" font-family="Arial, sans-serif" font-size="13" fill="#111827">cidade</text>
+<text x="46" y="959" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="132" y="959" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<text x="46" y="980" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="132" y="980" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_atualizacao</text>
+<rect x="371.5" y="752" width="317.5" height="245" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 379.5 752 H 681 Q 689 752 689 760 V 790 H 371.5 V 760 Q 371.5 752 379.5 752" fill="#287a4d"/>
+<text x="385.5" y="777" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">CAMPANHA</text>
+<text x="385.5" y="812" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="471.5" y="812" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_campanha</text>
+<text x="677" y="812" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="385.5" y="833" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="471.5" y="833" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="677" y="833" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="385.5" y="854" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="471.5" y="854" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_midia</text>
+<text x="677" y="854" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="385.5" y="875" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="875" font-family="Arial, sans-serif" font-size="13" fill="#111827">titulo</text>
+<text x="385.5" y="896" font-family="monospace" font-size="12" fill="#334155">text</text>
+<text x="471.5" y="896" font-family="Arial, sans-serif" font-size="13" fill="#111827">descricao</text>
+<text x="385.5" y="917" font-family="monospace" font-size="12" fill="#334155">date</text>
+<text x="471.5" y="917" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_inicio</text>
+<text x="385.5" y="938" font-family="monospace" font-size="12" fill="#334155">date</text>
+<text x="471.5" y="938" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_fim</text>
+<text x="385.5" y="959" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="959" font-family="Arial, sans-serif" font-size="13" fill="#111827">link</text>
+<text x="385.5" y="980" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="471.5" y="980" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<rect x="711" y="752" width="317.5" height="245" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 719 752 H 1020.5 Q 1028.5 752 1028.5 760 V 790 H 711 V 760 Q 711 752 719 752" fill="#287a4d"/>
+<text x="725" y="777" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">EQUIPE</text>
+<text x="725" y="812" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="811" y="812" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_equipe</text>
+<text x="1016.5" y="812" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="725" y="833" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="811" y="833" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="1016.5" y="833" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="725" y="854" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="811" y="854" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_midia</text>
+<text x="1016.5" y="854" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="725" y="875" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="811" y="875" font-family="Arial, sans-serif" font-size="13" fill="#111827">nome</text>
+<text x="725" y="896" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="811" y="896" font-family="Arial, sans-serif" font-size="13" fill="#111827">cargo</text>
+<text x="725" y="917" font-family="monospace" font-size="12" fill="#334155">text</text>
+<text x="811" y="917" font-family="Arial, sans-serif" font-size="13" fill="#111827">descricao</text>
+<text x="725" y="938" font-family="monospace" font-size="12" fill="#334155">int</text>
+<text x="811" y="938" font-family="Arial, sans-serif" font-size="13" fill="#111827">ordem</text>
+<text x="725" y="959" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="811" y="959" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<rect x="1050.5" y="752" width="317.5" height="245" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 1058.5 752 H 1360 Q 1368 752 1368 760 V 790 H 1050.5 V 760 Q 1050.5 752 1058.5 752" fill="#287a4d"/>
+<text x="1064.5" y="777" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">CONTRATANTE</text>
+<text x="1064.5" y="812" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1150.5" y="812" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_contratante</text>
+<text x="1356" y="812" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="1064.5" y="833" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1150.5" y="833" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="1356" y="833" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="1064.5" y="854" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1150.5" y="854" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_midia</text>
+<text x="1356" y="854" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="1064.5" y="875" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="1150.5" y="875" font-family="Arial, sans-serif" font-size="13" fill="#111827">nome</text>
+<text x="1064.5" y="896" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="1150.5" y="896" font-family="Arial, sans-serif" font-size="13" fill="#111827">url</text>
+<text x="1064.5" y="917" font-family="monospace" font-size="12" fill="#334155">int</text>
+<text x="1150.5" y="917" font-family="Arial, sans-serif" font-size="13" fill="#111827">ordem</text>
+<text x="1064.5" y="938" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="1150.5" y="938" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<rect x="32" y="1019" width="317.5" height="203" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 40 1019 H 341.5 Q 349.5 1019 349.5 1027 V 1057 H 32 V 1027 Q 32 1019 40 1019" fill="#287a4d"/>
+<text x="46" y="1044" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">NEWSLETTER</text>
+<text x="46" y="1079" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="1079" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_newsletter</text>
+<text x="337.5" y="1079" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="46" y="1100" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="1100" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="337.5" y="1100" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="46" y="1121" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="1121" font-family="Arial, sans-serif" font-size="13" fill="#111827">assunto</text>
+<text x="46" y="1142" font-family="monospace" font-size="12" fill="#334155">text</text>
+<text x="132" y="1142" font-family="Arial, sans-serif" font-size="13" fill="#111827">conteudo</text>
+<text x="46" y="1163" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="132" y="1163" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_envio</text>
+<text x="46" y="1184" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="132" y="1184" font-family="Arial, sans-serif" font-size="13" fill="#111827">status</text>
+<rect x="371.5" y="1019" width="317.5" height="203" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 379.5 1019 H 681 Q 689 1019 689 1027 V 1057 H 371.5 V 1027 Q 371.5 1019 379.5 1019" fill="#287a4d"/>
+<text x="385.5" y="1044" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">INSCRITO_NEWSLETTER</text>
+<text x="385.5" y="1079" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="471.5" y="1079" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_inscrito</text>
+<text x="677" y="1079" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="385.5" y="1100" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="471.5" y="1100" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="677" y="1100" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="385.5" y="1121" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="1121" font-family="Arial, sans-serif" font-size="13" fill="#111827">nome</text>
+<text x="385.5" y="1142" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="471.5" y="1142" font-family="Arial, sans-serif" font-size="13" fill="#111827">email</text>
+<text x="677" y="1142" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">UK</text>
+<text x="385.5" y="1163" font-family="monospace" font-size="12" fill="#334155">boolean</text>
+<text x="471.5" y="1163" font-family="Arial, sans-serif" font-size="13" fill="#111827">ativo</text>
+<text x="385.5" y="1184" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="471.5" y="1184" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_inscricao</text>
+<text x="385.5" y="1205" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="471.5" y="1205" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_cancelamento</text>
+<rect x="711" y="1019" width="317.5" height="203" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 719 1019 H 1020.5 Q 1028.5 1019 1028.5 1027 V 1057 H 711 V 1027 Q 711 1019 719 1019" fill="#287a4d"/>
+<text x="725" y="1044" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">ENVIO_NEWSLETTER</text>
+<text x="725" y="1079" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="811" y="1079" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_envio</text>
+<text x="1016.5" y="1079" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<text x="725" y="1100" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="811" y="1100" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_newsletter</text>
+<text x="1016.5" y="1100" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="725" y="1121" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="811" y="1121" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_inscrito</text>
+<text x="1016.5" y="1121" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">FK</text>
+<text x="725" y="1142" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="811" y="1142" font-family="Arial, sans-serif" font-size="13" fill="#111827">status</text>
+<text x="725" y="1163" font-family="monospace" font-size="12" fill="#334155">timestamp</text>
+<text x="811" y="1163" font-family="Arial, sans-serif" font-size="13" fill="#111827">data_envio</text>
+<text x="725" y="1184" font-family="monospace" font-size="12" fill="#334155">varchar</text>
+<text x="811" y="1184" font-family="Arial, sans-serif" font-size="13" fill="#111827">erro</text>
+<rect x="1050.5" y="1019" width="317.5" height="203" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 1058.5 1019 H 1360 Q 1368 1019 1368 1027 V 1057 H 1050.5 V 1027 Q 1050.5 1019 1058.5 1019" fill="#287a4d"/>
+<text x="1064.5" y="1044" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">INSTITUICAO</text>
+<text x="1064.5" y="1079" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="1150.5" y="1079" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_instituicao</text>
+<text x="1356" y="1079" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<rect x="32" y="1244" width="317.5" height="77" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<path d="M 40 1244 H 341.5 Q 349.5 1244 349.5 1252 V 1282 H 32 V 1252 Q 32 1244 40 1244" fill="#287a4d"/>
+<text x="46" y="1269" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">MIDIA</text>
+<text x="46" y="1304" font-family="monospace" font-size="12" fill="#334155">bigint</text>
+<text x="132" y="1304" font-family="Arial, sans-serif" font-size="13" fill="#111827">id_midia</text>
+<text x="337.5" y="1304" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#287a4d">PK</text>
+<rect x="32" y="1359" width="1336" height="326" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="46" y="1382" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#287a4d">RELACIONAMENTOS</text>
+<text x="46" y="1409" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSTITUICAO || — o{ PAGINA · possui</text>
+<text x="46" y="1432" font-family="Arial, sans-serif" font-size="12" fill="#334155">PAGINA || — o{ SECAO · organiza</text>
+<text x="46" y="1455" font-family="Arial, sans-serif" font-size="12" fill="#334155">SECAO || — o{ SECAO_MIDIA · possui</text>
+<text x="46" y="1478" font-family="Arial, sans-serif" font-size="12" fill="#334155">MIDIA || — o{ SECAO_MIDIA · compoe</text>
+<text x="46" y="1501" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSTITUICAO || — o{ ATIVIDADE · oferece</text>
+<text x="46" y="1524" font-family="Arial, sans-serif" font-size="12" fill="#334155">ATIVIDADE }o — o| MIDIA · usa capa</text>
+<text x="46" y="1547" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSTITUICAO || — o{ NOTICIA · publica</text>
+<text x="46" y="1570" font-family="Arial, sans-serif" font-size="12" fill="#334155">NOTICIA }o — o| MIDIA · usa capa</text>
+<text x="46" y="1593" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSTITUICAO || — o{ EVENTO · promove</text>
+<text x="46" y="1616" font-family="Arial, sans-serif" font-size="12" fill="#334155">EVENTO }o — o| MIDIA · usa imagem</text>
+<text x="46" y="1639" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSTITUICAO || — o{ FORMA_AJUDA · oferece</text>
+<text x="46" y="1662" font-family="Arial, sans-serif" font-size="12" fill="#334155">FORMA_AJUDA || — o{ LINK · possui</text>
+<text x="725" y="1409" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSTITUICAO || — o{ DOACAO · configura</text>
+<text x="725" y="1432" font-family="Arial, sans-serif" font-size="12" fill="#334155">DOACAO }o — o| MIDIA · usa qr code</text>
+<text x="725" y="1455" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSTITUICAO || — o{ CAMPANHA · promove</text>
+<text x="725" y="1478" font-family="Arial, sans-serif" font-size="12" fill="#334155">CAMPANHA }o — o| MIDIA · usa capa</text>
+<text x="725" y="1501" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSTITUICAO || — o{ EQUIPE · apresenta</text>
+<text x="725" y="1524" font-family="Arial, sans-serif" font-size="12" fill="#334155">EQUIPE }o — o| MIDIA · usa foto</text>
+<text x="725" y="1547" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSTITUICAO || — o{ CONTRATANTE · relaciona</text>
+<text x="725" y="1570" font-family="Arial, sans-serif" font-size="12" fill="#334155">CONTRATANTE }o — o| MIDIA · usa logo</text>
+<text x="725" y="1593" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSTITUICAO || — o{ NEWSLETTER · publica</text>
+<text x="725" y="1616" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSTITUICAO || — o{ INSCRITO_NEWSLETTER · possui</text>
+<text x="725" y="1639" font-family="Arial, sans-serif" font-size="12" fill="#334155">NEWSLETTER || — o{ ENVIO_NEWSLETTER · gera</text>
+<text x="725" y="1662" font-family="Arial, sans-serif" font-size="12" fill="#334155">INSCRITO_NEWSLETTER || — o{ ENVIO_NEWSLETTER · recebe</text>
+</svg>

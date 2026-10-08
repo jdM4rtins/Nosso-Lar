@@ -1,0 +1,103 @@
+erDiagram
+    INSTITUICAO ||--|| CONFIGURACAO_SITE : possui
+    INSTITUICAO ||--o{ CONTATO : possui
+    INSTITUICAO ||--o{ ENDERECO : possui
+    INSTITUICAO ||--o{ HORARIO_FUNCIONAMENTO : possui
+    INSTITUICAO ||--o{ REDE_SOCIAL : possui
+    CONFIGURACAO_SITE }o--o| MIDIA : usa_logo
+    CONFIGURACAO_SITE }o--o| MIDIA : usa_favicon
+    USUARIO ||--o{ MIDIA : envia
+
+    INSTITUICAO {
+        bigint id_instituicao PK
+        varchar nome
+        varchar nome_fantasia
+        text descricao
+        varchar cnpj UK
+        boolean ativo
+        timestamp data_cadastro
+        timestamp data_atualizacao
+    }
+
+    CONFIGURACAO_SITE {
+        bigint id_configuracao PK
+        bigint id_instituicao FK,UK
+        varchar nome_site
+        varchar titulo_site
+        varchar cor_primaria
+        varchar cor_secundaria
+        varchar cor_texto
+        varchar cor_fundo
+        bigint logo_id FK
+        bigint favicon_id FK
+        varchar meta_description
+        timestamp data_atualizacao
+    }
+
+    CONTATO {
+        bigint id_contato PK
+        bigint id_instituicao FK
+        varchar tipo
+        varchar valor
+        varchar descricao
+        boolean principal
+        boolean ativo
+    }
+
+    ENDERECO {
+        bigint id_endereco PK
+        bigint id_instituicao FK
+        varchar logradouro
+        varchar numero
+        varchar complemento
+        varchar bairro
+        varchar cidade
+        varchar estado
+        varchar cep
+        decimal latitude
+        decimal longitude
+        varchar google_maps_url
+        boolean ativo
+    }
+
+    HORARIO_FUNCIONAMENTO {
+        bigint id_horario PK
+        bigint id_instituicao FK
+        smallint dia_semana
+        time abre
+        time fecha
+        boolean fechado
+        varchar observacao
+    }
+
+    REDE_SOCIAL {
+        bigint id_rede_social PK
+        bigint id_instituicao FK
+        varchar plataforma
+        varchar nome_exibicao
+        varchar usuario
+        varchar url
+        boolean ativo
+        int ordem
+    }
+
+    MIDIA {
+        bigint id_midia PK
+        bigint id_usuario FK
+        varchar nome
+        varchar nome_original
+        varchar caminho
+        varchar url
+        varchar tipo
+        varchar mime_type
+        bigint tamanho
+        int largura
+        int altura
+        varchar texto_alternativo
+        boolean ativo
+        timestamp data_upload
+    }
+
+    USUARIO {
+        bigint id_usuario PK
+    }

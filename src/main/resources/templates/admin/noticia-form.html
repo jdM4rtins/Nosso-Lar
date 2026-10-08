@@ -35,7 +35,7 @@
 
 
     <form
-        th:action="@{/admin/noticias}"
+        th:action="${noticia.id == null} ? @{/admin/noticias} : @{/admin/noticias/editar/{id}(id=${noticia.id})}"
         th:object="${noticia}"
         method="post">
 

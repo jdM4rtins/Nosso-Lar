@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <html lang="pt-BR"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -24,11 +25,13 @@
 <main class="dashboard-main">
     <div class="dashboard-intro"><p class="admin-eyebrow">CENTRAL DE GESTÃO</p><h1>Instituto Nosso Lar</h1><p>Escolha uma área para atualizar as informações do site.</p></div>
     <nav class="dashboard-grid" aria-label="Áreas administrativas">
-        <a th:href="@{/admin/administradores}"><span class="dashboard-icon" aria-hidden="true">♙</span><span><strong>Administradores</strong><small>Gerencie os acessos</small></span><b aria-hidden="true">→</b></a>
-        <a th:href="@{/admin/conteudos}"><span class="dashboard-icon" aria-hidden="true">✎</span><span><strong>Conteúdos do site</strong><small>Textos e informações</small></span><b aria-hidden="true">→</b></a>
-        <a th:href="@{/admin/noticias}"><span class="dashboard-icon" aria-hidden="true">◫</span><span><strong>Notícias</strong><small>Atualize acontecimentos</small></span><b aria-hidden="true">→</b></a>
-        <a th:href="@{/admin/eventos}"><span class="dashboard-icon" aria-hidden="true">✦</span><span><strong>Eventos</strong><small>Organize os destaques</small></span><b aria-hidden="true">→</b></a>
-        <a th:href="@{/admin/atividades}"><span class="dashboard-icon" aria-hidden="true">♡</span><span><strong>Atividades</strong><small>Apresente as vivências</small></span><b aria-hidden="true">→</b></a>
+        <a sec:authorize="hasAuthority('VIEW_USER')" th:href="@{/admin/administradores}"><span class="dashboard-icon" aria-hidden="true">♙</span><span><strong>Usuários</strong><small>Gerencie os acessos</small></span><b aria-hidden="true">→</b></a>
+        <a sec:authorize="hasAuthority('VIEW_CONTENT')" th:href="@{/admin/conteudos}"><span class="dashboard-icon" aria-hidden="true">✎</span><span><strong>Conteúdos do site</strong><small>Textos e informações</small></span><b aria-hidden="true">→</b></a>
+        <a sec:authorize="hasAuthority('VIEW_CONTENT')" th:href="@{/admin/noticias}"><span class="dashboard-icon" aria-hidden="true">◫</span><span><strong>Notícias</strong><small>Atualize acontecimentos</small></span><b aria-hidden="true">→</b></a>
+        <a sec:authorize="hasAuthority('VIEW_CONTENT')" th:href="@{/admin/eventos}"><span class="dashboard-icon" aria-hidden="true">✦</span><span><strong>Eventos</strong><small>Organize os destaques</small></span><b aria-hidden="true">→</b></a>
+        <a sec:authorize="hasAuthority('VIEW_CONTENT')" th:href="@{/admin/atividades}"><span class="dashboard-icon" aria-hidden="true">♡</span><span><strong>Atividades</strong><small>Apresente as vivências</small></span><b aria-hidden="true">→</b></a>
+        <a sec:authorize="hasRole('SUPER_ADMIN')" th:href="@{/admin/perfis}"><span class="dashboard-icon" aria-hidden="true">⚿</span><span><strong>Perfis e permissões</strong><small>Configure o controle de acesso</small></span><b aria-hidden="true">→</b></a>
+        <a th:href="@{/alterar-senha}"><span class="dashboard-icon" aria-hidden="true">●</span><span><strong>Alterar minha senha</strong><small>Atualize sua credencial de acesso</small></span><b aria-hidden="true">→</b></a>
     </nav>
 </main>
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar senha - Instituto Nosso Lar</title>
+    <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+</head>
+<body class="login-page">
+<main class="login-layout">
+    <section class="login-brand" aria-label="Instituto Nosso Lar">
+        <img src="/NL_Img/NossoLarLogo.png" alt="Instituto Nosso Lar">
+        <p class="login-eyebrow">SEGURANÇA</p>
+        <h1>Crie sua<br>senha pessoal</h1>
+        <p>A senha temporária precisa ser substituída antes de acessar a administração.</p>
+    </section>
+
+    <section class="login-panel">
+        <div class="login-panel-heading">
+            <p class="login-eyebrow">PRIMEIRO ACESSO</p>
+            <h2>Alterar senha</h2>
+            <p>Use pelo menos 12 caracteres, incluindo maiúscula, minúscula, número e símbolo.</p>
+        </div>
+
+        <div th:if="${erro}" class="login-error">
+            <p th:text="${erro}">Não foi possível alterar a senha.</p>
+        </div>
+
+        <form th:action="@{/alterar-senha}" method="post">
+            <label for="senhaAtual">Senha temporária</label>
+            <input type="password" id="senhaAtual" name="senhaAtual"
+                   autocomplete="current-password" required>
+
+            <label for="novaSenha">Nova senha</label>
+            <input type="password" id="novaSenha" name="novaSenha"
+                   autocomplete="new-password" minlength="12" required>
+
+            <label for="confirmacao">Confirmar nova senha</label>
+            <input type="password" id="confirmacao" name="confirmacao"
+                   autocomplete="new-password" minlength="12" required>
+
+            <button type="submit">Salvar nova senha</button>
+        </form>
+
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Sair</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>

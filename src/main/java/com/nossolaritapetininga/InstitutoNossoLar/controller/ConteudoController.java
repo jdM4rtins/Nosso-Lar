@@ -4,11 +4,13 @@ import com.nossolaritapetininga.InstitutoNossoLar.model.Conteudo;
 import com.nossolaritapetininga.InstitutoNossoLar.service.ConteudoService;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin/conteudos")
+@PreAuthorize("hasAuthority('VIEW_CONTENT')")
 public class ConteudoController {
 
     private final ConteudoService conteudoService;
@@ -29,6 +31,7 @@ public class ConteudoController {
     }
 
     @GetMapping("/novo")
+    @PreAuthorize("hasAuthority('CREATE_CONTENT')")
     public String novo(Model model) {
 
         model.addAttribute(
@@ -40,6 +43,7 @@ public class ConteudoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('CREATE_CONTENT')")
     public String salvar(
             @ModelAttribute Conteudo conteudo) {
 
@@ -49,6 +53,7 @@ public class ConteudoController {
     }
 
     @GetMapping("/editar/{id}")
+    @PreAuthorize("hasAuthority('UPDATE_CONTENT')")
     public String editar(
             @PathVariable Long id,
             Model model) {
@@ -69,6 +74,7 @@ public class ConteudoController {
     }
 
     @PostMapping("/editar/{id}")
+    @PreAuthorize("hasAuthority('UPDATE_CONTENT')")
     public String atualizar(
             @PathVariable Long id,
             @RequestParam String chave,

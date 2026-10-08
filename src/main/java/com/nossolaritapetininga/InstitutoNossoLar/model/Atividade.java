@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "atividades")
-public class Atividade {
+public class Atividade extends EntidadeAuditavel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +13,19 @@ public class Atividade {
     private String nome;
 
     private String imagem;
+
+    @Column(columnDefinition = "TEXT")
+    private String descricao;
+
+    private Integer ordem;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_instituicao")
+    private Instituicao instituicao;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_midia")
+    private Midia midia;
 
     private boolean ativo;
 
@@ -56,4 +69,13 @@ public class Atividade {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+    public Integer getOrdem() { return ordem; }
+    public void setOrdem(Integer ordem) { this.ordem = ordem; }
+    public Instituicao getInstituicao() { return instituicao; }
+    public void setInstituicao(Instituicao instituicao) { this.instituicao = instituicao; }
+    public Midia getMidia() { return midia; }
+    public void setMidia(Midia midia) { this.midia = midia; }
 }

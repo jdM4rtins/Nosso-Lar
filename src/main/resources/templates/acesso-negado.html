@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso negado - Instituto Nosso Lar</title>
+    <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+</head>
+<body class="login-page">
+<main class="login-layout">
+    <section class="login-panel">
+        <div class="login-panel-heading">
+            <p class="login-eyebrow">ACESSO NEGADO</p>
+            <h1>Permissão insuficiente</h1>
+            <p>Sua conta não possui permissão para realizar esta operação.</p>
+        </div>
+        <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
+    </section>
+</main>
+</body>
+</html>

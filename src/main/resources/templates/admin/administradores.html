@@ -1,131 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-BR"
-      xmlns:th="http://www.thymeleaf.org">
-
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Administradores</title>
-
-    <link rel="stylesheet"
-          th:href="@{/css/admin/admin.css}">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuários administrativos</title>
+    <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
 </head>
-
 <body>
-
 <header>
-
     <h1>Instituto Nosso Lar</h1>
-
     <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
-
 </header>
-
 <main>
+    <h2>Usuários administrativos</h2>
+    <a sec:authorize="hasAuthority('CREATE_EDITOR') or hasAuthority('CREATE_ADMIN')"
+       th:href="@{/admin/administradores/novo}">+ Novo usuário</a>
 
-    <h2>Administradores</h2>
-
-    <a th:href="@{/admin/administradores/novo}">
-        + Novo administrador
-    </a>
-
-    <p>
-        Contas que possuem acesso à área administrativa.
-    </p>
+    <p th:if="${sucesso}" th:text="${sucesso}" class="status ativo"></p>
+    <p th:if="${erro}" th:text="${erro}" class="status inativo"></p>
+    <p th:if="${param.criado}" class="status ativo">Usuário criado com senha temporária.</p>
 
     <table>
-
         <thead>
-
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Status</th>
-                <th>Data de cadastro</th>
-                <th>Ações</th>
-            </tr>
-
+        <tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Status</th><th>Cadastro</th><th>Ações</th></tr>
         </thead>
-
         <tbody>
-
-            <tr th:each="administrador : ${administradores}">
-
-                <td th:text="${administrador.id}">
-                    1
-                </td>
-
-                <td th:text="${administrador.nome}">
-                    Administrador
-                </td>
-
-                <td th:text="${administrador.email}">
-                    admin@nossolar.com
-                </td>
-
-                <td>
-
-                    <span
-                        th:if="${administrador.ativo}">
-                        Ativo
-                    </span>
-
-                    <span
-                        th:unless="${administrador.ativo}">
-                        Inativo
-                    </span>
-
-                </td>
-
-                <td
-                    th:text="${administrador.dataCadastro}">
-                    26/08/2026
-                </td>
-
-                <td>
-                    <a th:href="@{/admin/administradores/editar/{id}(id=${administrador.id})}">
-                        Editar
-                    </a>
-
-                    <form
-                        th:action="@{/admin/administradores/status/{id}(id=${administrador.id})}"
-                        method="post"
-                        style="display: inline;">
-
+        <tr th:each="administrador : ${administradores}">
+            <td th:text="${administrador.nome}">Nome</td>
+            <td th:text="${administrador.email}">email@nossolar.com</td>
+            <td>
+                <span th:each="perfil, estado : ${administrador.perfis}">
+                    <span th:text="${perfil.nome}">EDITOR</span><span th:if="${!estado.last}">, </span>
+                </span>
+            </td>
+            <td th:text="${administrador.ativo} ? 'Ativo' : 'Inativo'">Ativo</td>
+            <td th:text="${administrador.dataCadastro}">Data</td>
+            <td>
+                <span th:if="${administrador.email == emailAtual}">Conta atual</span>
+                <div th:if="${idsGerenciaveis.contains(administrador.id)}">
+                    <a sec:authorize="hasAuthority('UPDATE_USER')"
+                       th:href="@{/admin/administradores/editar/{id}(id=${administrador.id})}">Editar</a>
+                    <form sec:authorize="hasAuthority('DISABLE_USER')"
+                          th:action="@{/admin/administradores/status/{id}(id=${administrador.id})}"
+                          method="post" style="display:inline">
                         <button type="submit"
-                                th:text="${administrador.ativo} ? 'Desativar' : 'Ativar'">
-                            Desativar
-                        </button>
-
+                                th:text="${administrador.ativo} ? 'Desativar' : 'Ativar'">Desativar</button>
                     </form>
-
-                    <form
-                        th:action="@{/admin/administradores/excluir/{id}(id=${administrador.id})}"
-                        method="post"
-                        style="display: inline;">
-
-                        <button type="submit">
-                            Excluir
-                        </button>
-
-                    </form>
-
-                </td>
-
-            </tr>
-
+                </div>
+            </td>
+        </tr>
         </tbody>
-
     </table>
-
 </main>
-
 </body>
-
 </html>

@@ -22,7 +22,7 @@
     </section>
     <section class="login-panel">
         <div class="login-panel-heading"><p class="login-eyebrow">ACESSO RESTRITO</p><h2>Área administrativa</h2><p>Entre com suas credenciais para gerenciar o site.</p></div>
-        <form method="post" action="/login">
+        <form method="post" th:action="@{/login}">
 
         <label for="username">
             E-mail
@@ -56,6 +56,10 @@
         <p style="color: red;">
             E-mail ou senha incorretos.
         </p>
+    </div>
+
+    <div class="login-error" th:if="${param.expirado}">
+        <p>Sua sessão foi encerrada porque a conta ou suas permissões foram alteradas.</p>
     </div>
 
 </section>
