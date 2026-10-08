@@ -4,7 +4,7 @@
 
 1. Faça merge da branch revisada em `main`.
 2. Execute `bash mvnw -q -DskipTests package` no pipeline.
-3. Configure no provedor `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `SESSION_COOKIE_SECURE=true`, as três senhas iniciais e as variáveis SMTP.
+3. Configure no provedor `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `SESSION_COOKIE_SECURE=true`, as três senhas iniciais, `RESEND_API_KEY` e `RESEND_FROM`.
 4. Faça o deploy e confira os logs do Flyway. O primeiro deploy em um banco existente deve registrar o baseline; o próximo deve aplicar somente migrations novas.
 5. Verifique `/`, `/login`, `/recuperar-senha` e `/admin/dashboard`.
 
