@@ -14,7 +14,7 @@
         <a class="brand" href="#inicio" aria-label="Instituto Nosso Lar — início"><img th:src="@{/NL_Img/NossoLarLogo.png}" alt="Instituto Nosso Lar"></a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">Menu</button>
         <nav id="menu-principal" class="main-nav" aria-label="Navegação principal">
-            <a href="#sobre">Quem somos</a><a href="#atividades">Atividades</a><a href="#ajuda">Como ajudar</a><a href="#noticias">Notícias</a><a class="nav-cta" href="#contato">Fale conosco</a>
+            <a href="#sobre">Quem somos</a><a href="#atividades">Atividades</a><a th:if="${!#lists.isEmpty(eventos)}" href="#eventos">Eventos</a><a href="#ajuda">Como ajudar</a><a href="#noticias">Notícias</a><a class="nav-cta" href="#contato">Fale conosco</a>
         </nav>
     </header>
     <main id="conteudo">
@@ -45,6 +45,23 @@
                 <div class="activity-dots" aria-label="Navegação das atividades"></div>
             </div>
         </section>
+        <section id="eventos" class="section events" th:if="${!#lists.isEmpty(eventos)}">
+            <div class="section-heading centered"><p class="eyebrow">AGENDA DO NOSSO LAR</p><h2>Próximos eventos e encontros</h2><p>Confira as atividades abertas e os momentos especiais da instituição.</p></div>
+            <div class="event-grid">
+                <article class="event-card" th:each="evento : ${eventos}">
+                    <img th:if="${evento.imagem != null and !evento.imagem.isBlank()}"
+                         th:src="${#strings.startsWith(evento.imagem, '/') ? evento.imagem : '/' + evento.imagem}"
+                         th:alt="${evento.alt != null and !evento.alt.isBlank() ? evento.alt : evento.titulo}">
+                    <div class="event-card-content">
+                        <time th:datetime="${evento.dataInicio}" th:text="${#temporals.format(evento.dataInicio, 'dd/MM/yyyy · HH:mm')}">10/10/2026 · 14:00</time>
+                        <h3 th:text="${evento.titulo}">Evento</h3>
+                        <p th:if="${evento.descricao != null and !evento.descricao.isBlank()}" th:text="${evento.descricao}">Descrição do evento.</p>
+                        <p class="event-location" th:if="${evento.local != null and !evento.local.isBlank()}" th:text="${evento.local}">Instituto Nosso Lar</p>
+                        <a class="text-link" th:if="${evento.link != null and !evento.link.isBlank()}" th:href="${evento.link}" target="_blank" rel="noopener noreferrer">Mais informações <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+            </div>
+        </section>
         <section id="ajuda" class="section help">
             <div class="section-heading centered"><p class="eyebrow">COMO AJUDAR</p><h2>Apadrinhamento</h2><p>Há muitas formas de fazer parte da nossa rede de cuidado e abrir novas oportunidades.</p></div>
             <div class="help-grid">
@@ -54,7 +71,7 @@
             </div>
             <p class="help-contact">Para mais informações, entre em contato pelos canais no rodapé.</p>
         </section>
-        <section id="noticias" class="section news"><div class="section-heading centered"><p class="eyebrow">ACONTECE NO NOSSO LAR</p><h2>Notícias e acontecimentos</h2></div><div class="news-grid"><article class="news-card" th:each="noticia : ${noticias}"><img th:if="${noticia.imagem != null and !noticia.imagem.isEmpty()}" th:src="@{'/' + ${noticia.imagem}}" th:alt="${noticia.titulo}"><div><small th:text="${noticia.dataPublicacao}">10/09/2026</small><h3 th:text="${noticia.titulo}">Notícia do Instituto</h3><p th:text="${noticia.resumo}">Acompanhe as novidades e iniciativas do Instituto Nosso Lar.</p><details><summary>Leia mais</summary><p th:text="${noticia.conteudo}">Conteúdo completo.</p></details></div></article></div></section>
+        <section id="noticias" class="section news"><div class="section-heading centered"><p class="eyebrow">ACONTECE NO NOSSO LAR</p><h2>Notícias e acontecimentos</h2></div><div class="news-grid"><article class="news-card" th:each="noticia : ${noticias}"><img th:if="${noticia.imagem != null and !noticia.imagem.isEmpty()}" th:src="${#strings.startsWith(noticia.imagem, '/') ? noticia.imagem : '/' + noticia.imagem}" th:alt="${noticia.titulo}"><div><small th:text="${noticia.dataPublicacao}">10/09/2026</small><h3 th:text="${noticia.titulo}">Notícia do Instituto</h3><p th:text="${noticia.resumo}">Acompanhe as novidades e iniciativas do Instituto Nosso Lar.</p><details><summary>Leia mais</summary><p th:text="${noticia.conteudo}">Conteúdo completo.</p></details></div></article></div></section>
     </main>
     <footer id="contato" class="site-footer">
         <div class="footer-content">

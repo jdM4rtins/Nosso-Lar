@@ -59,3 +59,9 @@ export SESSION_COOKIE_SECURE=true
 As imagens enviadas para atividades e eventos são validadas e armazenadas na tabela `midias` do PostgreSQL. São aceitos arquivos JPEG, PNG e GIF com até 2 MB, dimensões máximas de 4096 × 4096 pixels e limite de 16 milhões de pixels. O conteúdo é servido pela rota pública somente de leitura `/midias/{id}`.
 
 O armazenamento não depende do sistema de arquivos da aplicação. Assim, as imagens permanecem disponíveis após reinícios e novos deploys no Render e são incluídas junto com o banco nos procedimentos de backup.
+
+## Eventos e notícias
+
+Eventos ativos que possuem título e data de início aparecem na seção pública de eventos, ordenados pela data inicial. O cadastro administrativo permite informar título, descrição, início, término, local, link externo, imagem e descrição acessível.
+
+Notícias podem ser publicadas sem imagem. Na edição, a imagem atual pode ser mantida, substituída por outro upload ou removida. Imagens novas de eventos e notícias usam o armazenamento da tabela `midias`; caminhos estáticos existentes continuam compatíveis.

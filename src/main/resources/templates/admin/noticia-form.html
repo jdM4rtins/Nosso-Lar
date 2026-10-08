@@ -31,13 +31,16 @@
 
 <main>
 
-    <h2>Nova notícia</h2>
+    <h2 th:text="${noticia.id == null ? 'Nova notícia' : 'Editar notícia'}">Notícia</h2>
+
+    <p class="form-error" th:if="${erro}" th:text="${erro}"></p>
 
 
     <form
         th:action="${noticia.id == null} ? @{/admin/noticias} : @{/admin/noticias/editar/{id}(id=${noticia.id})}"
         th:object="${noticia}"
-        method="post">
+        method="post"
+        enctype="multipart/form-data">
 
 
         <label for="titulo">
@@ -74,15 +77,20 @@
         </textarea>
 
 
-        <label for="imagem">
-            Imagem
-        </label>
+        <div class="imagem-atual" th:if="${noticia.imagem != null and !noticia.imagem.isBlank()}">
+            <label>Imagem atual</label>
+            <img th:src="${#strings.startsWith(noticia.imagem, '/') ? noticia.imagem : '/' + noticia.imagem}"
+                 th:alt="${noticia.titulo}" width="250">
+        </div>
 
-        <input
-            type="text"
-            id="imagem"
-            th:field="*{imagem}"
-            placeholder="caminho/da/imagem.jpg">
+        <label for="arquivo" th:text="${noticia.imagem != null and !noticia.imagem.isBlank() ? 'Trocar imagem' : 'Imagem'}">Imagem</label>
+        <input type="file" id="arquivo" name="arquivo" accept="image/jpeg,image/png,image/gif">
+        <small>JPEG, PNG ou GIF, com no máximo 2 MB e 4096 × 4096 pixels.</small>
+
+        <label th:if="${noticia.id != null and noticia.imagem != null and !noticia.imagem.isBlank()}">
+            <input type="checkbox" name="removerImagem" value="true">
+            Remover a imagem atual
+        </label>
 
 
         <label for="dataPublicacao">
