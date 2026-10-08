@@ -36,6 +36,10 @@ public class Midia {
     @Column(name = "mime_type")
     private String mimeType;
 
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "conteudo", columnDefinition = "bytea")
+    private byte[] conteudo;
+
     private Long tamanho;
 
     private Integer largura;

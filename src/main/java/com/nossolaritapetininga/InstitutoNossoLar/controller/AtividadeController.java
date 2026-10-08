@@ -1,6 +1,8 @@
 package com.nossolaritapetininga.InstitutoNossoLar.controller;
 
+import com.nossolaritapetininga.InstitutoNossoLar.exception.RegraNegocioException;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Atividade;
+import com.nossolaritapetininga.InstitutoNossoLar.model.Midia;
 import com.nossolaritapetininga.InstitutoNossoLar.service.AtividadeService;
 import com.nossolaritapetininga.InstitutoNossoLar.service.ImagemService;
 
@@ -10,8 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/admin/atividades")
@@ -57,22 +57,15 @@ public class AtividadeController {
     public String salvar(
             @ModelAttribute Atividade atividade,
             @RequestParam(value = "arquivo", required = false) MultipartFile arquivo,
-            RedirectAttributes redirectAttributes)
-            throws IOException {
+            RedirectAttributes redirectAttributes) {
 
-        if (arquivo == null || arquivo.isEmpty()) {
-            redirectAttributes.addFlashAttribute(
-                    "erro",
-                    "Selecione uma imagem para cadastrar a atividade."
-            );
+        try {
+            Midia midia = imagemService.salvar(arquivo, atividade.getNome());
+            atividade.setMidia(midia);
+            atividade.setImagem(imagemService.url(midia));
+        } catch (RegraNegocioException ex) {
+            redirectAttributes.addFlashAttribute("erro", ex.getMessage());
             return "redirect:/admin/atividades/novo";
-        }
-
-        String caminhoImagem =
-                imagemService.salvar(arquivo);
-
-        if (caminhoImagem != null) {
-            atividade.setImagem(caminhoImagem);
         }
 
         atividadeService.salvar(atividade);
@@ -107,8 +100,8 @@ public class AtividadeController {
             @PathVariable Long id,
             @RequestParam(required = false) MultipartFile arquivo,
             @RequestParam String nome,
-            @RequestParam(defaultValue = "false") boolean ativo)
-            throws IOException {
+            @RequestParam(defaultValue = "false") boolean ativo,
+            RedirectAttributes redirectAttributes) {
 
         Atividade atividade =
                 atividadeService.buscarPorId(id);
@@ -117,18 +110,26 @@ public class AtividadeController {
             return "redirect:/admin/atividades";
         }
 
+        Midia midiaAntiga = atividade.getMidia();
         if (arquivo != null && !arquivo.isEmpty()) {
-
-            String novaImagem =
-                    imagemService.salvar(arquivo);
-
-            atividade.setImagem(novaImagem);
+            try {
+                Midia novaMidia = imagemService.salvar(arquivo, nome);
+                atividade.setMidia(novaMidia);
+                atividade.setImagem(imagemService.url(novaMidia));
+            } catch (RegraNegocioException ex) {
+                redirectAttributes.addFlashAttribute("erro", ex.getMessage());
+                return "redirect:/admin/atividades/editar/" + id;
+            }
         }
 
         atividade.setNome(nome);
         atividade.setAtivo(ativo);
 
         atividadeService.salvar(atividade);
+
+        if (arquivo != null && !arquivo.isEmpty()) {
+            imagemService.excluir(midiaAntiga);
+        }
 
         return "redirect:/admin/atividades";
     }
@@ -142,11 +143,7 @@ public class AtividadeController {
         atividadeService.excluir(id);
 
         if (atividade != null) {
-            try {
-                imagemService.excluir(atividade.getImagem());
-            } catch (IOException ignored) {
-                // O registro foi excluido; uma imagem residual nao bloqueia a operacao.
-            }
+            imagemService.excluir(atividade.getMidia());
         }
 
         return "redirect:/admin/atividades";

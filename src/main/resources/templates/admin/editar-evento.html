@@ -30,6 +30,8 @@
 
 <main>
 
+    <p class="form-error" th:if="${erro}" th:text="${erro}"></p>
+
     <h2>Editar evento</h2>
 
     <form
@@ -58,7 +60,9 @@
             type="file"
             id="arquivo"
             name="arquivo"
-            accept="image/*">
+            accept="image/jpeg,image/png,image/gif">
+
+        <small>JPEG, PNG ou GIF, com no máximo 2 MB e 4096 × 4096 pixels.</small>
 
 
         <label for="alt">

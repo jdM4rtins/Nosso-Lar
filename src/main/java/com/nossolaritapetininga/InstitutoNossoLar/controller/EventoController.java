@@ -1,6 +1,8 @@
 package com.nossolaritapetininga.InstitutoNossoLar.controller;
 
+import com.nossolaritapetininga.InstitutoNossoLar.exception.RegraNegocioException;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Evento;
+import com.nossolaritapetininga.InstitutoNossoLar.model.Midia;
 import com.nossolaritapetininga.InstitutoNossoLar.service.EventoService;
 import com.nossolaritapetininga.InstitutoNossoLar.service.ImagemService;
 
@@ -9,7 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import java.io.IOException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/admin/eventos")
@@ -51,14 +53,16 @@ public class EventoController {
     @PreAuthorize("hasAuthority('CREATE_CONTENT')")
     public String salvar(
             @ModelAttribute Evento evento,
-            @RequestParam("arquivo") MultipartFile arquivo)
-            throws IOException {
+            @RequestParam(value = "arquivo", required = false) MultipartFile arquivo,
+            RedirectAttributes redirectAttributes) {
 
-        String caminhoImagem =
-                imagemService.salvar(arquivo);
-
-        if (caminhoImagem != null) {
-            evento.setImagem(caminhoImagem);
+        try {
+            Midia midia = imagemService.salvar(arquivo, evento.getAlt());
+            evento.setMidia(midia);
+            evento.setImagem(imagemService.url(midia));
+        } catch (RegraNegocioException ex) {
+            redirectAttributes.addFlashAttribute("erro", ex.getMessage());
+            return "redirect:/admin/eventos/novo";
         }
 
         eventoService.salvar(evento);
@@ -89,8 +93,8 @@ public class EventoController {
             @PathVariable Long id,
             @RequestParam(required = false) MultipartFile arquivo,
             @RequestParam(required = false) String alt,
-            @RequestParam(defaultValue = "false") boolean ativo)
-            throws IOException {
+            @RequestParam(defaultValue = "false") boolean ativo,
+            RedirectAttributes redirectAttributes) {
 
         Evento evento = eventoService.buscarPorId(id);
 
@@ -98,22 +102,27 @@ public class EventoController {
             return "redirect:/admin/eventos";
         }
 
-        String imagemAntiga = evento.getImagem();
+        Midia midiaAntiga = evento.getMidia();
 
         if (arquivo != null && !arquivo.isEmpty()) {
-
-            String novaImagem =
-                    imagemService.salvar(arquivo);
-
-            evento.setImagem(novaImagem);
-
-            imagemService.excluir(imagemAntiga);
+            try {
+                Midia novaMidia = imagemService.salvar(arquivo, alt);
+                evento.setMidia(novaMidia);
+                evento.setImagem(imagemService.url(novaMidia));
+            } catch (RegraNegocioException ex) {
+                redirectAttributes.addFlashAttribute("erro", ex.getMessage());
+                return "redirect:/admin/eventos/editar/" + id;
+            }
         }
 
         evento.setAlt(alt);
         evento.setAtivo(ativo);
 
         eventoService.salvar(evento);
+
+        if (arquivo != null && !arquivo.isEmpty()) {
+            imagemService.excluir(midiaAntiga);
+        }
 
         return "redirect:/admin/eventos";
     }
@@ -123,7 +132,12 @@ public class EventoController {
     public String excluir(
             @PathVariable Long id) {
 
+        Evento evento = eventoService.buscarPorId(id);
         eventoService.excluir(id);
+
+        if (evento != null) {
+            imagemService.excluir(evento.getMidia());
+        }
 
         return "redirect:/admin/eventos";
     }
