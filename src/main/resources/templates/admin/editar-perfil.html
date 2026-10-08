@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar perfil</title>
+    <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+</head>
+<body>
+<header>
+    <h1>Instituto Nosso Lar</h1>
+    <a th:href="@{/admin/perfis}">Voltar</a>
+</header>
+<main>
+    <h2 th:text="'Permissões de ' + ${perfil.nome}">Editar perfil</h2>
+    <form th:action="@{/admin/perfis/editar/{id}(id=${perfil.id})}" method="post">
+        <label for="descricao">Descrição</label>
+        <input id="descricao" name="descricao" type="text" th:value="${perfil.descricao}">
+
+        <fieldset>
+            <legend>Permissões</legend>
+            <label th:each="permissao : ${permissoes}" style="display:block">
+                <input type="checkbox" name="permissoes"
+                       th:value="${permissao.id}"
+                       th:checked="${selecionadas.contains(permissao.id)}">
+                <strong th:text="${permissao.nome}">PERMISSION</strong>
+                <span th:text="${permissao.descricao}">Descrição</span>
+            </label>
+        </fieldset>
+
+        <button type="submit">Salvar permissões</button>
+    </form>
+</main>
+</body>
+</html>

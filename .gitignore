@@ -32,5 +32,10 @@ build/
 # Backups locais do PostgreSQL e dos uploads
 /backups/
 
+# Credenciais e configurações locais
+.env
+.env.*
+!.env.example
+
 ### VS Code ###
 .vscode/

@@ -27,7 +27,7 @@ public class AdminController {
         this.conteudoService = conteudoService;
     }
 
-    @GetMapping
+    @GetMapping({"", "/", "/dashboard"})
     public String dashboard(Model model) {
 
         model.addAttribute(

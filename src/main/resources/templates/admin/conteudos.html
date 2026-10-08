@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 
@@ -32,7 +33,7 @@
 
     <h2>Conteúdos do site</h2>
 
-    <a th:href="@{/admin/conteudos/novo}">
+    <a sec:authorize="hasAuthority('CREATE_CONTENT')" th:href="@{/admin/conteudos/novo}">
         + Novo conteúdo
     </a>
 
