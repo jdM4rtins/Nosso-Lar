@@ -60,32 +60,23 @@ O schema existente é registrado automaticamente como baseline 1. Alterações p
 
 ## Recuperação de senha
 
-Configure um SMTP em produção para que os links sejam enviados:
+Configure o Resend em produção para que os links sejam enviados:
 
 ```bash
-export MAIL_HOST='smtp.seu-provedor.com'
-export MAIL_PORT='587'
-export MAIL_USERNAME='usuario-smtp'
-export MAIL_PASSWORD='senha-smtp'
-export MAIL_FROM='noreply@nossolar.com'
+export RESEND_API_KEY='re_sua_chave_de_envio'
+export RESEND_FROM='noreply@seudominioverificado.com'
 export APP_PUBLIC_URL='https://seu-dominio.com'
 ```
 
 ### Usando Resend
 
-O Resend entra como o servidor SMTP que entrega o e-mail de recuperação. A aplicação continua usando o mecanismo padrão de e-mail do Spring Boot; não é necessário criar uma integração REST separada. No Resend, verifique um domínio de envio e crie uma API key com permissão de envio. Configure-a como senha SMTP, nunca no código:
-
-```bash
-export MAIL_HOST='smtp.resend.com'
-export MAIL_PORT='587'
-export MAIL_USERNAME='resend'
-export MAIL_PASSWORD='re_sua_api_key'
-export MAIL_FROM='noreply@seudominioverificado.com'
-```
+O Resend entra como a API que entrega o e-mail de recuperação. A aplicação usa a SDK oficial Java. No Resend, verifique um domínio de envio e crie uma API key com permissão de envio. Configure `RESEND_API_KEY` e `RESEND_FROM` como segredos no provedor, nunca no código.
 
 O plano gratuito do Resend está listado como US$ 0 por mês, com 3.000 e-mails transacionais por mês e limite de 100 por dia. Isso atende com folga a recuperação de senha de uma instituição pequena, mas depende da verificação do domínio e dos limites vigentes na conta. Confira os valores atuais na [página oficial de preços do Resend](https://resend.com/pricing).
 
 O token é aleatório, armazenado somente como SHA-256, expira em uma hora e é invalidado depois do uso. A tela sempre mostra uma resposta genérica para não revelar se um e-mail está cadastrado.
+
+Login e recuperação possuem proteção contra abuso por e-mail e endereço IP. Após três falhas dentro da janela configurada, novas tentativas são bloqueadas por 15 minutos. Os valores podem ser ajustados com `AUTH_MAX_ATTEMPTS`, `AUTH_ATTEMPT_WINDOW` e `AUTH_BLOCK_DURATION`.
 
 ## Backups recorrentes
 

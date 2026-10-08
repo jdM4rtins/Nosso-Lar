@@ -2,6 +2,7 @@ package com.nossolaritapetininga.InstitutoNossoLar.controller;
 
 import com.nossolaritapetininga.InstitutoNossoLar.service.AdministradorService;
 import com.nossolaritapetininga.InstitutoNossoLar.service.RecuperacaoSenhaService;
+import com.nossolaritapetininga.InstitutoNossoLar.service.ProtecaoAutenticacaoService;
 import com.nossolaritapetininga.InstitutoNossoLar.exception.RegraNegocioException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -9,16 +10,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class SenhaController {
 
     private final AdministradorService administradorService;
     private final RecuperacaoSenhaService recuperacaoSenhaService;
+    private final ProtecaoAutenticacaoService protecaoAutenticacaoService;
 
-    public SenhaController(AdministradorService administradorService, RecuperacaoSenhaService recuperacaoSenhaService) {
+    public SenhaController(
+            AdministradorService administradorService,
+            RecuperacaoSenhaService recuperacaoSenhaService,
+            ProtecaoAutenticacaoService protecaoAutenticacaoService) {
         this.administradorService = administradorService;
         this.recuperacaoSenhaService = recuperacaoSenhaService;
+        this.protecaoAutenticacaoService = protecaoAutenticacaoService;
     }
 
     @GetMapping("/alterar-senha")
@@ -51,9 +58,14 @@ public class SenhaController {
     }
 
     @PostMapping("/recuperar-senha")
-    public String solicitarRecuperacao(@RequestParam String email, Model model) {
+    public String solicitarRecuperacao(
+            @RequestParam String email,
+            HttpServletRequest request,
+            Model model) {
         try {
-            recuperacaoSenhaService.solicitar(email);
+            if (protecaoAutenticacaoService.registrarTentativaRecuperacao(email, request.getRemoteAddr())) {
+                recuperacaoSenhaService.solicitar(email);
+            }
         } catch (RegraNegocioException ex) {
             // A mensagem permanece genérica para não revelar se o e-mail existe.
         }
