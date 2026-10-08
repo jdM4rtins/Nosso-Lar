@@ -54,6 +54,52 @@ Em produção com HTTPS, configure também:
 export SESSION_COOKIE_SECURE=true
 ```
 
+## Migrations com Flyway
+
+O schema existente é registrado automaticamente como baseline 1. Alterações posteriores devem ser adicionadas em `src/main/resources/db/migration` com numeração crescente (`V3__descricao.sql`, `V4__descricao.sql` etc.). O Hibernate usa `validate` e não altera tabelas silenciosamente. Antes de cada deploy, valide a migration em uma cópia do banco e mantenha o backup do banco atual.
+
+## Recuperação de senha
+
+Configure um SMTP em produção para que os links sejam enviados:
+
+```bash
+export MAIL_HOST='smtp.seu-provedor.com'
+export MAIL_PORT='587'
+export MAIL_USERNAME='usuario-smtp'
+export MAIL_PASSWORD='senha-smtp'
+export MAIL_FROM='noreply@nossolar.com'
+export APP_PUBLIC_URL='https://seu-dominio.com'
+```
+
+O token é aleatório, armazenado somente como SHA-256, expira em uma hora e é invalidado depois do uso. A tela sempre mostra uma resposta genérica para não revelar se um e-mail está cadastrado.
+
+## Backups recorrentes
+
+O agendamento usa `pg_dump` no servidor e fica desligado por padrão. Para ativá-lo em um ambiente com diretório persistente, configure:
+
+```bash
+export BACKUP_ENABLED=true
+export BACKUP_SCHEDULE='0 0 3 * * *' # todos os dias às 03:00
+export BACKUP_DIRECTORY='/var/backups/nosso-lar'
+export BACKUP_RETENTION_DAYS=30
+export PG_DUMP_COMMAND='pg_dump'
+```
+
+Também configure `DB_URL`, `DB_USERNAME` e `DB_PASSWORD`. Cada execução registra status, tamanho e SHA-256 em `execucoes_backup`. O arquivo gerado é um dump custom do PostgreSQL. Para restaurar em uma base vazia:
+
+```bash
+pg_restore --clean --if-exists --no-owner \
+  --dbname="$DB_URL" /var/backups/nosso-lar/instituto_nosso_lar-AAAA-MM-DD.dump
+```
+
+O diretório precisa estar em volume persistente e ser protegido com permissões restritas. O disco efêmero do Render não é suficiente para retenção de backups; nesse caso, execute o backup em um job/servidor com volume persistente ou conecte um armazenamento de backup antes de ativar `BACKUP_ENABLED`.
+
+## Checklist de entrega e treinamento
+
+Antes da entrega, valide login, recuperação de senha, upload e remoção de imagens, criação/edição/publicação de notícia e evento, desativação de usuários, proteção do último `SUPER_ADMIN`, bloqueio de rotas por perfil, sessão única e visualização em Chrome, Firefox, Edge e celular. Registre a versão implantada, URL, variáveis secretas configuradas e o resultado do restore de um backup de teste.
+
+Na capacitação, demonstre o login, a troca de senha, recuperação de acesso, criação de conteúdo, upload de imagem até 2 MB, edição/publicação, criação de eventos e o procedimento de solicitar suporte. Entregue as credenciais por canal seguro e peça a troca imediata das senhas temporárias.
+
 ## Imagens
 
 As imagens enviadas para atividades e eventos são validadas e armazenadas na tabela `midias` do PostgreSQL. São aceitos arquivos JPEG, PNG e GIF com até 2 MB, dimensões máximas de 4096 × 4096 pixels e limite de 16 milhões de pixels. O conteúdo é servido pela rota pública somente de leitura `/midias/{id}`.

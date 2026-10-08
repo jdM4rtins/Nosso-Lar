@@ -52,6 +52,8 @@
 
     </form>
 
+    <p><a href="/recuperar-senha">Esqueci minha senha</a></p>
+
     <div class="login-error" th:if="${param.erro}">
         <p style="color: red;">
             E-mail ou senha incorretos.
@@ -60,6 +62,10 @@
 
     <div class="login-error" th:if="${param.expirado}">
         <p>Sua sessão foi encerrada porque a conta ou suas permissões foram alteradas.</p>
+    </div>
+
+    <div class="login-success" th:if="${param.senhaRedefinida}">
+        <p>Senha redefinida com sucesso. Entre com a nova senha.</p>
     </div>
 
 </section>
