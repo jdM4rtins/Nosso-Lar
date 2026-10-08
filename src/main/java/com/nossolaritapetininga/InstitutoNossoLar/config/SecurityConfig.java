@@ -43,6 +43,8 @@ public class SecurityConfig {
                 .requestMatchers(
                     "/",
                     "/login",
+                    "/recuperar-senha",
+                    "/redefinir-senha",
                     "/acesso-negado",
                     "/css/**",
                     "/js/**",
