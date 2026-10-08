@@ -32,6 +32,8 @@
 
     <h2>Novo evento</h2>
 
+    <p class="form-error" th:if="${erro}" th:text="${erro}"></p>
+
     <form th:action="@{/admin/eventos}"
         th:object="${evento}"
         method="post"
@@ -45,8 +47,10 @@
             type="file"
             id="arquivo"
             name="arquivo"
-            accept="image/*"
+            accept="image/jpeg,image/png,image/gif"
             required>
+
+        <small>JPEG, PNG ou GIF, com no máximo 2 MB e 4096 × 4096 pixels.</small>
 
         <label for="alt">
             Descrição da imagem
