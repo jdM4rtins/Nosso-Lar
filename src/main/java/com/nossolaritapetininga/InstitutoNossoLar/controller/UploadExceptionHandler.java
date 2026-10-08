@@ -15,6 +15,8 @@ public class UploadExceptionHandler {
             Pattern.compile("/admin/atividades/editar/\\d+");
     private static final Pattern EDICAO_EVENTO =
             Pattern.compile("/admin/eventos/editar/\\d+");
+    private static final Pattern EDICAO_NOTICIA =
+            Pattern.compile("/admin/noticias/editar/\\d+");
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public String uploadMuitoGrande(
@@ -24,7 +26,8 @@ public class UploadExceptionHandler {
         String caminho = request.getRequestURI();
 
         if (EDICAO_ATIVIDADE.matcher(caminho).matches()
-                || EDICAO_EVENTO.matcher(caminho).matches()) {
+                || EDICAO_EVENTO.matcher(caminho).matches()
+                || EDICAO_NOTICIA.matcher(caminho).matches()) {
             return "redirect:" + caminho;
         }
         if (caminho.startsWith("/admin/atividades")) {
@@ -32,6 +35,9 @@ public class UploadExceptionHandler {
         }
         if (caminho.startsWith("/admin/eventos")) {
             return "redirect:/admin/eventos/novo";
+        }
+        if (caminho.startsWith("/admin/noticias")) {
+            return "redirect:/admin/noticias/novo";
         }
         return "redirect:/admin/dashboard";
     }

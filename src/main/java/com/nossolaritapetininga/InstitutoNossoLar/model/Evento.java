@@ -1,6 +1,7 @@
 package com.nossolaritapetininga.InstitutoNossoLar.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,9 +22,11 @@ public class Evento extends EntidadeAuditavel {
     private String descricao;
 
     @Column(name = "data_inicio")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime dataInicio;
 
     @Column(name = "data_fim")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime dataFim;
 
     private String local;

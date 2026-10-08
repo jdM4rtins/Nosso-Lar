@@ -20,30 +20,15 @@ public class EventoService {
         return repository.findAllByOrderByIdAsc();
     }
 
+    public List<Evento> listarAtivosOrdenados() {
+        return repository.findByAtivoTrueAndTituloIsNotNullAndDataInicioIsNotNullOrderByDataInicioAsc();
+    }
+
     public Evento buscarPorId(Long id) {
         return repository.findById(id).orElse(null);
     }
 
     public Evento salvar(Evento evento) {
-        return repository.save(evento);
-    }
-
-    public Evento atualizar(
-            Long id,
-            String imagem,
-            String alt,
-            boolean ativo) {
-
-        Evento evento = repository.findById(id).orElse(null);
-
-        if (evento == null) {
-            return null;
-        }
-
-        evento.setImagem(imagem);
-        evento.setAlt(alt);
-        evento.setAtivo(ativo);
-
         return repository.save(evento);
     }
 

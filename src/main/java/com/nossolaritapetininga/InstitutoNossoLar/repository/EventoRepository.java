@@ -8,4 +8,6 @@ import java.util.List;
 public interface EventoRepository extends JpaRepository<Evento, Long> {
 
     List<Evento> findAllByOrderByIdAsc();
+
+    List<Evento> findByAtivoTrueAndTituloIsNotNullAndDataInicioIsNotNullOrderByDataInicioAsc();
 }

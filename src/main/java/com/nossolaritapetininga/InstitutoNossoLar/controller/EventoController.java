@@ -41,10 +41,9 @@ public class EventoController {
     @PreAuthorize("hasAuthority('CREATE_CONTENT')")
     public String novo(Model model) {
 
-        model.addAttribute(
-                "evento",
-                new Evento()
-        );
+        Evento evento = new Evento();
+        evento.setAtivo(true);
+        model.addAttribute("evento", evento);
 
         return "admin/novo-evento";
     }
@@ -57,6 +56,11 @@ public class EventoController {
             RedirectAttributes redirectAttributes) {
 
         try {
+            evento.setId(null);
+            evento.setInstituicao(null);
+            evento.setMidia(null);
+            evento.setImagem(null);
+            validar(evento);
             Midia midia = imagemService.salvar(arquivo, evento.getAlt());
             evento.setMidia(midia);
             evento.setImagem(imagemService.url(midia));
@@ -92,8 +96,7 @@ public class EventoController {
     public String atualizar(
             @PathVariable Long id,
             @RequestParam(required = false) MultipartFile arquivo,
-            @RequestParam(required = false) String alt,
-            @RequestParam(defaultValue = "false") boolean ativo,
+            @ModelAttribute Evento dados,
             RedirectAttributes redirectAttributes) {
 
         Evento evento = eventoService.buscarPorId(id);
@@ -104,9 +107,16 @@ public class EventoController {
 
         Midia midiaAntiga = evento.getMidia();
 
+        try {
+            validar(dados);
+        } catch (RegraNegocioException ex) {
+            redirectAttributes.addFlashAttribute("erro", ex.getMessage());
+            return "redirect:/admin/eventos/editar/" + id;
+        }
+
         if (arquivo != null && !arquivo.isEmpty()) {
             try {
-                Midia novaMidia = imagemService.salvar(arquivo, alt);
+                Midia novaMidia = imagemService.salvar(arquivo, dados.getAlt());
                 evento.setMidia(novaMidia);
                 evento.setImagem(imagemService.url(novaMidia));
             } catch (RegraNegocioException ex) {
@@ -115,8 +125,14 @@ public class EventoController {
             }
         }
 
-        evento.setAlt(alt);
-        evento.setAtivo(ativo);
+        evento.setTitulo(dados.getTitulo());
+        evento.setDescricao(dados.getDescricao());
+        evento.setDataInicio(dados.getDataInicio());
+        evento.setDataFim(dados.getDataFim());
+        evento.setLocal(dados.getLocal());
+        evento.setLink(dados.getLink());
+        evento.setAlt(dados.getAlt());
+        evento.setAtivo(dados.isAtivo());
 
         eventoService.salvar(evento);
 
@@ -125,6 +141,22 @@ public class EventoController {
         }
 
         return "redirect:/admin/eventos";
+    }
+
+    private void validar(Evento evento) {
+        if (evento.getTitulo() == null || evento.getTitulo().isBlank()) {
+            throw new RegraNegocioException("Informe o título do evento.");
+        }
+        if (evento.getDataInicio() == null) {
+            throw new RegraNegocioException("Informe a data de início do evento.");
+        }
+        if (evento.getDataFim() != null && evento.getDataFim().isBefore(evento.getDataInicio())) {
+            throw new RegraNegocioException("A data final não pode ser anterior à data inicial.");
+        }
+        if (evento.getLink() != null && !evento.getLink().isBlank()
+                && !evento.getLink().matches("(?i)^https?://.+")) {
+            throw new RegraNegocioException("O link do evento deve começar com http:// ou https://.");
+        }
     }
 
     @PostMapping("/excluir/{id}")

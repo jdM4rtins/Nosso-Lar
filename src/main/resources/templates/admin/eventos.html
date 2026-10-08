@@ -41,8 +41,9 @@
 
             <tr>
                 <th>ID</th>
-                <th>Imagem</th>
-                <th>Descrição</th>
+                <th>Título</th>
+                <th>Início</th>
+                <th>Local</th>
                 <th>Status</th>
                 <th>Ações</th>
             </tr>
@@ -57,12 +58,16 @@
                     1
                 </td>
 
-                <td th:text="${evento.imagem}">
-                    eventoNL.png
+                <td th:text="${evento.titulo != null ? evento.titulo : 'Evento ainda não preenchido'}">
+                    Evento
                 </td>
 
-                <td th:text="${evento.alt}">
-                    Evento do Instituto Nosso Lar
+                <td th:text="${evento.dataInicio != null ? #temporals.format(evento.dataInicio, 'dd/MM/yyyy HH:mm') : 'Sem data'}">
+                    10/10/2026 14:00
+                </td>
+
+                <td th:text="${evento.local != null and !evento.local.isBlank() ? evento.local : 'Não informado'}">
+                    Instituto Nosso Lar
                 </td>
 
                 <td>

@@ -74,7 +74,7 @@ public class HomeController {
 
         model.addAttribute(
                 "eventos",
-                eventoService.listarTodos()
+                eventoService.listarAtivosOrdenados()
         );
 
         model.addAttribute("telefone", telefone);
