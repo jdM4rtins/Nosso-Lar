@@ -5,11 +5,7 @@ import com.nossolaritapetininga.InstitutoNossoLar.model.TokenRecuperacao;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Usuario;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.AdministradorRepository;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.TokenRecuperacaoRepository;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.MailException;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,29 +25,20 @@ public class RecuperacaoSenhaService {
     private final AdministradorRepository usuarioRepository;
     private final TokenRecuperacaoRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
-    private final ObjectProvider<JavaMailSender> mailSenderProvider;
+    private final ResendEmailService emailService;
     private final SecureRandom secureRandom = new SecureRandom();
-    private final String publicUrl;
-    private final String mailFrom;
-    private final String mailHost;
     private final Duration tokenExpiration;
 
     public RecuperacaoSenhaService(
             AdministradorRepository usuarioRepository,
             TokenRecuperacaoRepository tokenRepository,
             PasswordEncoder passwordEncoder,
-            ObjectProvider<JavaMailSender> mailSenderProvider,
-            @Value("${app.public-url:http://localhost:8080}") String publicUrl,
-            @Value("${app.mail.from:noreply@nossolar.com}") String mailFrom,
-            @Value("${spring.mail.host:}") String mailHost,
+            ResendEmailService emailService,
             @Value("${app.recovery-token-expiration:PT1H}") Duration tokenExpiration) {
         this.usuarioRepository = usuarioRepository;
         this.tokenRepository = tokenRepository;
         this.passwordEncoder = passwordEncoder;
-        this.mailSenderProvider = mailSenderProvider;
-        this.publicUrl = publicUrl.replaceAll("/$", "");
-        this.mailFrom = mailFrom;
-        this.mailHost = mailHost;
+        this.emailService = emailService;
         this.tokenExpiration = tokenExpiration;
     }
 
@@ -102,23 +89,7 @@ public class RecuperacaoSenhaService {
         recuperacao.setDataExpiracao(LocalDateTime.now().plus(tokenExpiration));
         tokenRepository.save(recuperacao);
 
-        JavaMailSender mailSender = mailSenderProvider.getIfAvailable();
-        if (mailSender == null || mailHost.isBlank()) {
-            throw new RegraNegocioException("O serviço de e-mail para recuperação ainda não está configurado.");
-        }
-        SimpleMailMessage mensagem = new SimpleMailMessage();
-        mensagem.setFrom(mailFrom);
-        mensagem.setTo(usuario.getEmail());
-        mensagem.setSubject("Recuperação de senha — Instituto Nosso Lar");
-        mensagem.setText("Olá, " + usuario.getNome() + ",\n\n"
-                + "Acesse este link para criar uma nova senha (válido por " + tokenExpiration.toMinutes() + " minutos):\n"
-                + publicUrl + "/redefinir-senha?token=" + token + "\n\n"
-                + "Se você não solicitou a alteração, ignore esta mensagem.");
-        try {
-            mailSender.send(mensagem);
-        } catch (MailException ex) {
-            throw new RegraNegocioException("Não foi possível enviar o e-mail de recuperação.");
-        }
+        emailService.enviarRecuperacao(usuario.getEmail(), usuario.getNome(), token, tokenExpiration.toMinutes());
     }
 
     private String tokenAleatorio() {

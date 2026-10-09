@@ -2,6 +2,9 @@ package com.nossolaritapetininga.InstitutoNossoLar.config;
 
 import com.nossolaritapetininga.InstitutoNossoLar.service.CustomUserDetailsService;
 import com.nossolaritapetininga.InstitutoNossoLar.security.AlteracaoSenhaObrigatoriaFilter;
+import com.nossolaritapetininga.InstitutoNossoLar.security.LoginAttemptFilter;
+import com.nossolaritapetininga.InstitutoNossoLar.security.LoginFailureHandler;
+import com.nossolaritapetininga.InstitutoNossoLar.security.LoginSuccessHandler;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,12 +28,21 @@ public class SecurityConfig {
 
     private final CustomUserDetailsService userDetailsService;
     private final AlteracaoSenhaObrigatoriaFilter alteracaoSenhaObrigatoriaFilter;
+    private final LoginAttemptFilter loginAttemptFilter;
+    private final LoginFailureHandler loginFailureHandler;
+    private final LoginSuccessHandler loginSuccessHandler;
 
     public SecurityConfig(
             CustomUserDetailsService userDetailsService,
-            AlteracaoSenhaObrigatoriaFilter alteracaoSenhaObrigatoriaFilter) {
+            AlteracaoSenhaObrigatoriaFilter alteracaoSenhaObrigatoriaFilter,
+            LoginAttemptFilter loginAttemptFilter,
+            LoginFailureHandler loginFailureHandler,
+            LoginSuccessHandler loginSuccessHandler) {
         this.userDetailsService = userDetailsService;
         this.alteracaoSenhaObrigatoriaFilter = alteracaoSenhaObrigatoriaFilter;
+        this.loginAttemptFilter = loginAttemptFilter;
+        this.loginFailureHandler = loginFailureHandler;
+        this.loginSuccessHandler = loginSuccessHandler;
     }
 
     @Bean
@@ -66,11 +78,8 @@ public class SecurityConfig {
 
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl(
-                    "/admin/dashboard",
-                    true
-                )
-                .failureUrl("/login?erro")
+                .successHandler(loginSuccessHandler)
+                .failureHandler(loginFailureHandler)
                 .permitAll()
             )
 
@@ -92,6 +101,11 @@ public class SecurityConfig {
 
             .addFilterAfter(
                 alteracaoSenhaObrigatoriaFilter,
+                UsernamePasswordAuthenticationFilter.class
+            )
+
+            .addFilterBefore(
+                loginAttemptFilter,
                 UsernamePasswordAuthenticationFilter.class
             );
 

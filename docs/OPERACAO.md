@@ -4,7 +4,7 @@
 
 1. Faça merge da branch revisada em `main`.
 2. Execute `bash mvnw -q -DskipTests package` no pipeline.
-3. Configure no provedor `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `SESSION_COOKIE_SECURE=true`, as três senhas iniciais e as variáveis SMTP.
+3. Configure no provedor `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `SESSION_COOKIE_SECURE=true`, as três senhas iniciais, `RESEND_API_KEY` e `RESEND_FROM`.
 4. Faça o deploy e confira os logs do Flyway. O primeiro deploy em um banco existente deve registrar o baseline; o próximo deve aplicar somente migrations novas.
 5. Verifique `/`, `/login`, `/recuperar-senha` e `/admin/dashboard`.
 
@@ -21,9 +21,11 @@
 
 ## Recuperação de senha
 
-O usuário informa o e-mail em `/recuperar-senha`. O sistema envia um token de uso único por SMTP. O token nunca é salvo em texto puro, expira em uma hora e a resposta não confirma a existência da conta.
+O usuário informa o e-mail em `/recuperar-senha`. O sistema envia um token de uso único pela API do Resend. O token nunca é salvo em texto puro, expira em uma hora e a resposta não confirma a existência da conta.
 
-Para usar Resend, verifique o domínio de envio no painel do serviço, crie uma API key com permissão de envio e configure `MAIL_HOST=smtp.resend.com`, `MAIL_PORT=587`, `MAIL_USERNAME=resend`, `MAIL_PASSWORD` com a API key e `MAIL_FROM` em um endereço do domínio verificado. O plano gratuito informado pelo Resend oferece 3.000 e-mails transacionais por mês, limitado a 100 por dia; confirme os limites atuais antes de colocar o serviço em produção.
+Login e recuperação permitem três tentativas por combinação de e-mail e IP dentro da janela configurada. A partir da quarta tentativa, o acesso fica bloqueado temporariamente; a página não revela detalhes que possam confirmar a existência de uma conta.
+
+Para usar Resend, verifique o domínio de envio no painel do serviço, crie uma API key com permissão de envio e configure `RESEND_API_KEY` com a chave e `RESEND_FROM` em um endereço do domínio verificado. O plano gratuito informado pelo Resend oferece 3.000 e-mails transacionais por mês, limitado a 100 por dia; confirme os limites atuais antes de colocar o serviço em produção.
 
 ## Backup
 

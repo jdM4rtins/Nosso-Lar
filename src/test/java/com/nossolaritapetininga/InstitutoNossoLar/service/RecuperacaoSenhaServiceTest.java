@@ -10,9 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.Duration;
@@ -30,15 +27,14 @@ class RecuperacaoSenhaServiceTest {
     @Mock AdministradorRepository usuarioRepository;
     @Mock TokenRecuperacaoRepository tokenRepository;
     @Mock PasswordEncoder passwordEncoder;
-    @Mock ObjectProvider<JavaMailSender> mailProvider;
-    @Mock JavaMailSender mailSender;
+    @Mock ResendEmailService emailService;
 
     private RecuperacaoSenhaService service;
 
     @BeforeEach
     void configurar() {
         service = new RecuperacaoSenhaService(usuarioRepository, tokenRepository, passwordEncoder,
-                mailProvider, "https://nossolar.com", "noreply@nossolar.com", "smtp.nossolar.com", Duration.ofHours(1));
+                emailService, Duration.ofHours(1));
     }
 
     @Test
@@ -49,7 +45,6 @@ class RecuperacaoSenhaServiceTest {
         usuario.setEmail("pessoa@nossolar.com");
         usuario.setAtivo(true);
         when(usuarioRepository.findByEmailIgnoreCase("pessoa@nossolar.com")).thenReturn(Optional.of(usuario));
-        when(mailProvider.getIfAvailable()).thenReturn(mailSender);
         when(tokenRepository.save(any(TokenRecuperacao.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         service.solicitar("PESSOA@NOSSOLAR.COM");
@@ -57,9 +52,7 @@ class RecuperacaoSenhaServiceTest {
         ArgumentCaptor<TokenRecuperacao> token = ArgumentCaptor.forClass(TokenRecuperacao.class);
         verify(tokenRepository).save(token.capture());
         assertThat(token.getValue().getTokenHash()).isNotBlank().doesNotContain("pessoa");
-        ArgumentCaptor<SimpleMailMessage> mensagem = ArgumentCaptor.forClass(SimpleMailMessage.class);
-        verify(mailSender).send(mensagem.capture());
-        assertThat(mensagem.getValue().getText()).contains("/redefinir-senha?token=");
+        verify(emailService).enviarRecuperacao(any(), any(), any(), any(Long.class));
     }
 
     @Test
