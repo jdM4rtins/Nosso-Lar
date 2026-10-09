@@ -64,7 +64,7 @@ export SESSION_COOKIE_SECURE=true
 
 ## Migrations com Flyway
 
-O schema existente é registrado automaticamente como baseline 1. Alterações posteriores devem ser adicionadas em `src/main/resources/db/migration` com numeração crescente (`V3__descricao.sql`, `V4__descricao.sql` etc.). O Hibernate usa `validate` e não altera tabelas silenciosamente. Antes de cada deploy, valide a migration em uma cópia do banco e mantenha o backup do banco atual.
+O schema existente é registrado automaticamente como baseline 1. Alterações posteriores devem ser adicionadas em `src/main/resources/db/migration` com numeração crescente (`V3__descricao.sql`, `V4__descricao.sql` etc.). O Hibernate usa `validate` por padrão e não altera tabelas silenciosamente. Para alinhar uma base legada no primeiro deploy após a adoção do Flyway, configure temporariamente `JPA_DDL_AUTO=update`, faça um backup, confirme a inicialização e depois remova a variável ou defina `JPA_DDL_AUTO=validate`. Antes de cada deploy, valide a migration em uma cópia do banco e mantenha o backup do banco atual.
 
 ## Recuperação de senha
 
