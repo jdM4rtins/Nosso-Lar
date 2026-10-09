@@ -26,6 +26,14 @@ bash mvnw spring-boot:run
 
 4. Abra `http://localhost:8080`.
 
+Para executar apenas a interface localmente, sem um PostgreSQL instalado, use o perfil temporário H2:
+
+```bash
+bash mvnw spring-boot:run -Dspring-boot.run.profiles=local
+```
+
+Esse perfil usa banco em memória e perde os dados ao encerrar a aplicação. Para desenvolvimento integrado e produção, use PostgreSQL.
+
 Na primeira execução, o sistema cria os perfis `EDITOR`, `ADMIN` e `SUPER_ADMIN` e suas permissões. As contas iniciais de superadministradores são criadas somente quando estas variáveis contêm senhas temporárias:
 
 ```bash
