@@ -16,7 +16,7 @@ import java.util.Set;
 @Service
 public class PerfilService {
 
-    private static final Set<String> PERFIS_SISTEMA = Set.of("EDITOR", "ADMIN", "SUPER_ADMIN");
+    private static final Set<String> PERFIS_SISTEMA = Set.of("CONSULTA", "EDITOR", "SUPER_ADMIN");
 
     private final PerfilRepository perfilRepository;
     private final PermissaoRepository permissaoRepository;
@@ -29,7 +29,9 @@ public class PerfilService {
     }
 
     public List<Perfil> listarPerfis() {
-        return perfilRepository.findAll();
+        return perfilRepository.findAll().stream()
+                .filter(Perfil::isAtivo)
+                .toList();
     }
 
     public List<Permissao> listarPermissoes() {

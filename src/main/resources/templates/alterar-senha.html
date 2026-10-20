@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar senha - Instituto Nosso Lar</title>
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
 </head>
 <body class="login-page">
 <main class="login-layout">
@@ -19,7 +20,7 @@
         <div class="login-panel-heading">
             <p class="login-eyebrow">PRIMEIRO ACESSO</p>
             <h2>Alterar senha</h2>
-            <p>Use pelo menos 12 caracteres, incluindo maiúscula, minúscula, número e símbolo.</p>
+            <p>A senha deve ter pelo menos 12 caracteres, com letras maiúsculas e minúsculas, número e símbolo.</p>
         </div>
 
         <div th:if="${erro}" class="login-error">
@@ -27,17 +28,17 @@
         </div>
 
         <form th:action="@{/alterar-senha}" method="post">
-            <label for="senhaAtual">Senha temporária</label>
-            <input type="password" id="senhaAtual" name="senhaAtual"
-                   autocomplete="current-password" required>
-
             <label for="novaSenha">Nova senha</label>
-            <input type="password" id="novaSenha" name="novaSenha"
-                   autocomplete="new-password" minlength="12" required>
+            <div class="password-field">
+                <input type="password" id="novaSenha" name="novaSenha" autocomplete="new-password" minlength="12" required>
+                <button class="password-toggle" type="button" aria-label="Mostrar senha" aria-pressed="false" data-password-toggle="novaSenha"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+            </div>
 
             <label for="confirmacao">Confirmar nova senha</label>
-            <input type="password" id="confirmacao" name="confirmacao"
-                   autocomplete="new-password" minlength="12" required>
+            <div class="password-field">
+                <input type="password" id="confirmacao" name="confirmacao" autocomplete="new-password" minlength="12" required>
+                <button class="password-toggle" type="button" aria-label="Mostrar senha" aria-pressed="false" data-password-toggle="confirmacao"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+            </div>
 
             <button type="submit">Salvar nova senha</button>
         </form>
@@ -47,5 +48,6 @@
         </form>
     </section>
 </main>
+<script th:src="@{/js/password-toggle.js}"></script>
 </body>
 </html>

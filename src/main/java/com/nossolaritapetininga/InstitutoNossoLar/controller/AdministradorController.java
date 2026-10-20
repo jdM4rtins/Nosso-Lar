@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/administradores")
-@PreAuthorize("hasAuthority('VIEW_USER')")
+@PreAuthorize("hasRole('SUPER_ADMIN') and hasAuthority('VIEW_USER')")
 public class AdministradorController {
 
     private final AdministradorService administradorService;
@@ -46,14 +46,14 @@ public class AdministradorController {
     }
 
     @GetMapping("/novo")
-    @PreAuthorize("hasAuthority('CREATE_EDITOR') or hasAuthority('CREATE_ADMIN')")
+    @PreAuthorize("hasRole('SUPER_ADMIN')")
     public String novoAdministrador(Model model, Authentication authentication) {
         prepararFormularioNovo(model, authentication);
         return "admin/novo-administrador";
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('CREATE_EDITOR') or hasAuthority('CREATE_ADMIN')")
+    @PreAuthorize("hasRole('SUPER_ADMIN')")
     public String salvarAdministrador(
             @RequestParam String nome,
             @RequestParam String email,
@@ -76,7 +76,7 @@ public class AdministradorController {
     }
 
     @GetMapping("/editar/{id}")
-    @PreAuthorize("hasAuthority('UPDATE_USER')")
+    @PreAuthorize("hasRole('SUPER_ADMIN') and hasAuthority('UPDATE_USER')")
     public String editarAdministrador(
             @PathVariable Long id,
             Authentication authentication,
@@ -98,7 +98,7 @@ public class AdministradorController {
     }
 
     @PostMapping("/editar/{id}")
-    @PreAuthorize("hasAuthority('UPDATE_USER')")
+    @PreAuthorize("hasRole('SUPER_ADMIN') and hasAuthority('UPDATE_USER')")
     public String atualizarAdministrador(
             @PathVariable Long id,
             @RequestParam String nome,
@@ -123,7 +123,7 @@ public class AdministradorController {
     }
 
     @PostMapping("/status/{id}")
-    @PreAuthorize("hasAuthority('DISABLE_USER')")
+    @PreAuthorize("hasRole('SUPER_ADMIN') and hasAuthority('DISABLE_USER')")
     public String alterarStatus(
             @PathVariable Long id,
             Authentication authentication,
@@ -154,7 +154,6 @@ public class AdministradorController {
         if (usuario.getEmail().equalsIgnoreCase(authentication.getName())) {
             return false;
         }
-        return isSuperAdmin(authentication)
-                || usuario.getPerfis().stream().allMatch(perfil -> perfil.getNome().equals("EDITOR"));
+        return isSuperAdmin(authentication);
     }
 }

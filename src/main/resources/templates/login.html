@@ -10,6 +10,7 @@
 
     <link rel="stylesheet"
           href="/css/admin/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
 </head>
 
 <body class="login-page">
@@ -40,13 +41,12 @@
             Senha
         </label>
 
-        <input
-            type="password"
-            id="password"
-            name="password"
-            autocomplete="current-password"
-            required
-        >
+        <div class="password-field">
+            <input type="password" id="password" name="password" autocomplete="current-password" required>
+            <button class="password-toggle" type="button" aria-label="Mostrar senha" aria-pressed="false" data-password-toggle="password">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+            </button>
+        </div>
 
         <button type="submit">Entrar <span aria-hidden="true">→</span></button>
 
@@ -75,5 +75,6 @@
 </section>
 </main>
 
+<script th:src="@{/js/password-toggle.js}"></script>
 </body>
 </html>

@@ -34,23 +34,15 @@ bash mvnw spring-boot:run -Dspring-boot.run.profiles=local
 
 Esse perfil usa banco em memória e perde os dados ao encerrar a aplicação. Para desenvolvimento integrado e produção, use PostgreSQL.
 
-Na primeira execução, o sistema cria os perfis `EDITOR`, `ADMIN` e `SUPER_ADMIN` e suas permissões. As contas iniciais de superadministradores são criadas somente quando estas variáveis contêm senhas temporárias:
-
-```bash
-export SUPER_ADMIN_JUAN_OLIVEIRA_PASSWORD='senha-temporaria'
-export SUPER_ADMIN_GABRIEL_AYRES_PASSWORD='senha-temporaria'
-export SUPER_ADMIN_JUAN_RAPHAEL_PASSWORD='senha-temporaria'
-```
-
-Não grave senhas reais neste arquivo, em `application.properties` ou em qualquer arquivo versionado. Em produção, configure-as como variáveis secretas no painel do Render.
+Na primeira execução, o sistema cria os perfis `CONSULTA`, `EDITOR` e `SUPER_ADMIN` e suas permissões. Em uma base que contém `admin@nossolar.com`, as migrations atribuem a essa conta o perfil `SUPER_ADMIN` e removem as demais contas de usuário, preservando a senha do superadministrador. O projeto não cria contas de usuário predefinidas. Não grave senhas reais neste arquivo ou em qualquer arquivo versionado; configure credenciais como variáveis de ambiente.
 
 ## Controle de acesso
 
 O painel usa controle de acesso por perfis e permissões (RBAC):
 
-- `EDITOR`: visualiza e altera os conteúdos já existentes.
-- `ADMIN`: gerencia conteúdos e cria ou administra contas de editores.
-- `SUPER_ADMIN`: administra todos os usuários e configura as permissões dos perfis `EDITOR` e `ADMIN`.
+- `CONSULTA`: visualiza o conteúdo administrativo e pode alterar a própria senha.
+- `EDITOR`: cria, edita e exclui conteúdo institucional, notícias, eventos e atividades; não gerencia usuários.
+- `SUPER_ADMIN`: acesso completo, incluindo usuários, perfis e permissões.
 
 As verificações são realizadas no servidor, nos métodos dos controladores e serviços. Ocultar uma opção na interface não concede nem remove acesso. Contas são desativadas em vez de excluídas, a própria conta não pode ser desativada pela tela de usuários e o último superadministrador ativo é protegido contra desativação.
 

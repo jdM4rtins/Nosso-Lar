@@ -36,13 +36,12 @@ public class SenhaController {
     @PostMapping("/alterar-senha")
     public String alterarSenha(
             Authentication authentication,
-            @RequestParam String senhaAtual,
             @RequestParam String novaSenha,
             @RequestParam String confirmacao,
             Model model) {
 
         String erro = administradorService.alterarPropriaSenha(
-                authentication.getName(), senhaAtual, novaSenha, confirmacao);
+                authentication.getName(), novaSenha, confirmacao);
 
         if (erro != null) {
             model.addAttribute("erro", erro);
