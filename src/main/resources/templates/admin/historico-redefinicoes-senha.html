@@ -18,6 +18,7 @@
         <a th:href="@{/admin/administradores}">Usuários</a>
         <a class="active" aria-current="page" th:href="@{/admin/administradores/historico-senhas}">Histórico de redefinições</a>
     </nav>
+    <p th:if="${erro}" th:text="${erro}" class="status inativo" role="alert"></p>
     <p>Exibe as 100 redefinições mais recentes. Senhas temporárias não são registradas neste histórico.</p>
     <table>
         <thead>
