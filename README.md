@@ -58,25 +58,11 @@ export SESSION_COOKIE_SECURE=true
 
 O schema existente é registrado automaticamente como baseline 1. Alterações posteriores devem ser adicionadas em `src/main/resources/db/migration` com numeração crescente (`V3__descricao.sql`, `V4__descricao.sql` etc.). O Hibernate usa `validate` por padrão e não altera tabelas silenciosamente. Para alinhar uma base legada no primeiro deploy após a adoção do Flyway, configure temporariamente `JPA_DDL_AUTO=update`, faça um backup, confirme a inicialização e depois remova a variável ou defina `JPA_DDL_AUTO=validate`. Antes de cada deploy, valide a migration em uma cópia do banco e mantenha o backup do banco atual.
 
-## Recuperação de senha
+## Redefinição de senha
 
-Configure o Resend em produção para que os links sejam enviados:
+O SUPER_ADMIN pode redefinir a senha de outro usuário na tela **Usuários administrativos**. Antes, deve confirmar a identidade por um canal já combinado. O sistema gera uma senha temporária aleatória, mostra-a uma única vez, encerra as sessões do usuário, exige a troca no próximo acesso e registra a ação na auditoria. A aba **Histórico de redefinições** permite consultar as 100 ações mais recentes, sem expor as senhas. Entregue a senha por um canal seguro; nunca a registre em chamados ou logs. A criação de usuário já exige senha temporária e troca obrigatória no primeiro acesso.
 
-```bash
-export RESEND_API_KEY='re_sua_chave_de_envio'
-export RESEND_FROM='noreply@seudominioverificado.com'
-export APP_PUBLIC_URL='https://seu-dominio.com'
-```
-
-### Usando Resend
-
-O Resend entra como a API que entrega o e-mail de recuperação. A aplicação usa a SDK oficial Java. No Resend, verifique um domínio de envio e crie uma API key com permissão de envio. Configure `RESEND_API_KEY` e `RESEND_FROM` como segredos no provedor, nunca no código.
-
-O plano gratuito do Resend está listado como US$ 0 por mês, com 3.000 e-mails transacionais por mês e limite de 100 por dia. Isso atende com folga a recuperação de senha de uma instituição pequena, mas depende da verificação do domínio e dos limites vigentes na conta. Confira os valores atuais na [página oficial de preços do Resend](https://resend.com/pricing).
-
-O token é aleatório, armazenado somente como SHA-256, expira em uma hora e é invalidado depois do uso. A tela sempre mostra uma resposta genérica para não revelar se um e-mail está cadastrado.
-
-Login e recuperação possuem proteção contra abuso por e-mail e endereço IP. Após três falhas dentro da janela configurada, novas tentativas são bloqueadas por 15 minutos. Os valores podem ser ajustados com `AUTH_MAX_ATTEMPTS`, `AUTH_ATTEMPT_WINDOW` e `AUTH_BLOCK_DURATION`.
+Não é necessário configurar serviço de envio de e-mail para recuperação de acesso.
 
 ## Backups recorrentes
 
@@ -101,9 +87,9 @@ O diretório precisa estar em volume persistente e ser protegido com permissões
 
 ## Checklist de entrega e treinamento
 
-Antes da entrega, valide login, recuperação de senha, upload e remoção de imagens, criação/edição/publicação de notícia e evento, desativação de usuários, proteção do último `SUPER_ADMIN`, bloqueio de rotas por perfil, sessão única e visualização em Chrome, Firefox, Edge e celular. Registre a versão implantada, URL, variáveis secretas configuradas e o resultado do restore de um backup de teste.
+Antes da entrega, valide login, redefinição de senha pelo SUPER_ADMIN, upload e remoção de imagens, criação/edição/publicação de notícia e evento, desativação de usuários, proteção do último `SUPER_ADMIN`, bloqueio de rotas por perfil, sessão única e visualização em Chrome, Firefox, Edge e celular. Registre a versão implantada, URL, variáveis secretas configuradas e o resultado do restore de um backup de teste.
 
-Na capacitação, demonstre o login, a troca de senha, recuperação de acesso, criação de conteúdo, upload de imagem até 2 MB, edição/publicação, criação de eventos e o procedimento de solicitar suporte. Entregue as credenciais por canal seguro e peça a troca imediata das senhas temporárias.
+Na capacitação, demonstre o login, a troca de senha, redefinição de acesso pelo SUPER_ADMIN, criação de conteúdo, upload de imagem até 2 MB, edição/publicação, criação de eventos e o procedimento de solicitar suporte. Entregue as credenciais por canal seguro e peça a troca imediata das senhas temporárias.
 
 ## Imagens
 

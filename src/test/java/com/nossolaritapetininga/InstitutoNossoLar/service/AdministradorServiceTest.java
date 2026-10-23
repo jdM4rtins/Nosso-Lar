@@ -5,6 +5,7 @@ import com.nossolaritapetininga.InstitutoNossoLar.model.Perfil;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Usuario;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.AdministradorRepository;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.PerfilRepository;
+import com.nossolaritapetininga.InstitutoNossoLar.repository.LogAuditoriaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,13 +33,15 @@ class AdministradorServiceTest {
     @Mock
     private PerfilRepository perfilRepository;
     @Mock
+    private LogAuditoriaRepository logAuditoriaRepository;
+    @Mock
     private PasswordEncoder passwordEncoder;
 
     private AdministradorService service;
 
     @BeforeEach
     void configurar() {
-        service = new AdministradorService(usuarioRepository, perfilRepository, passwordEncoder);
+        service = new AdministradorService(usuarioRepository, perfilRepository, passwordEncoder, logAuditoriaRepository);
     }
 
     @Test
