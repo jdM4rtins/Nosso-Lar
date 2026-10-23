@@ -4,6 +4,7 @@ import com.nossolaritapetininga.InstitutoNossoLar.model.Usuario;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Perfil;
 import com.nossolaritapetininga.InstitutoNossoLar.model.LogAuditoria;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.AdministradorRepository;
+import com.nossolaritapetininga.InstitutoNossoLar.repository.HistoricoRedefinicaoSenhaProjection;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.LogAuditoriaRepository;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.PerfilRepository;
 import com.nossolaritapetininga.InstitutoNossoLar.exception.RegraNegocioException;
@@ -16,8 +17,6 @@ import java.util.List;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Set;
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.security.SecureRandom;
 
 @Service
@@ -145,22 +144,10 @@ public class AdministradorService {
 
     @Transactional(readOnly = true)
     public List<HistoricoRedefinicaoSenha> listarHistoricoRedefinicoes() {
-        List<LogAuditoria> eventos = logAuditoriaRepository
-                .findTop100ByAcaoOrderByDataHoraDesc("REDEFINICAO_SENHA_SUPER_ADMIN");
-        Set<Long> idsAlvo = eventos.stream()
-                .map(LogAuditoria::getIdRegistro)
-                .filter(id -> id != null)
-                .collect(Collectors.toSet());
-        Map<Long, String> usuariosPorId = repository.findAllById(idsAlvo).stream()
-                .collect(Collectors.toMap(Usuario::getId,
-                        usuario -> usuario.getNome() + " (" + usuario.getEmail() + ")"));
-
-        return eventos.stream().map(evento -> new HistoricoRedefinicaoSenha(
-                evento.getDataHora(),
-                usuariosPorId.getOrDefault(evento.getIdRegistro(),
-                        "Usuário removido (ID " + evento.getIdRegistro() + ")"),
-                evento.getUsuario() == null ? "Administrador removido" : evento.getUsuario().getEmail(),
-                evento.getIp() == null ? "—" : evento.getIp()))
+        return logAuditoriaRepository.buscarHistoricoRedefinicoes("REDEFINICAO_SENHA_SUPER_ADMIN")
+                .stream()
+                .map(evento -> new HistoricoRedefinicaoSenha(
+                        evento.getDataHora(), evento.getUsuarioAfetado(), evento.getResponsavel(), evento.getIp()))
                 .toList();
     }
 

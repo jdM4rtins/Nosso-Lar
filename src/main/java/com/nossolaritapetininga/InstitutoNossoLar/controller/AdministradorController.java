@@ -59,7 +59,13 @@ public class AdministradorController {
     @GetMapping("/historico-senhas")
     @PreAuthorize("hasRole('SUPER_ADMIN') and hasAuthority('VIEW_AUDIT_LOG')")
     public String historicoRedefinicoes(Model model) {
-        model.addAttribute("historico", administradorService.listarHistoricoRedefinicoes());
+        try {
+            model.addAttribute("historico", administradorService.listarHistoricoRedefinicoes());
+        } catch (RuntimeException exception) {
+            log.error("Falha ao carregar o histórico de redefinições de senha.", exception);
+            model.addAttribute("historico", List.of());
+            model.addAttribute("erro", "Não foi possível carregar o histórico. Consulte os logs do serviço.");
+        }
         return "admin/historico-redefinicoes-senha";
     }
 
