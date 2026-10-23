@@ -2,7 +2,9 @@ package com.nossolaritapetininga.InstitutoNossoLar.service;
 
 import com.nossolaritapetininga.InstitutoNossoLar.model.Usuario;
 import com.nossolaritapetininga.InstitutoNossoLar.model.Perfil;
+import com.nossolaritapetininga.InstitutoNossoLar.model.LogAuditoria;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.AdministradorRepository;
+import com.nossolaritapetininga.InstitutoNossoLar.repository.LogAuditoriaRepository;
 import com.nossolaritapetininga.InstitutoNossoLar.repository.PerfilRepository;
 import com.nossolaritapetininga.InstitutoNossoLar.exception.RegraNegocioException;
 
@@ -14,6 +16,9 @@ import java.util.List;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.security.SecureRandom;
 
 @Service
 public class AdministradorService {
@@ -23,15 +28,20 @@ public class AdministradorService {
     private final AdministradorRepository repository;
     private final PerfilRepository perfilRepository;
     private final PasswordEncoder passwordEncoder;
+    private final LogAuditoriaRepository logAuditoriaRepository;
+    private final SecureRandom secureRandom = new SecureRandom();
+    private static final String TEMP_PASSWORD_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%_-";
 
     public AdministradorService(
             AdministradorRepository repository,
             PerfilRepository perfilRepository,
-            PasswordEncoder passwordEncoder) {
+            PasswordEncoder passwordEncoder,
+            LogAuditoriaRepository logAuditoriaRepository) {
 
         this.repository = repository;
         this.perfilRepository = perfilRepository;
         this.passwordEncoder = passwordEncoder;
+        this.logAuditoriaRepository = logAuditoriaRepository;
     }
 
     public List<Usuario> listarTodos() {
@@ -131,6 +141,77 @@ public class AdministradorService {
                 .map(Perfil::getNome)
                 .findFirst()
                 .orElse("CONSULTA");
+    }
+
+    @Transactional(readOnly = true)
+    public List<HistoricoRedefinicaoSenha> listarHistoricoRedefinicoes() {
+        List<LogAuditoria> eventos = logAuditoriaRepository
+                .findTop100ByAcaoOrderByDataHoraDesc("REDEFINICAO_SENHA_SUPER_ADMIN");
+        Set<Long> idsAlvo = eventos.stream()
+                .map(LogAuditoria::getIdRegistro)
+                .filter(id -> id != null)
+                .collect(Collectors.toSet());
+        Map<Long, String> usuariosPorId = repository.findAllById(idsAlvo).stream()
+                .collect(Collectors.toMap(Usuario::getId,
+                        usuario -> usuario.getNome() + " (" + usuario.getEmail() + ")"));
+
+        return eventos.stream().map(evento -> new HistoricoRedefinicaoSenha(
+                evento.getDataHora(),
+                usuariosPorId.getOrDefault(evento.getIdRegistro(),
+                        "Usuário removido (ID " + evento.getIdRegistro() + ")"),
+                evento.getUsuario() == null ? "Administrador removido" : evento.getUsuario().getEmail(),
+                evento.getIp() == null ? "—" : evento.getIp()))
+                .toList();
+    }
+
+    @Transactional
+    public String redefinirSenhaTemporaria(
+            Long id,
+            String emailAtor,
+            String ip,
+            String userAgent) {
+        Usuario usuario = buscarObrigatorio(id);
+        validarGerenciamento(usuario, emailAtor, true);
+        if (!usuario.isAtivo()) {
+            throw new RegraNegocioException("Ative o usuário antes de redefinir a senha.");
+        }
+
+        Usuario ator = repository.findByEmailIgnoreCase(emailAtor)
+                .orElseThrow(() -> new RegraNegocioException("Não foi possível identificar o super administrador."));
+        String senhaTemporaria = gerarSenhaTemporaria();
+        usuario.setSenha(passwordEncoder.encode(senhaTemporaria));
+        usuario.setAlterarSenha(true);
+        repository.save(usuario);
+
+        LogAuditoria log = new LogAuditoria();
+        log.setUsuario(ator);
+        log.setEntidade("administradores");
+        log.setIdRegistro(usuario.getId());
+        log.setAcao("REDEFINICAO_SENHA_SUPER_ADMIN");
+        log.setDadosNovos("{\"email\":\"" + usuario.getEmail() + "\",\"trocaObrigatoria\":true}");
+        log.setIp(ip);
+        log.setUserAgent(userAgent);
+        logAuditoriaRepository.save(log);
+
+        return senhaTemporaria;
+    }
+
+    private String gerarSenhaTemporaria() {
+        char[] senha = new char[20];
+        senha[0] = "ABCDEFGHJKLMNPQRSTUVWXYZ".charAt(secureRandom.nextInt(24));
+        senha[1] = "abcdefghijkmnopqrstuvwxyz".charAt(secureRandom.nextInt(25));
+        senha[2] = "23456789".charAt(secureRandom.nextInt(8));
+        senha[3] = "!@#$%_-".charAt(secureRandom.nextInt(7));
+        for (int i = 4; i < senha.length; i++) {
+            senha[i] = TEMP_PASSWORD_CHARS.charAt(secureRandom.nextInt(TEMP_PASSWORD_CHARS.length()));
+        }
+        for (int i = senha.length - 1; i > 0; i--) {
+            int j = secureRandom.nextInt(i + 1);
+            char atual = senha[i];
+            senha[i] = senha[j];
+            senha[j] = atual;
+        }
+        return new String(senha);
     }
 
     @Transactional

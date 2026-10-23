@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de redefinições de senha</title>
+    <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+</head>
+<body>
+<header>
+    <h1>Instituto Nosso Lar</h1>
+    <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
+</header>
+<main>
+    <h2>Histórico de redefinições de senha</h2>
+    <nav class="admin-tabs" aria-label="Gerenciamento de usuários">
+        <a th:href="@{/admin/administradores}">Usuários</a>
+        <a class="active" aria-current="page" th:href="@{/admin/administradores/historico-senhas}">Histórico de redefinições</a>
+    </nav>
+    <p>Exibe as 100 redefinições mais recentes. Senhas temporárias não são registradas neste histórico.</p>
+    <table>
+        <thead>
+        <tr><th>Data e hora</th><th>Usuário afetado</th><th>Responsável</th><th>IP de origem</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="evento : ${historico}">
+            <td th:text="${evento.dataHora}">Data</td>
+            <td th:text="${evento.usuarioAfetado}">Usuário</td>
+            <td th:text="${evento.responsavel}">SUPER_ADMIN</td>
+            <td th:text="${evento.ip}">127.0.0.1</td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(historico)}"><td colspan="4">Ainda não há redefinições registradas.</td></tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

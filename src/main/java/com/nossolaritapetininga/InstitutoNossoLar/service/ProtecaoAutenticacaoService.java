@@ -44,16 +44,6 @@ public class ProtecaoAutenticacaoService {
         repository.findByChave(chave("LOGIN", email, ip)).ifPresent(repository::delete);
     }
 
-    @Transactional
-    public boolean registrarTentativaRecuperacao(String email, String ip) {
-        String chave = chave("RECUPERACAO", email, ip);
-        if (!podeTentar(chave)) {
-            return false;
-        }
-        registrarFalha(chave, "RECUPERACAO");
-        return true;
-    }
-
     private boolean podeTentar(String chave) {
         return repository.findByChave(chave)
                 .map(this::normalizarJanela)

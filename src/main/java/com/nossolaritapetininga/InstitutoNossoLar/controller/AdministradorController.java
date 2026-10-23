@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -43,6 +44,13 @@ public class AdministradorController {
                 .map(Usuario::getId)
                 .toList());
         return "admin/administradores";
+    }
+
+    @GetMapping("/historico-senhas")
+    @PreAuthorize("hasRole('SUPER_ADMIN') and hasAuthority('VIEW_AUDIT_LOG')")
+    public String historicoRedefinicoes(Model model) {
+        model.addAttribute("historico", administradorService.listarHistoricoRedefinicoes());
+        return "admin/historico-redefinicoes-senha";
     }
 
     @GetMapping("/novo")
@@ -135,6 +143,30 @@ public class AdministradorController {
             if (usuario != null) {
                 sessaoUsuarioService.expirarSessoes(usuario.getEmail());
             }
+        } catch (RegraNegocioException exception) {
+            redirectAttributes.addFlashAttribute("erro", exception.getMessage());
+        }
+        return "redirect:/admin/administradores";
+    }
+
+    @PostMapping("/senha-temporaria/{id}")
+    @PreAuthorize("hasRole('SUPER_ADMIN') and hasAuthority('RESET_USER_PASSWORD')")
+    public String redefinirSenhaTemporaria(
+            @PathVariable Long id,
+            Authentication authentication,
+            HttpServletRequest request,
+            RedirectAttributes redirectAttributes) {
+        try {
+            Usuario usuario = administradorService.buscarPorId(id);
+            if (usuario == null) {
+                throw new RegraNegocioException("Usuário não encontrado.");
+            }
+            String senhaTemporaria = administradorService.redefinirSenhaTemporaria(
+                    id, authentication.getName(), request.getRemoteAddr(), request.getHeader("User-Agent"));
+            sessaoUsuarioService.expirarSessoes(usuario.getEmail());
+            redirectAttributes.addFlashAttribute("senhaTemporariaGerada", senhaTemporaria);
+            redirectAttributes.addFlashAttribute("usuarioSenhaRedefinida", usuario.getEmail());
+            redirectAttributes.addFlashAttribute("sucesso", "Senha redefinida. Entregue a senha temporária ao usuário por um canal já combinado.");
         } catch (RegraNegocioException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
         }
