@@ -25,12 +25,6 @@
     <p th:if="${sucesso}" th:text="${sucesso}" class="status ativo"></p>
     <p th:if="${erro}" th:text="${erro}" class="status inativo"></p>
     <p th:if="${param.criado}" class="status ativo">Usuário criado com senha temporária.</p>
-    <section th:if="${senhaTemporariaGerada}" class="status ativo" role="status">
-        <h3>Senha temporária gerada para <span th:text="${usuarioSenhaRedefinida}">usuario</span></h3>
-        <p>Mostre ou entregue esta senha ao usuário por um canal já combinado. Ela aparece somente nesta resposta e precisará ser trocada no próximo acesso.</p>
-        <code th:text="${senhaTemporariaGerada}">senha temporária</code>
-    </section>
-
     <table>
         <thead>
         <tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Status</th><th>Cadastro</th><th>Ações</th></tr>
@@ -57,17 +51,40 @@
                         <button type="submit"
                                 th:text="${administrador.ativo} ? 'Desativar' : 'Ativar'">Desativar</button>
                     </form>
-                    <form sec:authorize="hasRole('SUPER_ADMIN') and hasAuthority('RESET_USER_PASSWORD')"
-                          th:action="@{/admin/administradores/senha-temporaria/{id}(id=${administrador.id})}"
-                          method="post" style="display:inline"
-                          onsubmit="return confirm('Confirme que verificou a identidade do usuário por um canal já combinado. Uma nova senha temporária será gerada e as sessões atuais serão encerradas.');">
-                        <button type="submit">Redefinir senha</button>
-                    </form>
+                    <button sec:authorize="hasRole('SUPER_ADMIN') and hasAuthority('RESET_USER_PASSWORD')"
+                            type="button" class="open-password-reset"
+                            th:attr="data-user-id=${administrador.id},data-user-name=${administrador.nome},data-user-email=${administrador.email}">Redefinir senha</button>
                 </div>
             </td>
         </tr>
         </tbody>
     </table>
 </main>
+<dialog id="passwordResetDialog" class="password-reset-dialog" aria-labelledby="passwordResetTitle">
+    <button type="button" id="closePasswordReset" class="dialog-close" aria-label="Fechar">×</button>
+    <section id="passwordResetConfirm">
+        <h2 id="passwordResetTitle">Confirmar redefinição</h2>
+        <p id="passwordResetPrompt">Para continuar, digite a frase indicada abaixo após confirmar a identidade do usuário por um canal já combinado.</p>
+        <strong id="passwordResetPhrase"></strong>
+        <label for="passwordResetPhraseInput">Digite a frase para confirmar</label>
+        <input id="passwordResetPhraseInput" autocomplete="off">
+        <p id="passwordResetError" class="status inativo" role="alert" hidden></p>
+        <input type="hidden" id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <button type="button" id="confirmPasswordReset" disabled>Gerar senha temporária</button>
+    </section>
+    <section id="passwordResetResult" hidden>
+        <h2 tabindex="-1">Senha temporária pronta</h2>
+        <p>Entregue esta senha ao usuário por um canal seguro. Ela precisará ser trocada no próximo acesso.</p>
+        <label for="temporaryPassword">Senha de <span id="resetUserEmail"></span></label>
+        <div class="temporary-password-row">
+            <input id="temporaryPassword" type="password" readonly autocomplete="new-password">
+            <button type="button" id="toggleTemporaryPassword" aria-label="Mostrar senha">Mostrar</button>
+        </div>
+        <button type="button" id="copyTemporaryPassword">Copiar senha</button>
+        <p id="copyPasswordStatus" role="status"></p>
+        <button type="button" id="finishPasswordReset">Concluir</button>
+    </section>
+</dialog>
+<script th:src="@{/js/admin/password-reset-modal.js}" defer></script>
 </body>
 </html>

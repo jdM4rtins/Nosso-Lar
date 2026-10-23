@@ -15,13 +15,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/administradores")
 @PreAuthorize("hasRole('SUPER_ADMIN') and hasAuthority('VIEW_USER')")
 public class AdministradorController {
+
+    private static final Logger log = LoggerFactory.getLogger(AdministradorController.class);
 
     private final AdministradorService administradorService;
     private final SessaoUsuarioService sessaoUsuarioService;
@@ -151,11 +161,14 @@ public class AdministradorController {
 
     @PostMapping("/senha-temporaria/{id}")
     @PreAuthorize("hasRole('SUPER_ADMIN') and hasAuthority('RESET_USER_PASSWORD')")
-    public String redefinirSenhaTemporaria(
+    @ResponseBody
+    public ResponseEntity<Map<String, String>> redefinirSenhaTemporaria(
             @PathVariable Long id,
             Authentication authentication,
-            HttpServletRequest request,
-            RedirectAttributes redirectAttributes) {
+            HttpServletRequest request) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setCacheControl(CacheControl.noStore());
+        headers.setPragma("no-cache");
         try {
             Usuario usuario = administradorService.buscarPorId(id);
             if (usuario == null) {
@@ -164,13 +177,17 @@ public class AdministradorController {
             String senhaTemporaria = administradorService.redefinirSenhaTemporaria(
                     id, authentication.getName(), request.getRemoteAddr(), request.getHeader("User-Agent"));
             sessaoUsuarioService.expirarSessoes(usuario.getEmail());
-            redirectAttributes.addFlashAttribute("senhaTemporariaGerada", senhaTemporaria);
-            redirectAttributes.addFlashAttribute("usuarioSenhaRedefinida", usuario.getEmail());
-            redirectAttributes.addFlashAttribute("sucesso", "Senha redefinida. Entregue a senha temporária ao usuário por um canal já combinado.");
+            return new ResponseEntity<>(Map.of(
+                    "usuario", usuario.getEmail(),
+                    "senhaTemporaria", senhaTemporaria), headers, HttpStatus.OK);
         } catch (RegraNegocioException exception) {
-            redirectAttributes.addFlashAttribute("erro", exception.getMessage());
+            return new ResponseEntity<>(Map.of("erro", exception.getMessage()), headers, HttpStatus.BAD_REQUEST);
+        } catch (RuntimeException exception) {
+            log.error("Falha ao redefinir a senha temporária do usuário {}.", id, exception);
+            return new ResponseEntity<>(Map.of(
+                    "erro", "Não foi possível redefinir a senha agora. Consulte os logs do serviço."),
+                    headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return "redirect:/admin/administradores";
     }
 
     private void prepararFormularioNovo(Model model, Authentication authentication) {
