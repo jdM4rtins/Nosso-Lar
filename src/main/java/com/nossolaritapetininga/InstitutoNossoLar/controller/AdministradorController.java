@@ -56,19 +56,19 @@ public class AdministradorController {
     @PreAuthorize("hasRole('SUPER_ADMIN')")
     public String salvarAdministrador(
             @RequestParam String nome,
-            @RequestParam String email,
+            @RequestParam String emailLocal,
             @RequestParam String senha,
             @RequestParam String perfil,
             Authentication authentication,
             Model model) {
         try {
             administradorService.criarUsuario(
-                    nome, email, senha, perfil, isSuperAdmin(authentication));
+                    nome, emailLocal, senha, perfil, isSuperAdmin(authentication));
             return "redirect:/admin/administradores?criado";
         } catch (RegraNegocioException exception) {
             model.addAttribute("erro", exception.getMessage());
             model.addAttribute("nome", nome);
-            model.addAttribute("email", email);
+            model.addAttribute("emailLocal", emailLocal);
             model.addAttribute("perfilSelecionado", perfil);
             prepararFormularioNovo(model, authentication);
             return "admin/novo-administrador";
