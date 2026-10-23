@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.regex.Pattern;
 
 @Controller
 public class SenhaController {
+
+    private static final Pattern EMAIL_VALIDO = Pattern.compile(
+            "^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$");
 
     private final AdministradorService administradorService;
     private final RecuperacaoSenhaService recuperacaoSenhaService;
@@ -61,12 +65,21 @@ public class SenhaController {
             @RequestParam String email,
             HttpServletRequest request,
             Model model) {
+        String emailNormalizado = email == null ? "" : email.trim();
+        if (!EMAIL_VALIDO.matcher(emailNormalizado).matches()) {
+            model.addAttribute("erro", "Informe um endereço de e-mail válido.");
+            model.addAttribute("email", emailNormalizado);
+            return "recuperar-senha";
+        }
         try {
-            if (protecaoAutenticacaoService.registrarTentativaRecuperacao(email, request.getRemoteAddr())) {
-                recuperacaoSenhaService.solicitar(email);
+            if (protecaoAutenticacaoService.registrarTentativaRecuperacao(
+                    emailNormalizado, request.getRemoteAddr())) {
+                recuperacaoSenhaService.solicitar(emailNormalizado);
             }
         } catch (RegraNegocioException ex) {
-            // A mensagem permanece genérica para não revelar se o e-mail existe.
+            // O usuário recebe uma resposta genérica; o detalhe fica no log do servidor.
+            org.slf4j.LoggerFactory.getLogger(SenhaController.class)
+                    .warn("Não foi possível processar a solicitação de recuperação de senha.", ex);
         }
         model.addAttribute("solicitado", true);
         return "recuperar-senha";
