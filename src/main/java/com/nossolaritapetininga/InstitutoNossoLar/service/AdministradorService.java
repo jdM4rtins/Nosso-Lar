@@ -18,6 +18,8 @@ import java.util.Set;
 @Service
 public class AdministradorService {
 
+    private static final String DOMINIO_USUARIO = "nossolar.gustavocardilho.com.br";
+
     private final AdministradorRepository repository;
     private final PerfilRepository perfilRepository;
     private final PasswordEncoder passwordEncoder;
@@ -43,16 +45,17 @@ public class AdministradorService {
     @Transactional
     public Usuario criarUsuario(
             String nome,
-            String email,
+            String emailLocal,
             String senhaTemporaria,
             String perfilSolicitado,
             boolean atorSuperAdmin) {
 
-        validarNomeEEmail(nome, email);
+        validarNome(nome);
+        validarEmailLocal(emailLocal);
         validarPerfilPermitido(perfilSolicitado, atorSuperAdmin);
         validarSenhaForte(senhaTemporaria);
 
-        String emailNormalizado = normalizarEmail(email);
+        String emailNormalizado = normalizarEmail(emailLocal) + "@" + DOMINIO_USUARIO;
         if (repository.findByEmailIgnoreCase(emailNormalizado).isPresent()) {
             throw new RegraNegocioException("Já existe um usuário com este e-mail.");
         }
@@ -176,11 +179,24 @@ public class AdministradorService {
     }
 
     private void validarNomeEEmail(String nome, String email) {
+        validarNome(nome);
+        if (email == null || !email.trim().matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
+            throw new RegraNegocioException("Informe um e-mail válido.");
+        }
+    }
+
+    private void validarNome(String nome) {
         if (nome == null || nome.isBlank()) {
             throw new RegraNegocioException("Informe o nome do usuário.");
         }
-        if (email == null || !email.trim().matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
-            throw new RegraNegocioException("Informe um e-mail válido.");
+    }
+
+    private void validarEmailLocal(String emailLocal) {
+        if (emailLocal == null
+                || emailLocal.length() > 64
+                || !emailLocal.matches("^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*$")) {
+            throw new RegraNegocioException(
+                    "Informe somente a parte do e-mail antes do @, sem espaços ou outro domínio.");
         }
     }
 

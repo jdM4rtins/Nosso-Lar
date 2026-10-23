@@ -42,9 +42,9 @@ class AdministradorServiceTest {
     }
 
     @Test
-    void adminCriaSomenteEditorComSenhaTemporariaProtegida() {
+    void superAdminCriaUsuarioComEmailInstitucionalESenhaTemporariaProtegida() {
         Perfil editor = perfil("EDITOR");
-        when(usuarioRepository.findByEmailIgnoreCase("editor@nossolar.com"))
+        when(usuarioRepository.findByEmailIgnoreCase("editor@nossolar.gustavocardilho.com.br"))
                 .thenReturn(Optional.empty());
         when(perfilRepository.findByNome("EDITOR")).thenReturn(Optional.of(editor));
         when(passwordEncoder.encode("SenhaTemporaria#1")).thenReturn("hash-seguro");
@@ -52,23 +52,23 @@ class AdministradorServiceTest {
                 .thenAnswer(invocacao -> invocacao.getArgument(0));
 
         service.criarUsuario(
-                "Pessoa Editora", "EDITOR@NOSSOLAR.COM", "SenhaTemporaria#1", "EDITOR", false);
+                "Pessoa Editora", "EDITOR", "SenhaTemporaria#1", "EDITOR", true);
 
         ArgumentCaptor<Usuario> captor = ArgumentCaptor.forClass(Usuario.class);
         verify(usuarioRepository).save(captor.capture());
         Usuario salvo = captor.getValue();
-        assertThat(salvo.getEmail()).isEqualTo("editor@nossolar.com");
+        assertThat(salvo.getEmail()).isEqualTo("editor@nossolar.gustavocardilho.com.br");
         assertThat(salvo.getSenha()).isEqualTo("hash-seguro");
         assertThat(salvo.getAlterarSenha()).isTrue();
         assertThat(salvo.getPerfis()).extracting(Perfil::getNome).containsExactly("EDITOR");
     }
 
     @Test
-    void adminNaoPodeCriarOutroAdmin() {
+    void perfilLegadoNaoPodeSerCriado() {
         assertThatThrownBy(() -> service.criarUsuario(
-                "Novo Admin", "admin2@nossolar.com", "SenhaTemporaria#1", "ADMIN", false))
+                "Novo Admin", "admin2", "SenhaTemporaria#1", "ADMIN", true))
                 .isInstanceOf(RegraNegocioException.class)
-                .hasMessageContaining("somente usuários EDITOR");
+                .hasMessageContaining("Perfil inválido");
         verify(usuarioRepository, never()).save(any());
     }
 
