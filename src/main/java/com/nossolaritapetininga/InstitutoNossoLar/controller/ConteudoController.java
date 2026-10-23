@@ -98,4 +98,11 @@ public class ConteudoController {
 
         return "redirect:/admin/conteudos";
     }
+
+    @PostMapping("/excluir/{id}")
+    @PreAuthorize("hasAuthority('DELETE_CONTENT')")
+    public String excluir(@PathVariable Long id) {
+        conteudoService.excluir(id);
+        return "redirect:/admin/conteudos";
+    }
 }

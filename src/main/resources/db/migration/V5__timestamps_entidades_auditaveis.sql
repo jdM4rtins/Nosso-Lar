@@ -1,0 +1,37 @@
+-- Garante compatibilidade de bancos legados com EntidadeAuditavel.
+-- Colunas opcionais para não alterar nem bloquear registros existentes.
+ALTER TABLE IF EXISTS atividades
+    ADD COLUMN IF NOT EXISTS data_criacao TIMESTAMP NULL,
+    ADD COLUMN IF NOT EXISTS data_atualizacao TIMESTAMP NULL;
+
+ALTER TABLE IF EXISTS campanhas
+    ADD COLUMN IF NOT EXISTS data_criacao TIMESTAMP NULL,
+    ADD COLUMN IF NOT EXISTS data_atualizacao TIMESTAMP NULL;
+
+ALTER TABLE IF EXISTS eventos
+    ADD COLUMN IF NOT EXISTS data_criacao TIMESTAMP NULL,
+    ADD COLUMN IF NOT EXISTS data_atualizacao TIMESTAMP NULL;
+
+ALTER TABLE IF EXISTS formas_ajuda
+    ADD COLUMN IF NOT EXISTS data_criacao TIMESTAMP NULL,
+    ADD COLUMN IF NOT EXISTS data_atualizacao TIMESTAMP NULL;
+
+ALTER TABLE IF EXISTS instituicoes
+    ADD COLUMN IF NOT EXISTS data_criacao TIMESTAMP NULL,
+    ADD COLUMN IF NOT EXISTS data_atualizacao TIMESTAMP NULL;
+
+ALTER TABLE IF EXISTS newsletters
+    ADD COLUMN IF NOT EXISTS data_criacao TIMESTAMP NULL,
+    ADD COLUMN IF NOT EXISTS data_atualizacao TIMESTAMP NULL;
+
+ALTER TABLE IF EXISTS noticias
+    ADD COLUMN IF NOT EXISTS data_criacao TIMESTAMP NULL,
+    ADD COLUMN IF NOT EXISTS data_atualizacao TIMESTAMP NULL;
+
+ALTER TABLE IF EXISTS paginas
+    ADD COLUMN IF NOT EXISTS data_criacao TIMESTAMP NULL,
+    ADD COLUMN IF NOT EXISTS data_atualizacao TIMESTAMP NULL;
+
+ALTER TABLE IF EXISTS secoes
+    ADD COLUMN IF NOT EXISTS data_criacao TIMESTAMP NULL,
+    ADD COLUMN IF NOT EXISTS data_atualizacao TIMESTAMP NULL;

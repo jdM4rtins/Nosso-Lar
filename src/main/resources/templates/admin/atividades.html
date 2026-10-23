@@ -86,7 +86,7 @@
 
                 <td>
 
-                    <a
+                    <a sec:authorize="hasAuthority('UPDATE_CONTENT')"
                         th:href="@{/admin/atividades/editar/{id}(id=${atividade.id})}">
                         Editar
                     </a>

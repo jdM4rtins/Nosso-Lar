@@ -83,9 +83,17 @@
 
                 <td>
 
-                    <a th:href="@{/admin/conteudos/editar/{id}(id=${conteudo.id})}">
+                    <a sec:authorize="hasAuthority('UPDATE_CONTENT')"
+                       th:href="@{/admin/conteudos/editar/{id}(id=${conteudo.id})}">
                         Editar
                     </a>
+
+                    <form sec:authorize="hasAuthority('DELETE_CONTENT')"
+                          th:action="@{/admin/conteudos/excluir/{id}(id=${conteudo.id})}"
+                          method="post" style="display:inline"
+                          onsubmit="return confirm('Deseja realmente excluir este conteúdo?')">
+                        <button type="submit">Excluir</button>
+                    </form>
                     
                 </td>
 

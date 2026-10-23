@@ -115,8 +115,8 @@ public class AdministradorService {
 
     public List<Perfil> perfisPermitidos(boolean atorSuperAdmin) {
         List<String> nomes = atorSuperAdmin
-                ? List.of("EDITOR", "ADMIN", "SUPER_ADMIN")
-                : List.of("EDITOR");
+                ? List.of("CONSULTA", "EDITOR", "SUPER_ADMIN")
+                : List.of();
         return perfilRepository.findAll().stream()
                 .filter(Perfil::isAtivo)
                 .filter(perfil -> nomes.contains(perfil.getNome()))
@@ -127,19 +127,18 @@ public class AdministradorService {
         return usuario.getPerfis().stream()
                 .map(Perfil::getNome)
                 .findFirst()
-                .orElse("EDITOR");
+                .orElse("CONSULTA");
     }
 
     @Transactional
     public String alterarPropriaSenha(
             String email,
-            String senhaAtual,
             String novaSenha,
             String confirmacao) {
 
         Usuario usuario = repository.findByEmail(email).orElse(null);
-        if (usuario == null || !passwordEncoder.matches(senhaAtual, usuario.getSenha())) {
-            return "A senha atual está incorreta.";
+        if (usuario == null) {
+            return "Não foi possível localizar a conta.";
         }
 
         if (!novaSenha.equals(confirmacao)) {
@@ -189,10 +188,10 @@ public class AdministradorService {
         if (perfil == null || perfil.isBlank()) {
             throw new RegraNegocioException("Selecione um perfil.");
         }
-        if (!atorSuperAdmin && !"EDITOR".equals(perfil)) {
-            throw new RegraNegocioException("ADMIN pode cadastrar e gerenciar somente usuários EDITOR.");
+        if (!atorSuperAdmin) {
+            throw new RegraNegocioException("Somente SUPER_ADMIN pode criar ou alterar usuários.");
         }
-        if (!Set.of("EDITOR", "ADMIN", "SUPER_ADMIN").contains(perfil)) {
+        if (!Set.of("CONSULTA", "EDITOR", "SUPER_ADMIN").contains(perfil)) {
             throw new RegraNegocioException("Perfil inválido.");
         }
     }
@@ -205,8 +204,8 @@ public class AdministradorService {
             throw new RegraNegocioException(
                     "Use a opção de alterar a própria senha; a conta atual não pode ser alterada por esta tela.");
         }
-        if (!atorSuperAdmin && !temPerfil(usuario, "EDITOR")) {
-            throw new RegraNegocioException("Somente SUPER_ADMIN pode gerenciar ADMIN ou SUPER_ADMIN.");
+        if (!atorSuperAdmin) {
+            throw new RegraNegocioException("Somente SUPER_ADMIN pode gerenciar usuários.");
         }
     }
 

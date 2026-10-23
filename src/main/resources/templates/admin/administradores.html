@@ -14,7 +14,7 @@
 </header>
 <main>
     <h2>Usuários administrativos</h2>
-    <a sec:authorize="hasAuthority('CREATE_EDITOR') or hasAuthority('CREATE_ADMIN')"
+    <a sec:authorize="hasRole('SUPER_ADMIN')"
        th:href="@{/admin/administradores/novo}">+ Novo usuário</a>
 
     <p th:if="${sucesso}" th:text="${sucesso}" class="status ativo"></p>
