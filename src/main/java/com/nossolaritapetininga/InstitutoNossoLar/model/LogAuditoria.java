@@ -1,6 +1,7 @@
 package com.nossolaritapetininga.InstitutoNossoLar.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnTransformer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,8 +25,10 @@ public class LogAuditoria {
     private Long idRegistro;
     @Column(nullable = false)
     private String acao;
+    @ColumnTransformer(read = "?::text", write = "?::jsonb")
     @Column(name = "dados_anteriores", columnDefinition = "jsonb")
     private String dadosAnteriores;
+    @ColumnTransformer(read = "?::text", write = "?::jsonb")
     @Column(name = "dados_novos", columnDefinition = "jsonb")
     private String dadosNovos;
     private String ip;
