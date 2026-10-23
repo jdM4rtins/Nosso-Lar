@@ -188,7 +188,7 @@ public class AdministradorService {
         log.setEntidade("administradores");
         log.setIdRegistro(usuario.getId());
         log.setAcao("REDEFINICAO_SENHA_SUPER_ADMIN");
-        log.setDadosNovos("{\"email\":\"" + usuario.getEmail() + "\",\"trocaObrigatoria\":true}");
+        // The target is stored as idRegistro; leave jsonb details empty to avoid storing secrets or metadata redundantly.
         log.setIp(ip);
         log.setUserAgent(userAgent);
         logAuditoriaRepository.save(log);
