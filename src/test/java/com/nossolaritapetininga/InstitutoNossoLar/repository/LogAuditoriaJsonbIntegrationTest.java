@@ -48,7 +48,7 @@ class LogAuditoriaJsonbIntegrationTest {
     void persisteJsonbComValoresENulosEConsultaHistorico() {
         Usuario ator = new Usuario();
         ator.setNome("Administrador de teste");
-        ator.setEmail("auditoria-teste@nossolar.gustavocardilho.com.br");
+        ator.setEmail("auditoria-teste@nossolar.com.br");
         ator.setSenha("hash-de-teste");
         ator = administradorRepository.saveAndFlush(ator);
 
@@ -72,9 +72,9 @@ class LogAuditoriaJsonbIntegrationTest {
                 .buscarHistoricoRedefinicoes("REDEFINICAO_SENHA_SUPER_ADMIN")
                 .getFirst();
         assertThat(evento.getUsuarioAfetado())
-                .isEqualTo("Administrador de teste (auditoria-teste@nossolar.gustavocardilho.com.br)");
+                .isEqualTo("Administrador de teste (auditoria-teste@nossolar.com.br)");
         assertThat(evento.getResponsavel())
-                .isEqualTo("auditoria-teste@nossolar.gustavocardilho.com.br");
+                .isEqualTo("auditoria-teste@nossolar.com.br");
     }
 
     private LogAuditoria novaAuditoria(Usuario ator) {
