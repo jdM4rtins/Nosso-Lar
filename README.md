@@ -34,7 +34,7 @@ bash mvnw spring-boot:run -Dspring-boot.run.profiles=local
 
 Esse perfil usa banco em memória e perde os dados ao encerrar a aplicação. Para desenvolvimento integrado e produção, use PostgreSQL.
 
-Na primeira execução, o sistema cria os perfis `CONSULTA`, `EDITOR` e `SUPER_ADMIN` e suas permissões. Em uma base que contém `admin@nossolar.com`, as migrations atribuem a essa conta o perfil `SUPER_ADMIN` e removem as demais contas de usuário, preservando a senha do superadministrador. O projeto não cria contas de usuário predefinidas. Não grave senhas reais neste arquivo ou em qualquer arquivo versionado; configure credenciais como variáveis de ambiente.
+Na primeira execução, o sistema cria os perfis `CONSULTA`, `EDITOR` e `SUPER_ADMIN` e suas permissões. Em uma base que contém a conta administrativa principal, as migrations atribuem a ela o perfil `SUPER_ADMIN` e removem as demais contas de usuário, preservando sua senha. A migration V9 atualiza seu login de `admin@nossolar.com` para `admin@nossolar.com.br`, sem redefinir a senha. O projeto não cria contas de usuário predefinidas. Não grave senhas reais neste arquivo ou em qualquer arquivo versionado; configure credenciais como variáveis de ambiente.
 
 ## Controle de acesso
 

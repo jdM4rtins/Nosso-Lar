@@ -22,7 +22,7 @@ import java.security.SecureRandom;
 @Service
 public class AdministradorService {
 
-    private static final String DOMINIO_USUARIO = "nossolar.gustavocardilho.com.br";
+    private static final String DOMINIO_USUARIO = "nossolar.com.br";
 
     private final AdministradorRepository repository;
     private final PerfilRepository perfilRepository;

@@ -47,7 +47,7 @@ class AdministradorServiceTest {
     @Test
     void superAdminCriaUsuarioComEmailInstitucionalESenhaTemporariaProtegida() {
         Perfil editor = perfil("EDITOR");
-        when(usuarioRepository.findByEmailIgnoreCase("editor@nossolar.gustavocardilho.com.br"))
+        when(usuarioRepository.findByEmailIgnoreCase("editor@nossolar.com.br"))
                 .thenReturn(Optional.empty());
         when(perfilRepository.findByNome("EDITOR")).thenReturn(Optional.of(editor));
         when(passwordEncoder.encode("SenhaTemporaria#1")).thenReturn("hash-seguro");
@@ -60,7 +60,7 @@ class AdministradorServiceTest {
         ArgumentCaptor<Usuario> captor = ArgumentCaptor.forClass(Usuario.class);
         verify(usuarioRepository).save(captor.capture());
         Usuario salvo = captor.getValue();
-        assertThat(salvo.getEmail()).isEqualTo("editor@nossolar.gustavocardilho.com.br");
+        assertThat(salvo.getEmail()).isEqualTo("editor@nossolar.com.br");
         assertThat(salvo.getSenha()).isEqualTo("hash-seguro");
         assertThat(salvo.getAlterarSenha()).isTrue();
         assertThat(salvo.getPerfis()).extracting(Perfil::getNome).containsExactly("EDITOR");
