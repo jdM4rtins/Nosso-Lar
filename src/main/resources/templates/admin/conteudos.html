@@ -15,9 +15,11 @@
     <link rel="stylesheet"
           th:href="@{/css/admin/admin.css}">
 
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 
 <body>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
 
 <header>
 
@@ -29,7 +31,7 @@
 
 </header>
 
-<main>
+<main id="conteudo" tabindex="-1">
 
     <h2>Conteúdos do site</h2>
 
@@ -42,11 +44,11 @@
         <thead>
 
             <tr>
-                <th>ID</th>
-                <th>Chave</th>
-                <th>Título</th>
-                <th>Status</th>
-                <th>Ações</th>
+                <th scope="col">ID</th>
+                <th scope="col">Chave</th>
+                <th scope="col">Título</th>
+                <th scope="col">Status</th>
+                <th scope="col">Ações</th>
             </tr>
 
         </thead>
@@ -94,7 +96,7 @@
                           onsubmit="return confirm('Deseja realmente excluir este conteúdo?')">
                         <button type="submit">Excluir</button>
                     </form>
-                    
+
                 </td>
 
             </tr>
@@ -105,6 +107,8 @@
 
 </main>
 
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 
 </html>

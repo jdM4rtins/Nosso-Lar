@@ -1,0 +1,20 @@
+<th:block th:fragment="atalhos">
+    <nav class="accessibility-tools" aria-label="Recursos de acessibilidade">
+        <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+        <button class="contrast-toggle" type="button" aria-pressed="false">Alto contraste</button>
+    </nav>
+    <script th:src="@{/js/acessibilidade.js}" defer></script>
+</th:block>
+
+<th:block th:fragment="vlibras">
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</th:block>

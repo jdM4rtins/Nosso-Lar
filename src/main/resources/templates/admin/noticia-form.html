@@ -14,9 +14,11 @@
     <link rel="stylesheet"
           th:href="@{/css/admin/admin.css}">
 
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 
 <body>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
 
 <header>
 
@@ -29,11 +31,11 @@
 </header>
 
 
-<main>
+<main id="conteudo" tabindex="-1">
 
     <h2 th:text="${noticia.id == null ? 'Nova notícia' : 'Editar notícia'}">Notícia</h2>
 
-    <p class="form-error" th:if="${erro}" th:text="${erro}"></p>
+    <p class="form-error" th:if="${erro}" th:text="${erro}" role="alert"></p>
 
 
     <form
@@ -122,6 +124,8 @@
 
 </main>
 
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 
 </html>

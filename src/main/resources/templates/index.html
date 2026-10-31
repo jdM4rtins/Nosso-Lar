@@ -7,9 +7,10 @@
     <title th:text="${inicio.titulo} + ' | Instituto Nosso Lar'">Instituto Nosso Lar</title>
     <link rel="icon" th:href="@{/NL_Img/NossoLarLogo.png}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 <body>
-    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
     <header class="site-header">
         <a class="brand" href="#inicio" aria-label="Instituto Nosso Lar — início"><img th:src="@{/NL_Img/NossoLarLogo.png}" alt="Instituto Nosso Lar"></a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">Menu</button>
@@ -17,7 +18,7 @@
             <a href="#sobre">Quem somos</a><a href="#atividades">Atividades</a><a th:if="${!#lists.isEmpty(eventos)}" href="#eventos">Eventos</a><a href="#ajuda">Como ajudar</a><a href="#noticias">Notícias</a><a class="nav-cta" href="#contato">Fale conosco</a>
         </nav>
     </header>
-    <main id="conteudo">
+    <main id="conteudo" tabindex="-1">
         <section id="inicio" class="hero">
             <div class="hero-copy">
                 <p class="eyebrow">INSTITUTO NOSSO LAR · ITAPETININGA</p>
@@ -36,13 +37,13 @@
         </section>
         <section id="atividades" class="section activities">
             <div class="section-heading centered"><p class="eyebrow">VIVÊNCIAS QUE TRANSFORMAM</p><h2>Atividades para descobrir talentos</h2><p>Aprender, brincar, criar e conviver também fazem parte do cuidado.</p></div>
-            <div class="activity-carousel" aria-roledescription="carrossel" aria-label="Atividades do Instituto">
+            <div class="activity-carousel" role="region" aria-roledescription="carrossel" aria-label="Atividades do Instituto">
                 <div class="activity-viewport">
                     <div class="activity-track">
                         <article class="activity-card" th:each="atividade : ${atividades}" th:if="${atividade.ativo}"><img th:src="@{${atividade.imagem}}" th:alt="${atividade.nome}"><h3 th:text="${atividade.nome}">Atividade</h3></article>
                     </div>
                 </div>
-                <div class="activity-dots" aria-label="Navegação das atividades"></div>
+                <div class="activity-dots" role="group" aria-label="Selecionar atividade"></div>
             </div>
         </section>
         <section id="eventos" class="section events" th:if="${!#lists.isEmpty(eventos)}">
@@ -85,6 +86,7 @@
                     <a th:href="${instagram.link}" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img th:src="@{/NL_Img/Insta_logo.png}" alt=""></a>
                     <a th:href="${facebook.link}" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img th:src="@{/NL_Img/face_logo.png}" alt=""></a>
                 </nav>
+                <p><a th:href="@{/acessibilidade}">Acessibilidade e mapa do site</a></p>
                 <div class="footer-hours"><h2 th:text="${horario.titulo}">Horário de funcionamento</h2><p th:utext="${horario.texto}">Domingo a domingo<br>Atendimento 24h</p></div>
             </section>
             <section class="footer-map" aria-label="Localização da instituição">
@@ -95,7 +97,9 @@
         </div>
         <div class="footer-bottom">© <span id="year">2026</span> Instituto Nosso Lar — Itapetininga</div>
     </footer>
-    <button class="back-to-top" type="button" aria-label="Voltar para o topo"><span aria-hidden="true">↑</span><span>Voltar ao topo</span></button>
+    <button class="back-to-top" type="button" aria-label="Voltar para o topo" hidden><span aria-hidden="true">↑</span><span>Voltar ao topo</span></button>
     <script th:src="@{/js/main.js}"></script>
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 </html>

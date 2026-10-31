@@ -1,0 +1,120 @@
+/* Recursos compartilhados de acessibilidade para páginas públicas e administrativas. */
+.accessibility-tools {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: .75rem;
+    min-height: 2.75rem;
+    padding: .35rem 1rem;
+    background: #f4f7f8;
+    color: #17334a;
+}
+
+.skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.skip-link:focus {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 10000;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    padding: .8rem 1rem;
+    border: 2px solid #000;
+    border-radius: .25rem;
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+}
+
+.contrast-toggle {
+    min-height: 2.5rem;
+    padding: .45rem .8rem;
+    border: 2px solid #17334a;
+    border-radius: .3rem;
+    background: #fff;
+    color: #17334a;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid #b54708 !important;
+    outline-offset: 3px;
+}
+
+html.high-contrast,
+html.high-contrast body {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+html.high-contrast :where(header, main, footer, section, article, nav, form, table, dialog, .login-layout, .login-panel, .login-brand, .admin-header, .dashboard-main, .accessibility-tools) {
+    background-color: #000 !important;
+    color: #fff !important;
+    border-color: #ff0 !important;
+}
+
+html.high-contrast :where(h1, h2, h3, h4, h5, h6, p, small, label, li, td, th, time, strong, span) {
+    color: #fff !important;
+}
+
+html.high-contrast :where(a, .text-link) {
+    color: #ff0 !important;
+    text-decoration: underline !important;
+}
+
+html.high-contrast :where(button, input, select, textarea, summary) {
+    border: 2px solid #ff0 !important;
+    background: #000 !important;
+    color: #ff0 !important;
+}
+
+html.high-contrast :where(img, iframe) {
+    filter: none !important;
+}
+
+html.high-contrast .contrast-toggle {
+    background: #ff0 !important;
+    color: #000 !important;
+}
+
+html.high-contrast :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline-color: #ff0 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .accessibility-tools {
+        justify-content: flex-start;
+    }
+}
+
+.back-to-top[hidden] {
+    display: none !important;
+}

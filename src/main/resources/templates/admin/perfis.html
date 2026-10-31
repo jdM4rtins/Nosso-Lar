@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfis e permissões</title>
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 <body>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
 <header>
     <h1>Instituto Nosso Lar</h1>
     <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
 </header>
-<main>
+<main id="conteudo" tabindex="-1">
     <h2>Perfis e permissões</h2>
-    <p th:if="${sucesso}" th:text="${sucesso}" class="status ativo"></p>
-    <p th:if="${erro}" th:text="${erro}" class="status inativo"></p>
+    <p th:if="${sucesso}" th:text="${sucesso}" class="status ativo" role="status"></p>
+    <p th:if="${erro}" th:text="${erro}" class="status inativo" role="alert"></p>
     <table>
-        <thead><tr><th>Perfil</th><th>Descrição</th><th>Permissões</th><th>Ações</th></tr></thead>
+        <thead><tr><th scope="col">Perfil</th><th scope="col">Descrição</th><th scope="col">Permissões</th><th scope="col">Ações</th></tr></thead>
         <tbody>
         <tr th:each="perfil : ${perfis}">
             <td th:text="${perfil.nome}">EDITOR</td>
@@ -35,5 +37,7 @@
         </tbody>
     </table>
 </main>
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 </html>

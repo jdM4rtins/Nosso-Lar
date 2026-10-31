@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acesso negado - Instituto Nosso Lar</title>
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 <body class="login-page">
-<main class="login-layout">
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
+<main class="login-layout" id="conteudo" tabindex="-1">
     <section class="login-panel">
         <div class="login-panel-heading">
             <p class="login-eyebrow">ACESSO NEGADO</p>
@@ -17,5 +19,7 @@
         <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
     </section>
 </main>
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 </html>

@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novo usuário</title>
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 <body>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
 <header>
     <h1>Instituto Nosso Lar</h1>
     <a th:href="@{/admin/administradores}">Voltar</a>
 </header>
-<main>
+<main id="conteudo" tabindex="-1">
     <h2>Novo usuário</h2>
-    <p th:if="${erro}" th:text="${erro}" class="status inativo"></p>
+    <p th:if="${erro}" th:text="${erro}" class="status inativo" role="alert"></p>
 
     <form th:action="@{/admin/administradores}" method="post">
         <label for="nome">Nome</label>
@@ -44,5 +46,7 @@
         <button type="submit">Cadastrar usuário</button>
     </form>
 </main>
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 </html>

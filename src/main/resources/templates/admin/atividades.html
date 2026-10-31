@@ -15,9 +15,11 @@
     <link rel="stylesheet"
           th:href="@{/css/admin/admin.css}">
 
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 
 <body>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
 
 <header>
 
@@ -27,7 +29,7 @@
 
 </header>
 
-<main>
+<main id="conteudo" tabindex="-1">
 
     <h2>Atividades</h2>
 
@@ -41,11 +43,11 @@
 
             <tr>
 
-                <th>ID</th>
-                <th>Imagem</th>
-                <th>Nome</th>
-                <th>Status</th>
-                <th>Ações</th>
+                <th scope="col">ID</th>
+                <th scope="col">Imagem</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Status</th>
+                <th scope="col">Ações</th>
 
             </tr>
 
@@ -108,6 +110,8 @@
 
 </main>
 
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 
 </html>

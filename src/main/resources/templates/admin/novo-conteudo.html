@@ -14,9 +14,11 @@
     <link rel="stylesheet"
           th:href="@{/css/admin/admin.css}">
 
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 
 <body>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
 
 <header>
 
@@ -28,7 +30,7 @@
 
 </header>
 
-<main>
+<main id="conteudo" tabindex="-1">
 
     <h2>Novo conteúdo</h2>
 
@@ -121,6 +123,8 @@
 
 </main>
 
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 
 </html>
