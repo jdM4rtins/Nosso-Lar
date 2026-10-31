@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar perfil</title>
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 <body>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
 <header>
     <h1>Instituto Nosso Lar</h1>
     <a th:href="@{/admin/perfis}">Voltar</a>
 </header>
-<main>
+<main id="conteudo" tabindex="-1">
     <h2 th:text="'Permissões de ' + ${perfil.nome}">Editar perfil</h2>
     <form th:action="@{/admin/perfis/editar/{id}(id=${perfil.id})}" method="post">
         <label for="descricao">Descrição</label>
@@ -31,5 +33,7 @@
         <button type="submit">Salvar permissões</button>
     </form>
 </main>
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 </html>

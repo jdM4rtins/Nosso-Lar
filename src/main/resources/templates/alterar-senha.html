@@ -6,9 +6,11 @@
     <title>Alterar senha - Instituto Nosso Lar</title>
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 <body class="login-page">
-<main class="login-layout">
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
+<main class="login-layout" id="conteudo" tabindex="-1">
     <section class="login-brand" aria-label="Instituto Nosso Lar">
         <img src="/NL_Img/NossoLarLogo.png" alt="Instituto Nosso Lar">
         <p class="login-eyebrow">SEGURANÇA</p>
@@ -23,7 +25,7 @@
             <p>A senha deve ter pelo menos 12 caracteres, com letras maiúsculas e minúsculas, número e símbolo.</p>
         </div>
 
-        <div th:if="${erro}" class="login-error">
+        <div th:if="${erro}" class="login-error" role="alert">
             <p th:text="${erro}">Não foi possível alterar a senha.</p>
         </div>
 
@@ -49,5 +51,7 @@
     </section>
 </main>
 <script th:src="@{/js/password-toggle.js}"></script>
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 </html>

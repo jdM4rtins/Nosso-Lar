@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar evento</title>
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 <body>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
 <header>
     <h1>Instituto Nosso Lar</h1>
     <a th:href="@{/admin/eventos}">Voltar</a>
 </header>
-<main>
+<main id="conteudo" tabindex="-1">
     <h2>Editar evento</h2>
-    <p class="form-error" th:if="${erro}" th:text="${erro}"></p>
+    <p class="form-error" th:if="${erro}" th:text="${erro}" role="alert"></p>
 
     <form th:action="@{/admin/eventos/editar/{id}(id=${evento.id})}" th:object="${evento}" method="post" enctype="multipart/form-data">
         <label for="titulo">Título</label>
@@ -50,5 +52,7 @@
         <button type="submit">Salvar alterações</button>
     </form>
 </main>
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 </html>

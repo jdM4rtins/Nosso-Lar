@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histórico de redefinições de senha</title>
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 <body>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
 <header>
     <h1>Instituto Nosso Lar</h1>
     <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
 </header>
-<main>
+<main id="conteudo" tabindex="-1">
     <h2>Histórico de redefinições de senha</h2>
     <nav class="admin-tabs" aria-label="Gerenciamento de usuários">
         <a th:href="@{/admin/administradores}">Usuários</a>
@@ -22,7 +24,7 @@
     <p>Exibe as 100 redefinições mais recentes. Senhas temporárias não são registradas neste histórico.</p>
     <table>
         <thead>
-        <tr><th>Data e hora</th><th>Usuário afetado</th><th>Responsável</th><th>IP de origem</th></tr>
+        <tr><th scope="col">Data e hora</th><th scope="col">Usuário afetado</th><th scope="col">Responsável</th><th scope="col">IP de origem</th></tr>
         </thead>
         <tbody>
         <tr th:each="evento : ${historico}">
@@ -35,5 +37,7 @@
         </tbody>
     </table>
 </main>
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 </html>

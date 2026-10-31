@@ -56,6 +56,7 @@ public class SecurityConfig {
                     "/",
                     "/login",
                     "/acesso-negado",
+                    "/acessibilidade",
                     "/css/**",
                     "/js/**",
                     "/NL_Img/**",

@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuários administrativos</title>
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
 </head>
 <body>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
 <header>
     <h1>Instituto Nosso Lar</h1>
     <a th:href="@{/admin/dashboard}">Voltar ao painel</a>
 </header>
-<main>
+<main id="conteudo" tabindex="-1">
     <h2>Usuários administrativos</h2>
     <nav class="admin-tabs" aria-label="Gerenciamento de usuários">
         <a class="active" aria-current="page" th:href="@{/admin/administradores}">Usuários</a>
@@ -22,12 +24,12 @@
     <a sec:authorize="hasRole('SUPER_ADMIN')"
        th:href="@{/admin/administradores/novo}">+ Novo usuário</a>
 
-    <p th:if="${sucesso}" th:text="${sucesso}" class="status ativo"></p>
-    <p th:if="${erro}" th:text="${erro}" class="status inativo"></p>
+    <p th:if="${sucesso}" th:text="${sucesso}" class="status ativo" role="status"></p>
+    <p th:if="${erro}" th:text="${erro}" class="status inativo" role="alert"></p>
     <p th:if="${param.criado}" class="status ativo">Usuário criado com senha temporária.</p>
     <table>
         <thead>
-        <tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Status</th><th>Cadastro</th><th>Ações</th></tr>
+        <tr><th scope="col">Nome</th><th scope="col">E-mail</th><th scope="col">Perfil</th><th scope="col">Status</th><th scope="col">Cadastro</th><th scope="col">Ações</th></tr>
         </thead>
         <tbody>
         <tr th:each="administrador : ${administradores}">
@@ -86,5 +88,7 @@
     </section>
 </dialog>
 <script th:src="@{/js/admin/password-reset-modal.js}" defer></script>
+
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
 </body>
 </html>

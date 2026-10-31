@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acessibilidade | Instituto Nosso Lar</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/acessibilidade.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/acessibilidade :: atalhos}"></div>
+    <header class="site-header">
+        <a class="brand" th:href="@{/}" aria-label="Instituto Nosso Lar — início">
+            <img th:src="@{/NL_Img/NossoLarLogo.png}" alt="Instituto Nosso Lar">
+        </a>
+        <nav class="main-nav" aria-label="Navegação desta página">
+            <a th:href="@{/}">Página inicial</a>
+        </nav>
+    </header>
+    <main id="conteudo" tabindex="-1" class="section">
+        <div class="section-heading">
+            <p class="eyebrow">ACESSIBILIDADE DIGITAL</p>
+            <h1>Acessibilidade e mapa do site</h1>
+            <p>Estamos trabalhando para que as informações do Instituto Nosso Lar possam ser acessadas por mais pessoas e por diferentes tecnologias.</p>
+        </div>
+
+        <section aria-labelledby="recursos-titulo">
+            <h2 id="recursos-titulo">Recursos disponíveis</h2>
+            <ul>
+                <li>Use o link “Ir para o conteúdo”, no início da página, para pular a navegação e chegar ao conteúdo principal.</li>
+                <li>Use o botão “Alto contraste” para alternar entre o tema normal e uma apresentação com contraste elevado. A preferência fica salva neste navegador.</li>
+                <li>O botão flutuante do VLibras permite acessar a tradução de conteúdos selecionados para Libras.</li>
+                <li>O zoom do navegador pode ampliar o texto e os demais elementos da página.</li>
+                <li>O site pode ser navegado pelo teclado com Tab, Shift+Tab, Enter e Espaço. A tecla Escape fecha o menu responsivo quando ele está aberto.</li>
+            </ul>
+        </section>
+
+        <nav aria-labelledby="mapa-site-titulo">
+            <h2 id="mapa-site-titulo">Mapa do site</h2>
+            <ul>
+                <li><a th:href="@{/#inicio}">Início</a></li>
+                <li><a th:href="@{/#sobre}">Quem somos</a></li>
+                <li><a th:href="@{/#atividades}">Atividades</a></li>
+                <li th:if="${temEventos}"><a th:href="@{/#eventos}">Eventos</a></li>
+                <li><a th:href="@{/#ajuda}">Como ajudar</a></li>
+                <li><a th:href="@{/#noticias}">Notícias</a></li>
+                <li><a th:href="@{/#contato}">Contato e localização</a></li>
+                <li><a th:href="@{/acessibilidade}">Acessibilidade</a></li>
+            </ul>
+        </nav>
+
+        <p>Se encontrar uma barreira de acesso, entre em contato com o Instituto pelos canais apresentados na página inicial.</p>
+        <p><a class="button" th:href="@{/}">Voltar à página inicial</a></p>
+    </main>
+    <div th:replace="~{fragments/acessibilidade :: vlibras}"></div>
+</body>
+</html>
