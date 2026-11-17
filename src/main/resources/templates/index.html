@@ -15,7 +15,7 @@
         <a class="brand" href="#inicio" aria-label="Instituto Nosso Lar — início"><img th:src="@{/NL_Img/NossoLarLogo.png}" alt="Instituto Nosso Lar"></a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">Menu</button>
         <nav id="menu-principal" class="main-nav" aria-label="Navegação principal">
-            <a href="#sobre">Quem somos</a><a href="#atividades">Atividades</a><a th:if="${!#lists.isEmpty(eventos)}" href="#eventos">Eventos</a><a href="#ajuda">Como ajudar</a><a href="#noticias">Notícias</a><a class="nav-cta" href="#contato">Fale conosco</a>
+            <a href="#sobre">Quem somos</a><a href="#atividades">Atividades</a><a th:if="${!#lists.isEmpty(eventos)}" href="#eventos">Eventos</a><a href="#ajuda">Como ajudar</a><a href="#noticias">Notícias</a><a class="nav-cta" href="#contato">Fale conosco</a><a class="nav-login" th:href="@{/admin}">Login</a>
         </nav>
     </header>
     <main id="conteudo" tabindex="-1">

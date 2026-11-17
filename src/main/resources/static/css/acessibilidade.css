@@ -70,9 +70,20 @@ html.high-contrast :where(h1, h2, h3, h4, h5, h6, p, small, label, li, td, th, t
     color: #fff !important;
 }
 
-html.high-contrast :where(a, .text-link) {
+html.high-contrast :where(a, .text-link, .nav-login) {
     color: #ff0 !important;
     text-decoration: underline !important;
+}
+
+html.high-contrast .nav-login {
+    border-color: #ff0 !important;
+    background: #000 !important;
+    text-decoration: none !important;
+}
+
+html.high-contrast .nav-login:hover {
+    background: #ff0 !important;
+    color: #000 !important;
 }
 
 html.high-contrast :where(button, input, select, textarea, summary) {

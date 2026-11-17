@@ -26,3 +26,8 @@ body{background:var(--white)}
 /* Acesso ao topo: destaque e posicionamento consistentes em todas as telas. */
 .back-to-top{right:1.4rem;left:auto;background:#087ed1}.back-to-top:hover{background:#005fa8}
 @media(max-width:800px){.back-to-top{right:1rem;left:auto}}
+
+/* Botão de login na navbar */
+.nav-login{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.65rem 1.15rem;border-radius:999px;border:1.5px solid var(--blue);background:transparent;color:var(--blue)!important;font-weight:700;text-decoration:none;transition:transform .2s,background .2s,color .2s}
+.nav-login:hover{background:var(--blue);color:#fff!important;transform:translateY(-2px)}
+@media(max-width:800px){.nav-login{margin-top:.4rem;border-width:2px}}
